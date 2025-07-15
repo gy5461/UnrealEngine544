@@ -43,7 +43,7 @@ FAutoConsoleVariableRef CVarSlateFastWidgetPath(
 );
 
 
-bool GSlateEnableGlobalInvalidation = false;
+bool GSlateEnableGlobalInvalidation = true;
 static FAutoConsoleVariableRef CVarSlateNewUpdateMethod(
 	TEXT("Slate.EnableGlobalInvalidation"), 
 	GSlateEnableGlobalInvalidation, 
