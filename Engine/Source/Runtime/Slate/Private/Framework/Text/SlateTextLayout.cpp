@@ -142,7 +142,7 @@ int32 FSlateTextLayout::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 		const int32 HighestUnderlayLayerId = OnPaintHighlights( Args, LineView, LineView.UnderlayHighlights, DefaultTextStyle, AllottedGeometry, MyCullingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled );
 
 		const int32 BlockDebugLayer = HighestUnderlayLayerId;
-		const int32 TextLayer = BlockDebugLayer + 1;
+		const int32 TextLayer = BlockDebugLayer;
 		int32 HighestBlockLayerId = TextLayer;
 
 		bool bIsLastVisibleLine = false;

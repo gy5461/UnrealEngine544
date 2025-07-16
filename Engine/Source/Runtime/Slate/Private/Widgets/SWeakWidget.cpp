@@ -71,7 +71,7 @@ int32 SWeakWidget::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeo
 			TheChild.Geometry, 
 			MyCullingRect, 
 			OutDrawElements, 
-			LayerId + 1,
+			LayerId,
 			InWidgetStyle, 
 			ShouldBeEnabled( bParentEnabled ) );
 	}

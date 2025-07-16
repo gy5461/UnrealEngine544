@@ -616,7 +616,7 @@ void FSlateUser::DrawWindowlessDragDropContent(const TSharedRef<SWindow>& Window
 					FPaintArgs(&WindowToDraw.Get(), WindowToDraw->GetHittestGrid(), WindowToDraw->GetPositionInScreen(), SlateApp.GetCurrentTime(), SlateApp.GetDeltaTime()), 
 					DragDropContentGeometry, WindowToDraw->GetClippingRectangleInWindow(),
 					WindowElementList,
-					++MaxLayerId,
+					MaxLayerId,
 					FWidgetStyle(),
 					WindowToDraw->IsEnabled());
 			}
@@ -646,7 +646,7 @@ void FSlateUser::DrawCursor(const TSharedRef<SWindow>& WindowToDraw, FSlateWindo
 				FPaintArgs(&WindowToDraw.Get(), WindowToDraw->GetHittestGrid(), WindowToDraw->GetPositionInScreen(), SlateApp.GetCurrentTime(), SlateApp.GetDeltaTime()),
 				CursorGeometry, WindowToDraw->GetClippingRectangleInWindow(),
 				WindowElementList,
-				++MaxLayerId,
+				MaxLayerId,
 				FWidgetStyle(),
 				WindowToDraw->IsEnabled());
 		}

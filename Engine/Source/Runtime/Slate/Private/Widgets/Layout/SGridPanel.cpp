@@ -148,7 +148,7 @@ int32 SGridPanel::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 						LastGridLayer = CurSlot.GetLayer();
 						// Ensure that everything here is drawn on top of 
 						// previously drawn grid content.
-						LayerId = MaxLayerId + 1;
+						//LayerId = MaxLayerId + 1;
 					}
 
 					const int32 CurWidgetsMaxLayerId = CurWidget.Widget->Paint(
