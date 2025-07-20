@@ -318,6 +318,7 @@ public:
 	 */
 	SLATECORE_API int32 Paint(const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const;
 
+	bool bIsGeneratedByUWidget = false;
 	/**
 	 * Ticks this widget with Geometry.  Override in derived classes, but always call the parent implementation.
 	 *

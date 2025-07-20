@@ -978,9 +978,13 @@ TSharedRef<SWidget> UWidget::TakeWidget_Private(ConstructMethodType ConstructMet
 #if !(UE_BUILD_SHIPPING || UE_BUILD_TEST)
 		ensureMsgf(PublicWidget.Get() != &SNullWidget::NullWidget.Get(), TEXT("Don't return SNullWidget from RebuildWidget, because we mutate the state of the return.  Return a SSpacer if you need to return a no-op widget."));
 #endif
-
+		if (PublicWidget.IsValid())
+		{
+			PublicWidget->bIsGeneratedByUWidget = true;
+		}
+		
 		MyWidget = PublicWidget;
-
+		
 		bNewlyCreated = true;
 	}
 	else
@@ -1002,7 +1006,11 @@ TSharedRef<SWidget> UWidget::TakeWidget_Private(ConstructMethodType ConstructMet
 		else // Otherwise we need to recreate the wrapper widget
 		{
 			SafeGCWidget = ConstructMethod(Cast<UUserWidget>(this), PublicWidget.ToSharedRef());
-
+			if (SafeGCWidget.IsValid())
+			{
+				SafeGCWidget->bIsGeneratedByUWidget = true;
+			}
+			
 			MyGCWidget = SafeGCWidget;
 			PublicWidget = SafeGCWidget;
 		}
@@ -1016,6 +1024,11 @@ TSharedRef<SWidget> UWidget::TakeWidget_Private(ConstructMethodType ConstructMet
 			TSharedPtr<SWidget> SafeDesignWidget = RebuildDesignWidget(PublicWidget.ToSharedRef());
 			if (SafeDesignWidget != PublicWidget)
 			{
+				if (SafeDesignWidget.IsValid())
+				{
+					SafeDesignWidget->bIsGeneratedByUWidget = true;
+				}
+				
 				DesignWrapperWidget = SafeDesignWidget;
 				PublicWidget = SafeDesignWidget;
 			}

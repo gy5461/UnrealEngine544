@@ -43,7 +43,14 @@ int32 SCompoundWidget::OnPaint( const FPaintArgs& Args, const FGeometry& Allotte
 #if WITH_VERY_VERBOSE_SLATE_STATS
 			SCOPE_CYCLE_COUNTER(STAT_ChildPaint);
 #endif
-			Layer = TheChild.Widget->Paint( Args.WithNewParent(this), TheChild.Geometry, MyCullingRect, OutDrawElements, LayerId + 1, CompoundedWidgetStyle, bShouldBeEnabled);
+
+			int32 NewLayerID = LayerId;
+			if (bIsGeneratedByUWidget == false)
+			{
+				NewLayerID = LayerId + 1;
+			}
+			
+			Layer = TheChild.Widget->Paint( Args.WithNewParent(this), TheChild.Geometry, MyCullingRect, OutDrawElements, NewLayerID, CompoundedWidgetStyle, bShouldBeEnabled);
 		}
 		return Layer;
 	}

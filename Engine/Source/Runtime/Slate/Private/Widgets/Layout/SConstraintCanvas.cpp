@@ -318,7 +318,13 @@ int32 SConstraintCanvas::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 	ArrangeLayeredChildren(AllottedGeometry, ArrangedChildren, ChildLayers);
 
 	const bool bForwardedEnabled = ShouldBeEnabled(bParentEnabled);
-
+	
+	// int32 AbsZOrder = 0;
+	// if (Slot().GetSlot())
+	// {
+	// 	AbsZOrder = FMath::Abs(Slot().GetSlot()->GetZOrder());
+	// }
+	
 	// Because we paint multiple children, we must track the maximum layer id that they produced in case one of our parents
 	// wants to an overlay for all of its contents.
 	int32 MaxLayerId = LayerId;
@@ -337,6 +343,13 @@ int32 SConstraintCanvas::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 			// {
 			// 	ChildLayerId = MaxLayerId + 1;
 			// }
+
+			// if (Children.IsValidIndex(ChildIndex))
+			// {
+			// 	const SConstraintCanvas::FSlot& CurChild = Children[ChildIndex];
+			// 	ChildLayerId = FMath::Abs(CurChild.GetZOrder());
+			// }
+			
 
 			const int32 CurWidgetsMaxLayerId = CurWidget.Widget->Paint(NewArgs, CurWidget.Geometry, MyCullingRect, OutDrawElements, ChildLayerId, InWidgetStyle, bForwardedEnabled);
 
