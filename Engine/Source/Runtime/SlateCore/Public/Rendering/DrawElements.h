@@ -123,13 +123,12 @@ struct FSlateCachedElementsHandle
 	bool operator!=(FSlateCachedElementsHandle& Other) const { return Ptr != Other.Ptr; }
 
 	FSlateCachedElementsHandle() {}
-private:
+
 	FSlateCachedElementsHandle(TSharedRef<FSlateCachedElementList>& DataPtr)
 		: Ptr(DataPtr)
 	{
 	}
 
-private:
 	TWeakPtr<FSlateCachedElementList> Ptr;
 };
 

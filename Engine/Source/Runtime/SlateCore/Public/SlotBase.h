@@ -90,17 +90,17 @@ protected:
 	{
 		if (!TargetValue.IdenticalTo(SourceValue))
 		{
-			const bool bWasBound = TargetValue.IsBound();
-			const bool bBoundnessChanged = bWasBound != SourceValue.IsBound();
+			// const bool bWasBound = TargetValue.IsBound();
+			// const bool bBoundnessChanged = bWasBound != SourceValue.IsBound();
 			TargetValue = SourceValue;
-
-			EInvalidateWidgetReason InvalidateReason = BaseInvalidationReason;
-			if (bBoundnessChanged)
-			{
-				InvalidateReason |= EInvalidateWidgetReason::Volatility;
-			}
-
-			Invalidate(InvalidateReason);
+			//
+			// EInvalidateWidgetReason InvalidateReason = BaseInvalidationReason;
+			// if (bBoundnessChanged)
+			// {
+			// 	InvalidateReason |= EInvalidateWidgetReason::Volatility;
+			// }
+			//
+			// Invalidate(InvalidateReason);
 			return true;
 		}
 
