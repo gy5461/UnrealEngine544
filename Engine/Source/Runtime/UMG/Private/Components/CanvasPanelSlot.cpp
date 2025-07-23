@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "Components/CanvasPanelSlot.h"
+
+#include "Blueprint/WidgetTree.h"
 #include "Components/CanvasPanel.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(CanvasPanelSlot)
@@ -158,6 +160,7 @@ FAnchorData UCanvasPanelSlot::GetLayout() const
 
 void UCanvasPanelSlot::SetPosition(FVector2D InPosition)
 {
+	FVector2D Translation = InPosition - GetPosition();
 	LayoutData.Offsets.Left = InPosition.X;
 	LayoutData.Offsets.Top = InPosition.Y;
 
@@ -165,6 +168,41 @@ void UCanvasPanelSlot::SetPosition(FVector2D InPosition)
 	{
 		Slot->SetOffset(LayoutData.Offsets);
 	}
+
+	if(UUserWidget* ContentWidget = Cast<UUserWidget>(Content.Get()))
+	{
+		SetWidgetTranslation(ContentWidget, Translation);
+	}
+}
+
+void UCanvasPanelSlot::SetWidgetTranslation(const UUserWidget* RootWidget, const FVector2D& InTrans)
+{
+	RootWidget->WidgetTree->ForEachWidget([&](UWidget* InWidget)
+	{
+		if(UUserWidget* InUserWidget = Cast<UUserWidget>(InWidget))
+		{
+			SetWidgetTranslation(InUserWidget, InTrans);
+			return;
+		}
+		
+		TSharedRef<SWidget> SubtitleSWidget = InWidget->TakeWidget();
+		TWeakPtr<FSlateCachedElementList> SubtitlePtr = SubtitleSWidget->GetPersistentState().CachedElementHandle.Ptr;
+		if (SubtitlePtr.IsValid())
+		{
+			TSharedPtr<FSlateCachedElementList> SubtitlePtrPin = SubtitlePtr.Pin();
+			if (SubtitlePtrPin.IsValid())
+			{
+				if (FSlateCachedFastPathRenderingData* CacheRenderDataPtr = SubtitlePtrPin->CachedRenderingData)
+				{
+					FSlateVertexArray& SubtitleItemVertices = CacheRenderDataPtr->Vertices;
+					for(FSlateVertex& Vertex : SubtitleItemVertices)
+					{
+						Vertex.Position = FVector2f(Vertex.Position.X + InTrans.X, Vertex.Position.Y + InTrans.Y );
+					}
+				}
+			}
+		}
+	});
 }
 
 FVector2D UCanvasPanelSlot::GetPosition() const
