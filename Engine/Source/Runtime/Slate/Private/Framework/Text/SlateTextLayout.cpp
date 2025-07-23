@@ -56,7 +56,7 @@ static FAutoConsoleVariableRef CVarSlateShowTextDebugging(TEXT("Slate.ShowTextDe
 
 #endif
 
-int32 FSlateTextLayout::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled ) const
+int32 FSlateTextLayout::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled, const FSlateInvalidationWidgetSortOrder& InSortOrder) const
 {
 	const ESlateDrawEffect DrawEffects = bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect;
 
@@ -212,10 +212,11 @@ int32 FSlateTextLayout::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 			{
 				BlockDebugHue.R += 50.0f;
 
+				
 				FSlateDrawElement::MakeBox(
 					OutDrawElements, 
 					BlockDebugLayer,
-					FSlateInvalidationWidgetSortOrder(),
+					InSortOrder,
 					AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, Block->GetSize()), FSlateLayoutTransform(TransformPoint(InverseScale, Block->GetLocationOffset()))),
 					&DefaultTextStyle.HighlightShape,
 					DrawEffects,
@@ -238,7 +239,7 @@ int32 FSlateTextLayout::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 			}
 			else
 			{
-				HighestRunLayerId = Run->OnPaint( Args, TextArgs, AllottedGeometry, MyCullingRect, OutDrawElements, TextLayer, InWidgetStyle, bParentEnabled );
+				HighestRunLayerId = Run->OnPaint( Args, TextArgs, AllottedGeometry, MyCullingRect, OutDrawElements, TextLayer, InWidgetStyle, bParentEnabled, InSortOrder );
 			}
 
 			HighestBlockLayerId = FMath::Max( HighestBlockLayerId, HighestRunLayerId );

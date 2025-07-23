@@ -41,7 +41,7 @@ int8 FSlatePasswordRun::GetKerning(int32 CurrentIndex, float Scale, const FRunTe
 	return FSlateApplication::Get().GetRenderer()->GetFontMeasureService()->GetKerning(Style.Font, Scale, GetPasswordChar(), GetPasswordChar());
 }
 
-int32 FSlatePasswordRun::OnPaint(const FPaintArgs& PaintArgs, const FTextArgs& TextArgs, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const
+int32 FSlatePasswordRun::OnPaint(const FPaintArgs& PaintArgs, const FTextArgs& TextArgs, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled, const FSlateInvalidationWidgetSortOrder& InSortOrder) const
 {
 	const ESlateDrawEffect DrawEffects = bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect;
 

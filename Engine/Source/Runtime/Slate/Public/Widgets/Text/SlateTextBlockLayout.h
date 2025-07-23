@@ -180,7 +180,7 @@ public:
 	/**
 	 * Paint this layout, updating the internal cache as required
 	 */
-	SLATE_API int32 OnPaint(const FPaintArgs& InPaintArgs, const FGeometry& InAllottedGeometry, const FSlateRect& InClippingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled);
+	SLATE_API int32 OnPaint(const FPaintArgs& InPaintArgs, const FGeometry& InAllottedGeometry, const FSlateRect& InClippingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled, const FSlateInvalidationWidgetSortOrder& InSortOrder = FSlateInvalidationWidgetSortOrder());
 
 	/**
 	 * Force dirty the layout due to an external change that can't be picked up automatically by this cache

@@ -229,7 +229,7 @@ float FSlateTextBlockLayout::GetLayoutScale() const
 	return TextLayout->GetScale();
 }
 
-int32 FSlateTextBlockLayout::OnPaint(const FPaintArgs& InPaintArgs, const FGeometry& InAllottedGeometry, const FSlateRect& InClippingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled)
+int32 FSlateTextBlockLayout::OnPaint(const FPaintArgs& InPaintArgs, const FGeometry& InAllottedGeometry, const FSlateRect& InClippingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabledconst, const FSlateInvalidationWidgetSortOrder& InSortOrder)
 {
 	// Store a new cached size with the scale
 	CachedSize = FVector2f(InAllottedGeometry.GetLocalSize());
@@ -266,7 +266,7 @@ int32 FSlateTextBlockLayout::OnPaint(const FPaintArgs& InPaintArgs, const FGeome
 	TextLayout->SetVisibleRegion(FVector2D(CachedSize), AutoScrollValue * TextLayout->GetScale());
 	TextLayout->UpdateIfNeeded();
 
-	return TextLayout->OnPaint(InPaintArgs, InAllottedGeometry, InClippingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled);
+	return TextLayout->OnPaint(InPaintArgs, InAllottedGeometry, InClippingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabledconst, InSortOrder);
 }
 
 void FSlateTextBlockLayout::DirtyLayout()
