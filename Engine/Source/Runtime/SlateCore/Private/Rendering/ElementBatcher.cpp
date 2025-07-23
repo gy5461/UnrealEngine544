@@ -1167,6 +1167,7 @@ void FSlateElementBatcher::AddBoxElements(const FSlateDrawElementArray<ElementTy
 		DrawFlags |= ((bTileHorizontal ? ESlateBatchDrawFlag::TileU : ESlateBatchDrawFlag::None) | (bTileVertical ? ESlateBatchDrawFlag::TileV : ESlateBatchDrawFlag::None));
 
 		OutBatchParameters.Layer = InDrawElement.GetLayer();
+		OutBatchParameters.SortOrder = InDrawElement.GetSortOrder();
 		OutBatchParameters.Resource = Resource;
 		OutBatchParameters.PrimitiveType = ESlateDrawPrimitive::TriangleList;
 		OutBatchParameters.ShaderType = ShaderType;
@@ -2609,6 +2610,7 @@ void FSlateElementBatcher::AddLineElements( const FSlateDrawElementArray<FSlateL
 		}
 
 		OutBatchParameters.Layer = InDrawElement.GetLayer();
+		OutBatchParameters.SortOrder = InDrawElement.GetSortOrder();
 		OutBatchParameters.Resource = nullptr;
 		OutBatchParameters.PrimitiveType = PrimitiveType;
 		OutBatchParameters.ShaderType = ShaderType;
