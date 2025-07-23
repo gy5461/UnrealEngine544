@@ -215,6 +215,7 @@ int32 FSlateTextLayout::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 				FSlateDrawElement::MakeBox(
 					OutDrawElements, 
 					BlockDebugLayer,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, Block->GetSize()), FSlateLayoutTransform(TransformPoint(InverseScale, Block->GetLocationOffset()))),
 					&DefaultTextStyle.HighlightShape,
 					DrawEffects,

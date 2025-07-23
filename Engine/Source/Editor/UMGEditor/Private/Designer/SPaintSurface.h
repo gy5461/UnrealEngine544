@@ -80,6 +80,7 @@ public:
 			FSlateDrawElement::MakeDebugQuad(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry()
 			);
 		}

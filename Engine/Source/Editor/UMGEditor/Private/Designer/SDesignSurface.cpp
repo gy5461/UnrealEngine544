@@ -579,6 +579,7 @@ void SDesignSurface::PaintBackgroundAsLines(const FSlateBrush* BackgroundImage, 
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		DrawLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		BackgroundImage
 		);
@@ -609,6 +610,7 @@ void SDesignSurface::PaintBackgroundAsLines(const FSlateBrush* BackgroundImage, 
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					Layer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,
@@ -637,6 +639,7 @@ void SDesignSurface::PaintBackgroundAsLines(const FSlateBrush* BackgroundImage, 
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					Layer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,

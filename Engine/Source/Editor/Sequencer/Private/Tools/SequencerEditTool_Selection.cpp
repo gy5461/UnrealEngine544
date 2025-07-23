@@ -350,6 +350,7 @@ public:
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(SelectionBottomRight - SelectionTopLeft, FSlateLayoutTransform(SelectionTopLeft)),
 			FAppStyle::GetBrush(TEXT("MarqueeSelection"))
 			);
@@ -426,6 +427,7 @@ int32 FSequencerEditTool_Selection::OnPaint(const FGeometry& AllottedGeometry, c
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(CursorDecorator->ImageSize, FSlateLayoutTransform(MousePosition + FVector2D(5.f, 5.f))),
 			CursorDecorator
 			);

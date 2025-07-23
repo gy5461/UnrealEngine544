@@ -92,6 +92,7 @@ int32 FCameraCalibrationTimeSliderController::OnPaintTimeSlider( bool bMirrorLab
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			ArrowLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			MyGeometry,
 			Brush,
 			DrawEffects,
@@ -121,6 +122,7 @@ int32 FCameraCalibrationTimeSliderController::OnPaintTimeSlider( bool bMirrorLab
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
 				LayerId + 1, 
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( TextSize, FSlateLayoutTransform(TextOffset) ), 
 				FormattedCategoryString, 
 				SmallLayoutFont,
@@ -161,6 +163,7 @@ int32 FCameraCalibrationTimeSliderController::OnPaintViewArea( const FGeometry& 
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId+1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( FVector2D(1.0f,1.0f), FSlateLayoutTransform(FVector2D(LinePos, 0.0f )) ),
 			LinePoints,
 			DrawEffects,

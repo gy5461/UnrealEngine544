@@ -102,6 +102,7 @@ void SAvaLevelViewportSnapIndicators::DrawIndicator(const FPaintArgs& InPaintArg
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		InOutLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		InAllottedGeometry.ToPaintGeometry(),
 		LinePoints,
 		ESlateDrawEffect::NoPixelSnapping,

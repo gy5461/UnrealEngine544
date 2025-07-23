@@ -89,6 +89,7 @@ int32 TPropertyAnimatorEditorCurveChannelInterface<InChannelType, InMenuExtensio
 
 	FSlateDrawElement::MakeLines(InPaintArgs.DrawElements
 		, InLayerId
+		, FSlateInvalidationWidgetSortOrder()
 		, InPaintArgs.Geometry.ToPaintGeometry()
 		, CurvePoints
 		, ESlateDrawEffect::PreMultipliedAlpha

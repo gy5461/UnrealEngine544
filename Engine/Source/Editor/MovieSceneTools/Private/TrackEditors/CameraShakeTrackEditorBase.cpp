@@ -154,6 +154,7 @@ int32 FCameraShakeSectionBase::OnPaintSection(FSequencerSectionPainter& Painter)
 				FSlateDrawElement::MakeBox(
 						Painter.DrawElements,
 						Painter.LayerId++,
+						FSlateInvalidationWidgetSortOrder(),
 						Painter.SectionGeometry.MakeChild(
 							FVector2D(2.f, Painter.SectionGeometry.Size.Y - 2.f),
 							FSlateLayoutTransform(FVector2D(OffsetPixel, 1.f))
@@ -168,6 +169,7 @@ int32 FCameraShakeSectionBase::OnPaintSection(FSequencerSectionPainter& Painter)
 				FSlateDrawElement::MakeBox(
 						Painter.DrawElements,
 						Painter.LayerId++,
+						FSlateInvalidationWidgetSortOrder(),
 						Painter.SectionGeometry.MakeChild(
 							FVector2D(OverflowSizeInPixels, Painter.SectionGeometry.Size.Y),
 							FSlateLayoutTransform(FVector2D(OffsetPixel, 0))
@@ -222,6 +224,7 @@ int32 FCameraShakeSectionBase::OnPaintSection(FSequencerSectionPainter& Painter)
 				FSlateDrawElement::MakeLines(
 						Painter.DrawElements,
 						Painter.LayerId++,
+						FSlateInvalidationWidgetSortOrder(),
 						Painter.SectionGeometry.ToPaintGeometry(),
 						LinePoints,
 						DrawEffects,
@@ -235,6 +238,7 @@ int32 FCameraShakeSectionBase::OnPaintSection(FSequencerSectionPainter& Painter)
 			FSlateDrawElement::MakeBox(
 					Painter.DrawElements,
 					Painter.LayerId++,
+					FSlateInvalidationWidgetSortOrder(),
 					Painter.SectionGeometry.MakeChild(
 						FVector2D(SectionDurationInPixels, Painter.SectionGeometry.Size.Y),
 						FSlateLayoutTransform(FVector2D(SectionStartTimeInPixels, 0))
@@ -251,6 +255,7 @@ int32 FCameraShakeSectionBase::OnPaintSection(FSequencerSectionPainter& Painter)
 		FSlateDrawElement::MakeBox(
 				Painter.DrawElements,
 				Painter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				Painter.SectionGeometry.MakeChild(
 					FVector2D(SectionDurationInPixels, Painter.SectionGeometry.Size.Y),
 					FSlateLayoutTransform(FVector2D(SectionStartTimeInPixels, 0))

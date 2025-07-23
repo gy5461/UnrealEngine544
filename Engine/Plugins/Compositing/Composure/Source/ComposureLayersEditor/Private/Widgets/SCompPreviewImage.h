@@ -48,7 +48,7 @@ public:
 
 			const FLinearColor FinalColorAndOpacity(InWidgetStyle.GetColorAndOpacityTint() * GetColorAndOpacityAttribute().Get().GetColor(InWidgetStyle) * ImageBrush->GetTint(InWidgetStyle));
 
-			FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), ImageBrush, PaintEffects, FinalColorAndOpacity);
+			FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), ImageBrush, PaintEffects, FinalColorAndOpacity);
 		}
 		return LayerId;
 	}

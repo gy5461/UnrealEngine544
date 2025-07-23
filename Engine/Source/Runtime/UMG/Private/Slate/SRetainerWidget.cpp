@@ -670,6 +670,7 @@ int32 SRetainerWidget::OnPaint(const FPaintArgs& Args, const FGeometry& Allotted
 				FSlateDrawElement::MakeBox(
 					*Context.WindowElementList,
 					Context.IncomingLayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					&SurfaceBrush,
 					// We always write out the content in gamma space, so when we render the final version we need to

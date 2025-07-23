@@ -297,6 +297,7 @@ int32 FThumbnailSection::OnPaintSection( FSequencerSectionPainter& InPainter ) c
 		FSlateDrawElement::MakeViewport(
 			InPainter.DrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			PaintGeometry,
 			Thumbnail,
 			DrawEffects | AdditionalDrawEffect,

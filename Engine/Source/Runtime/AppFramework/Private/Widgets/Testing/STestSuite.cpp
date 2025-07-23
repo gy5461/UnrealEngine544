@@ -358,6 +358,7 @@ public:
 			FSlateDrawElement::MakeDebugQuad(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry()
 			);
 		}
@@ -518,6 +519,7 @@ private:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2D(2.f* RadiusToUse), FSlateLayoutTransform(BezierPoints[i]- RadiusToUse)),
 				&WhiteBox,
 				bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -570,6 +572,7 @@ private:
 			FSlateDrawElement::MakeCubicBezierSpline(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				BezierPoints[0], BezierPoints[1], BezierPoints[2], BezierPoints[3],
 				SplineThickness.Get() * AllottedGeometry.Scale,
@@ -907,6 +910,7 @@ private:
 		FSlateDrawElement::MakeBox(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToPaintGeometry(),
 			StyleInfo,
 			InParams.bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect
@@ -926,6 +930,7 @@ private:
 		FSlateDrawElement::MakeText(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToPaintGeometry(InParams.Geometry.GetLocalSize(), FSlateLayoutTransform(FontScale)),
 			Text.ToString(),
 			FontInfo,
@@ -949,6 +954,7 @@ private:
 		FSlateDrawElement::MakeGradient(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToPaintGeometry(),
 			GradientStops,
 			Orient_Vertical,
@@ -968,6 +974,7 @@ private:
 		FSlateDrawElement::MakeSpline(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToPaintGeometry(),
 			Start, StartDir,
 			End, EndDir,
@@ -990,6 +997,7 @@ private:
 		FSlateDrawElement::MakeLines( 
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToPaintGeometry(),
 			LinePoints,
 			InParams.bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -1001,6 +1009,7 @@ private:
 		FSlateDrawElement::MakeLines(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToOffsetPaintGeometry(FVector2D(0.f, 10.f)),
 			LinePoints,
 			InParams.bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -1012,6 +1021,7 @@ private:
 		FSlateDrawElement::MakeLines(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToOffsetPaintGeometry(FVector2D(0.f, 20.f)),
 			LinePoints,
 			InParams.bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -1023,6 +1033,7 @@ private:
 		FSlateDrawElement::MakeLines(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToOffsetPaintGeometry(FVector2D(0.f, 34.f)),
 			LinePoints,
 			InParams.bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -1048,6 +1059,7 @@ private:
 		FSlateDrawElement::MakeLines( 
 			InParams.OutDrawElements,
 			InParams.Layer+1,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToPaintGeometry(),
 			LinePoints,
 			InParams.bEnabled ? ESlateDrawEffect::NoPixelSnapping : ESlateDrawEffect::NoPixelSnapping|ESlateDrawEffect::DisabledEffect,
@@ -1058,6 +1070,7 @@ private:
 		FSlateDrawElement::MakeLines(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToOffsetPaintGeometry(FVector2D(0.f, 10.f)),
 			LinePoints,
 			InParams.bEnabled ? ESlateDrawEffect::NoPixelSnapping : ESlateDrawEffect::NoPixelSnapping | ESlateDrawEffect::DisabledEffect,
@@ -1068,6 +1081,7 @@ private:
 		FSlateDrawElement::MakeLines(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToOffsetPaintGeometry(FVector2D(0.f, 20.f)),
 			LinePoints,
 			InParams.bEnabled ? ESlateDrawEffect::NoPixelSnapping : ESlateDrawEffect::NoPixelSnapping | ESlateDrawEffect::DisabledEffect,
@@ -1078,6 +1092,7 @@ private:
 		FSlateDrawElement::MakeLines(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToOffsetPaintGeometry(FVector2D(0.f, 34.f)),
 			LinePoints,
 			InParams.bEnabled ? ESlateDrawEffect::NoPixelSnapping : ESlateDrawEffect::NoPixelSnapping | ESlateDrawEffect::DisabledEffect,
@@ -1106,6 +1121,7 @@ private:
 			FSlateDrawElement::MakeRotatedBox(
 				InParams.OutDrawElements,
 				InParams.Layer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				InParams.Geometry.ToPaintGeometry( LocalSize, CenterLayoutTransform ),
 				CenterBrush,
 				InParams.bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -1121,6 +1137,7 @@ private:
 			FSlateDrawElement::MakeRotatedBox(
 				InParams.OutDrawElements,
 				InParams.Layer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				InParams.Geometry.ToPaintGeometry( TestBrush->ImageSize, OrbitLayoutTransform ),
 				TestBrush,
 				InParams.bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -1136,6 +1153,7 @@ private:
 		FSlateDrawElement::MakeBox(
 			InParams.OutDrawElements,
 			InParams.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InParams.Geometry.ToPaintGeometry(),
 			StyleInfo,
 			InParams.bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect
@@ -1206,7 +1224,7 @@ private:
 			Indexes.Add( (i+1 > 12) ? (1) : (i+1) );
 		}
 
-		FSlateDrawElement::MakeCustomVerts(InParams.OutDrawElements, InParams.Layer, Handle, Verts, Indexes, nullptr, 0, 0);
+		FSlateDrawElement::MakeCustomVerts(InParams.OutDrawElements, InParams.Layer,FastPathProxyHandle.GetWidgetSortOrder(), Handle, Verts, Indexes, nullptr, 0, 0);
 
 		return InParams.Layer;
 	}

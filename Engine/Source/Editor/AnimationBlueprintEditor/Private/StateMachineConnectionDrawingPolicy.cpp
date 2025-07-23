@@ -224,7 +224,7 @@ void FStateMachineConnectionDrawingPolicy::Internal_DrawLineWithArrow(const FVec
 					FLinearColor(0.0f, 0.0f, 0.0f, 0.0f), 9.0f, FStyleColors::AccentOrange, 100.0f);
 
 				FSlateDrawElement::MakeBox(DrawElementsList,
-					ArrowLayerID-1, // Draw behind the arrow
+					ArrowLayerID-1,FSlateInvalidationWidgetSortOrder(), // Draw behind the arrow
 					FPaintGeometry(EndPoint - ArrowRadius, BubbleImage->ImageSize * ZoomFactor, ZoomFactor),
 					&RoundedBoxBrush);
 
@@ -261,7 +261,7 @@ void FStateMachineConnectionDrawingPolicy::Internal_DrawLineWithArrow(const FVec
 
 		FSlateDrawElement::MakeText(
 			DrawElementsList,
-			ArrowLayerID,
+			ArrowLayerID,FSlateInvalidationWidgetSortOrder(),
 			FPaintGeometry(TextPosition, ArrowImage->ImageSize * ZoomFactor, ZoomFactor),
 			FText::AsNumber(NumRelinkedTransitions),
 			FCoreStyle::Get().GetFontStyle("SmallFont"));
@@ -270,7 +270,7 @@ void FStateMachineConnectionDrawingPolicy::Internal_DrawLineWithArrow(const FVec
 	// Draw the transition arrow triangle
 	FSlateDrawElement::MakeRotatedBox(
 		DrawElementsList,
-		ArrowLayerID,
+		ArrowLayerID,FSlateInvalidationWidgetSortOrder(),
 		FPaintGeometry(ArrowDrawPos, ArrowImage->ImageSize * ZoomFactor, ZoomFactor),
 		ArrowImage,
 		ESlateDrawEffect::None,
@@ -298,7 +298,7 @@ void FStateMachineConnectionDrawingPolicy::DrawCircle(const FVector2D& Center, f
 
 	FSlateDrawElement::MakeLines(
 		DrawElementsList,
-		ArrowLayerID + 1,
+		ArrowLayerID + 1,FSlateInvalidationWidgetSortOrder(),
 		FPaintGeometry(Center, FVector2D(Radius, Radius) * ZoomFactor, ZoomFactor),
 		TempPoints,
 		ESlateDrawEffect::None,

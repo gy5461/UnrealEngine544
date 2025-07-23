@@ -97,6 +97,7 @@ int32 SProfilerThreadView::OnPaint( const FPaintArgs& Args, const FGeometry& All
 	(
 		PaintState->OutDrawElements,
 		PaintState->LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		PaintState->AllottedGeometry.ToPaintGeometry( PaintState->Size2D(), FSlateLayoutTransform() ),
 		BackgroundBrush,
 		PaintState->DrawEffects,
@@ -190,6 +191,7 @@ void SProfilerThreadView::DrawFramesBackgroundAndTimelines() const
 			(
 				PaintState->OutDrawElements,
 				PaintState->LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				PaintState->AllottedGeometry.ToPaintGeometry( ClippedFrameBackgroundRect.GetSize(), FSlateLayoutTransform(ClippedFrameBackgroundRect.GetTopLeft()) ),
 				&SolidWhiteBrush,
 				PaintState->DrawEffects,
@@ -212,6 +214,7 @@ void SProfilerThreadView::DrawFramesBackgroundAndTimelines() const
 			(
 				PaintState->OutDrawElements,
 				PaintState->LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				PaintState->AllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				PaintState->DrawEffects,
@@ -237,6 +240,7 @@ void SProfilerThreadView::DrawFramesBackgroundAndTimelines() const
 		(
 			PaintState->OutDrawElements,
 			PaintState->LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintState->AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			PaintState->DrawEffects,
@@ -287,6 +291,7 @@ void SProfilerThreadView::DrawUIStackNodes() const
 				(
 					PaintState->OutDrawElements,
 					PaintState->LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					PaintState->AllottedGeometry.ToPaintGeometry( ClippedNodeRect.GetSize(), FSlateLayoutTransform(ClippedNodeRect.GetTopLeft()) ),
 					BorderBrush,
 					PaintState->DrawEffects,
@@ -438,6 +443,7 @@ void SProfilerThreadView::DrawUIStackNodes_Recursively( const FProfilerUIStackNo
 		(
 			PaintState->OutDrawElements,
 			PaintState->LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintState->AllottedGeometry.ToPaintGeometry( Size, FSlateLayoutTransform(Position) ),
 			&SolidWhiteBrush,
 			PaintState->DrawEffects,
@@ -465,6 +471,7 @@ void SProfilerThreadView::DrawText( const FString& Text, const FSlateFontInfo& F
 		(
 			PaintState->OutDrawElements,
 			PaintState->LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintState->AllottedGeometry.ToOffsetPaintGeometry( Position + ShadowOffset ),
 			Text,
 			FontInfo,
@@ -477,6 +484,7 @@ void SProfilerThreadView::DrawText( const FString& Text, const FSlateFontInfo& F
 	(
 		PaintState->OutDrawElements,
 		++PaintState->LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		PaintState->AllottedGeometry.ToOffsetPaintGeometry( Position ),
 		Text,
 		FontInfo,

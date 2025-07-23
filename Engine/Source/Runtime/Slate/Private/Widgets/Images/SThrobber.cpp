@@ -220,7 +220,7 @@ int32 SCircularThrobber::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 			(PieceIdx + 1) / (float)NumPieces,
 			LocalOffset + LocalOffset * FVector2D(FMath::Sin(Angle), FMath::Cos(Angle)));
 		FPaintGeometry PaintGeom = AllottedGeometry.ToPaintGeometry(PieceImage->ImageSize, PieceLocalTransform);
-		FSlateDrawElement::MakeBox(OutDrawElements, LayerId, PaintGeom, PieceImage, ESlateDrawEffect::None, FinalColorAndOpacity);
+		FSlateDrawElement::MakeBox(OutDrawElements, LayerId, FastPathProxyHandle.GetWidgetSortOrder(), PaintGeom, PieceImage, ESlateDrawEffect::None, FinalColorAndOpacity);
 	}
 	
 	return LayerId;

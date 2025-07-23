@@ -650,6 +650,7 @@ int32 SDetailsSplitter::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 8, // draw in front of background but behind text, buttons, etc
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			Geometry,
 			FAppStyle::GetBrush("WhiteBrush"),
 			ESlateDrawEffect::None,
@@ -894,6 +895,7 @@ void SDetailsSplitter::PaintPropertyConnector(FSlateWindowElementList& OutDrawEl
 	FSlateDrawElement::MakeCustomVerts(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		ResourceHandle,
 		FillVerts,
 		FillIndices,
@@ -906,6 +908,7 @@ void SDetailsSplitter::PaintPropertyConnector(FSlateWindowElementList& OutDrawEl
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		FPaintGeometry(),
 		TopBoarderLine,
 		ESlateDrawEffect::None,
@@ -917,6 +920,7 @@ void SDetailsSplitter::PaintPropertyConnector(FSlateWindowElementList& OutDrawEl
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		FPaintGeometry(),
 		BottomBoarderLine,
 		ESlateDrawEffect::None,
@@ -985,6 +989,7 @@ void SDetailsSplitter::PaintCopyPropertyButton(FSlateWindowElementList& OutDrawE
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId, // draw in front of background but behind text, buttons, etc
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		Geometry,
 		Brush,
 		ESlateDrawEffect::None,

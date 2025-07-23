@@ -241,6 +241,7 @@ void FCurveEditorRetimeTool::OnPaint(const FPaintArgs& Args, const FGeometry& Al
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			PaintOnLayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			FAppStyle::GetBrush(TEXT("WhiteBrush")),
 			ESlateDrawEffect::None,
@@ -265,6 +266,7 @@ void FCurveEditorRetimeTool::OnPaint(const FPaintArgs& Args, const FGeometry& Al
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			PaintOnLayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			LabelGeometry,
 			NoAnchorsText,
 			FontInfo,
@@ -307,6 +309,7 @@ void FCurveEditorRetimeTool::DrawAnchor(const FCurveEditorRetimeAnchor& InAnchor
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		PaintOnLayerId + 2,
+		FSlateInvalidationWidgetSortOrder(),
 		BarGeometry.ToPaintGeometry(),
 		FAppStyle::GetBrush("WhiteBrush"),
 		ESlateDrawEffect::None,
@@ -325,6 +328,7 @@ void FCurveEditorRetimeTool::DrawAnchor(const FCurveEditorRetimeAnchor& InAnchor
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			PaintOnLayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			CloseButtonGeometry.ToPaintGeometry(),
 			FEditorFontGlyphs::Times_Circle,
 			FontInfo,
@@ -359,6 +363,7 @@ void FCurveEditorRetimeTool::DrawAnchor(const FCurveEditorRetimeAnchor& InAnchor
 		FSlateDrawElement::MakeGradient(
 			OutDrawElements,
 			PaintOnLayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			GradientGeometry.ToPaintGeometry(),
 			GradientStops,
 			EOrientation::Orient_Vertical);

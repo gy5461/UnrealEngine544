@@ -73,6 +73,7 @@ int32 SOutlinerViewRow::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId++,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(
 				FVector2f(Size.X, SeparatorHeight),
 				FSlateLayoutTransform(FVector2f(0.f, Size.Y-SeparatorHeight))
@@ -137,6 +138,7 @@ int32 SOutlinerViewRow::OnPaintDropIndicator(EItemDropZone InItemDropZone, const
 	(
 		OutDrawElements,
 		LayerId++,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2D(AllottedGeometry.GetLocalSize() - Offset), FSlateLayoutTransform(Offset)),
 		DropIndicatorBrush,
 		ESlateDrawEffect::None,

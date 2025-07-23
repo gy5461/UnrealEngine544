@@ -1383,6 +1383,7 @@ void SNodePanel::PaintBackgroundAsLines(const FSlateBrush* BackgroundImage, cons
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		DrawLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		BackgroundImage,
 		ESlateDrawEffect::None,
@@ -1416,6 +1417,7 @@ void SNodePanel::PaintBackgroundAsLines(const FSlateBrush* BackgroundImage, cons
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					Layer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,
@@ -1444,6 +1446,7 @@ void SNodePanel::PaintBackgroundAsLines(const FSlateBrush* BackgroundImage, cons
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					Layer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,
@@ -1460,6 +1463,7 @@ void SNodePanel::PaintSurroundSunkenShadow(const FSlateBrush* ShadowImage, const
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		DrawLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		ShadowImage
 	);
@@ -1472,6 +1476,7 @@ void SNodePanel::PaintMarquee(const FGeometry& AllottedGeometry, const FSlateRec
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			DrawLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( Marquee.Rect.GetSize()*GetZoomAmount(), FSlateLayoutTransform(GraphCoordToPanelCoord(Marquee.Rect.GetUpperLeft())) ),
 			FAppStyle::GetBrush(TEXT("MarqueeSelection"))
 		);
@@ -1491,6 +1496,7 @@ void SNodePanel::PaintSoftwareCursor(const FGeometry& AllottedGeometry, const FS
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		DrawLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry( Brush->ImageSize, FSlateLayoutTransform(GraphCoordToPanelCoord( SoftwareCursorPosition ) - ( Brush->ImageSize / 2 )) ),
 		Brush
 	);
@@ -1519,6 +1525,7 @@ void SNodePanel::PaintComment(const FString& CommentText, const FGeometry& Allot
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		DrawLayerId-1,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(CommentTextSize, FSlateLayoutTransform(CommentBubbleOffset)),
 		CommentCalloutBubble,
 		ESlateDrawEffect::None,
@@ -1528,6 +1535,7 @@ void SNodePanel::PaintComment(const FString& CommentText, const FGeometry& Allot
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		DrawLayerId-1,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry( CommentCalloutArrow->ImageSize, FSlateLayoutTransform(CommentBubbleArrowOffset) ),
 		CommentCalloutArrow,
 		ESlateDrawEffect::None,
@@ -1538,6 +1546,7 @@ void SNodePanel::PaintComment(const FString& CommentText, const FGeometry& Allot
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		DrawLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry( CommentTextSize, FSlateLayoutTransform(CommentBubbleOffset + CommentBubblePadding) ),
 		CommentText,
 		CommentFont,

@@ -272,6 +272,7 @@ int32 SDMXPixelMappingDesignerView::OnPaint(const FPaintArgs& Args, const FGeome
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			GridLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -289,6 +290,7 @@ int32 SDMXPixelMappingDesignerView::OnPaint(const FPaintArgs& Args, const FGeome
 		FSlateDrawElement::MakeLines(
 			OutDrawElements, 
 			GridLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(), 
 			LinePoints, 
 			ESlateDrawEffect::None, 

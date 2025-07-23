@@ -104,6 +104,7 @@ class SRowHeaderCell : public SCompoundWidget
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				CellBackground,
 				ESlateDrawEffect::None,

@@ -62,6 +62,7 @@ int32 SDockingCross::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeLines(
 	      OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			MoveTemp(InnerBox)
 		);
@@ -80,6 +81,7 @@ int32 SDockingCross::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeLines(
 	      OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			MoveTemp(OuterBox)
 		);
@@ -95,6 +97,7 @@ int32 SDockingCross::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeLines(
 	      OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			MoveTemp(Points)
 		);
@@ -108,6 +111,7 @@ int32 SDockingCross::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeLines(
 	      OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			MoveTemp(Points)
 		);
@@ -121,6 +125,7 @@ int32 SDockingCross::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeLines(
 	      OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			MoveTemp(Points)
 		);
@@ -133,6 +138,7 @@ int32 SDockingCross::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeLines(
 	      OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			MoveTemp(Points)
 		);

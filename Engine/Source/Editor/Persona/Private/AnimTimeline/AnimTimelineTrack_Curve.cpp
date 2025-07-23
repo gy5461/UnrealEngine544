@@ -89,6 +89,7 @@ public:
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				InLabelGeometry,
 				InText,
 				FontInfo,

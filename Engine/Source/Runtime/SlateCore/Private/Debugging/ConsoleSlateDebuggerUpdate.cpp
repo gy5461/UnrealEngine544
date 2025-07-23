@@ -384,6 +384,7 @@ void FConsoleSlateDebuggerUpdate::HandlePaintDebugInfo(const FPaintArgs& InArgs,
 		FSlateDrawElement::MakeText(
 			InOutDrawElements
 			, InOutLayerId
+			, FSlateInvalidationWidgetSortOrder()
 			, InAllottedGeometry.ToPaintGeometry(FVector2f(1.f, 1.f), FSlateLayoutTransform(Location))
 			, Text
 			, FontInfo
@@ -433,6 +434,7 @@ void FConsoleSlateDebuggerUpdate::HandlePaintDebugInfo(const FPaintArgs& InArgs,
 				FSlateDrawElement::MakeDebugQuad(
 					InOutDrawElements,
 					InOutLayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					PaintGeometry,
 					ColorWithOpacity);
 			}
@@ -440,6 +442,7 @@ void FConsoleSlateDebuggerUpdate::HandlePaintDebugInfo(const FPaintArgs& InArgs,
 			FSlateDrawElement::MakeBox(
 				InOutDrawElements,
 				InOutLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintGeometry,
 				FocusBrush,
 				ESlateDrawEffect::None,

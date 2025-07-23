@@ -431,6 +431,7 @@ int32 SDragAndDropVerticalBox::OnPaint(const FPaintArgs& Args, const FGeometry& 
 			(
 				OutDrawElements,
 				LayerId++,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				CurWidget.Geometry.ToPaintGeometry(),
 				DropIndicatorBrush,
 				ESlateDrawEffect::None,

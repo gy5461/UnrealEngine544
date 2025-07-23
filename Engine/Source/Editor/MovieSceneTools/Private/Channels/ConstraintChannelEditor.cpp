@@ -295,7 +295,7 @@ int32 DrawExtra(
 		const FVector2D Translation = FVector2D(BoxStart, LaneTop);
 		const FPaintGeometry BoxGeometry = PaintArgs.Geometry.ToPaintGeometry(Size, FSlateLayoutTransform(Translation));
 		
-		FSlateDrawElement::MakeBox(PaintArgs.DrawElements, LayerId, BoxGeometry, WhiteBrush, DrawEffects, Range.Color);
+		FSlateDrawElement::MakeBox(PaintArgs.DrawElements, LayerId, FSlateInvalidationWidgetSortOrder(),BoxGeometry, WhiteBrush, DrawEffects, Range.Color);
 
 		// draw label
 		if (LabelBuilder.bValid)
@@ -307,7 +307,7 @@ int32 DrawExtra(
 			const double LabelMaxSize = BoxSize-LabelPixelOffset;
 			if (TextSize.X < LabelMaxSize)
 			{
-				FSlateDrawElement::MakeText(PaintArgs.DrawElements, LayerId, LabelGeometry, Label, FontInfo);				
+				FSlateDrawElement::MakeText(PaintArgs.DrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), LabelGeometry, Label, FontInfo);				
 			}
 			else
 			{
@@ -315,7 +315,7 @@ int32 DrawExtra(
 				const int32 End = FontMeasure->FindLastWholeCharacterIndexBeforeOffset(Label, FontInfo, FMath::RoundToInt(LabelMaxSize));
 				if (End >= 0)
 				{
-					FSlateDrawElement::MakeText(PaintArgs.DrawElements, LayerId, LabelGeometry, Label.ToString(), 0, End, FontInfo);
+					FSlateDrawElement::MakeText(PaintArgs.DrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), LabelGeometry, Label.ToString(), 0, End, FontInfo);
 				}
 			}
 		}

@@ -213,6 +213,7 @@ int32 FScrollyZoomy::PaintSoftwareCursorIfNeeded(const FGeometry& AllottedGeomet
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(Brush->ImageSize, FSlateLayoutTransform(SoftwareCursorPosition - (Brush->ImageSize / 2))),
 			Brush
 		);

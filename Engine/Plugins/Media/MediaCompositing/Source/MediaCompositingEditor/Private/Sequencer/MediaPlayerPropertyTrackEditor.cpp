@@ -66,6 +66,7 @@ struct FMediaPlayerPropertySection : FSequencerSection
 			FSlateDrawElement::MakeBox(
 				InPainter.DrawElements,
 				InPainter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InPainter.SectionGeometry.ToPaintGeometry(FVector2D(SectionSize.X - 2.0f, 7.0f), FSlateLayoutTransform(FVector2D(1.0f, 4.0f))),
 				FilmBorder,
 				InPainter.bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect
@@ -75,6 +76,7 @@ struct FMediaPlayerPropertySection : FSequencerSection
 			FSlateDrawElement::MakeBox(
 				InPainter.DrawElements,
 				InPainter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InPainter.SectionGeometry.ToPaintGeometry(FVector2D(SectionSize.X - 2.0f, 7.0f), FSlateLayoutTransform(FVector2D(1.0f, SectionSize.Y - 11.0f))),
 				FilmBorder,
 				InPainter.bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect

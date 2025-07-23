@@ -171,7 +171,7 @@ int32 SAvaEaseCurveEditor::OnPaint(const FPaintArgs& InArgs, const FGeometry& In
 		const float OutputSize = (OneOutputY - ZeroOutputY) * -1;
 		const FSlateBrush* WhiteBrush = FAppStyle::GetBrush(TEXT("WhiteTexture"));
 
-		FSlateDrawElement::MakeBox(OutDrawElements, ++InLayerId,
+		FSlateDrawElement::MakeBox(OutDrawElements, ++InLayerId,FSlateInvalidationWidgetSortOrder(),
 			InAllottedGeometry.ToPaintGeometry(FVector2D(InputSize, OutputSize), FSlateLayoutTransform(FVector2D(ZeroInputX, OneOutputY))),
 			WhiteBrush, DrawEffects, NormalAreaColor);
 	}
@@ -193,7 +193,7 @@ int32 SAvaEaseCurveEditor::OnPaint(const FPaintArgs& InArgs, const FGeometry& In
 			const FVector2D ActualOffset(ZeroInputX - (TextOffset.X + TextSize.X), ZeroOutputY - (TextOffset.Y + TextSize.Y));
 
 			FSlateDrawElement::MakeText(OutDrawElements, ++InLayerId
-				, InAllottedGeometry.ToPaintGeometry(InAllottedGeometry.Size, FSlateLayoutTransform(ActualOffset))
+				,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(InAllottedGeometry.Size, FSlateLayoutTransform(ActualOffset))
 				, Text, FontInfo, DrawEffects, TextColor);
 		}
 
@@ -202,7 +202,7 @@ int32 SAvaEaseCurveEditor::OnPaint(const FPaintArgs& InArgs, const FGeometry& In
 			const FVector2D ActualOffset(OneInputX + TextOffset.X, OneOutputY + TextOffset.Y);
 
 			FSlateDrawElement::MakeText(OutDrawElements, ++InLayerId
-				, InAllottedGeometry.ToPaintGeometry(InAllottedGeometry.Size, FSlateLayoutTransform(ActualOffset))
+				,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(InAllottedGeometry.Size, FSlateLayoutTransform(ActualOffset))
 				, EndText.Get(), FontInfo, DrawEffects, TextColor);
 		}
 	}
@@ -219,7 +219,7 @@ int32 SAvaEaseCurveEditor::OnPaint(const FPaintArgs& InArgs, const FGeometry& In
 		const FVector2D MarqueBottomRight(FMath::Max(MouseDownLocation.X, MouseMoveLocation.X), FMath::Max(MouseDownLocation.Y, MouseMoveLocation.Y));
 
 		FSlateDrawElement::MakeBox(OutDrawElements, ++InLayerId
-			, InAllottedGeometry.ToPaintGeometry(MarqueBottomRight - MarqueTopLeft, FSlateLayoutTransform(MarqueTopLeft))
+			,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(MarqueBottomRight - MarqueTopLeft, FSlateLayoutTransform(MarqueTopLeft))
 			, FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 	}
 
@@ -253,7 +253,7 @@ int32 SAvaEaseCurveEditor::PaintGrid(const FTrackScaleInfo& InScaleInfo, const F
 				LinePoints.Add(FVector2D(ScreenX, 0.f));
 				LinePoints.Add(FVector2D(ScreenX, LocalSize.Y));
 
-				FSlateDrawElement::MakeLines(OutDrawElements, InLayerId, InAllottedGeometry.ToPaintGeometry(), LinePoints, InDrawEffects, ExtendedGridColor, false);
+				FSlateDrawElement::MakeLines(OutDrawElements, InLayerId,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(), LinePoints, InDrawEffects, ExtendedGridColor, false);
 			}
 		}
 
@@ -269,7 +269,7 @@ int32 SAvaEaseCurveEditor::PaintGrid(const FTrackScaleInfo& InScaleInfo, const F
 				LinePoints.Add(FVector2D(LocalSize.X, ScreenY));
 
 				FSlateDrawElement::MakeLines(OutDrawElements, InLayerId
-					, InAllottedGeometry.ToPaintGeometry(), LinePoints, InDrawEffects, ExtendedGridColor, false);
+					,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(), LinePoints, InDrawEffects, ExtendedGridColor, false);
 			}
 		}
 	}
@@ -290,7 +290,7 @@ int32 SAvaEaseCurveEditor::PaintGrid(const FTrackScaleInfo& InScaleInfo, const F
 			LinePoints.Add(FVector2D(ScreenX, CurveZeroY2));
 
 			FSlateDrawElement::MakeLines(OutDrawElements, NormalizedLayerId
-				, InAllottedGeometry.ToPaintGeometry(), LinePoints, InDrawEffects, GridColor, false);
+				,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(), LinePoints, InDrawEffects, GridColor, false);
 		}
 
 		// Horizontal grid lines
@@ -306,7 +306,7 @@ int32 SAvaEaseCurveEditor::PaintGrid(const FTrackScaleInfo& InScaleInfo, const F
 			LinePoints.Add(FVector2D(CurveZeroX2, ScreenY));
 
 			FSlateDrawElement::MakeLines(OutDrawElements, NormalizedLayerId
-				, InAllottedGeometry.ToPaintGeometry(), LinePoints, InDrawEffects, GridColor, false);
+				,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(), LinePoints, InDrawEffects, GridColor, false);
 		}
 	}
 
@@ -325,28 +325,28 @@ void SAvaEaseCurveEditor::PaintNormalBounds(const FTrackScaleInfo& InScaleInfo, 
 	TArray<FVector2D> ZeroTimeLinePoints;
 	ZeroTimeLinePoints.Add(FVector2D(ZeroInputX, 0.f));
 	ZeroTimeLinePoints.Add(FVector2D(ZeroInputX, InAllottedGeometry.GetLocalSize().Y));
-	FSlateDrawElement::MakeLines(OutDrawElements, InLayerId, InAllottedGeometry.ToPaintGeometry()
+	FSlateDrawElement::MakeLines(OutDrawElements, InLayerId,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry()
 		, ZeroTimeLinePoints, InDrawEffects, NormalBoundsColor, false, NormalBoundsThickness);
 
 	// Time = 1 line
 	TArray<FVector2D> OneTimeLinePoints;
 	OneTimeLinePoints.Add(FVector2D(OneInputX, 0.f));
 	OneTimeLinePoints.Add(FVector2D(OneInputX, InAllottedGeometry.GetLocalSize().Y));
-	FSlateDrawElement::MakeLines(OutDrawElements, InLayerId, InAllottedGeometry.ToPaintGeometry()
+	FSlateDrawElement::MakeLines(OutDrawElements, InLayerId,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry()
 		, OneTimeLinePoints, InDrawEffects, NormalBoundsColor, false, NormalBoundsThickness);
 
 	// Value = 0 line
 	TArray<FVector2D> ZeroValueLinePoints;
 	ZeroValueLinePoints.Add(FVector2D(0.f, ZeroOutputY));
 	ZeroValueLinePoints.Add(FVector2D(InAllottedGeometry.GetLocalSize().X, ZeroOutputY));
-	FSlateDrawElement::MakeLines(OutDrawElements, InLayerId, InAllottedGeometry.ToPaintGeometry()
+	FSlateDrawElement::MakeLines(OutDrawElements, InLayerId,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry()
 		, ZeroValueLinePoints, InDrawEffects, NormalBoundsColor, false, NormalBoundsThickness);
 
 	// Value = 1 line
 	TArray<FVector2D> OneValueLinePoints;
 	OneValueLinePoints.Add(FVector2D(0.f, OneOutputY));
 	OneValueLinePoints.Add(FVector2D(InAllottedGeometry.GetLocalSize().X, OneOutputY));
-	FSlateDrawElement::MakeLines(OutDrawElements, InLayerId, InAllottedGeometry.ToPaintGeometry()
+	FSlateDrawElement::MakeLines(OutDrawElements, InLayerId,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry()
 		, OneValueLinePoints, InDrawEffects, NormalBoundsColor, false, NormalBoundsThickness);
 }
 
@@ -382,7 +382,7 @@ void SAvaEaseCurveEditor::PaintCurve(const FTrackScaleInfo& InScaleInfo, const F
 		CreateLinesForSegment(EaseCurve->FloatCurve.GetKeyInterpMode(KeyHandles[Index])
 			, Key_TimeValuePairs[Index], Key_TimeValuePairs[Index + 1], LinePoints, LineColors, InScaleInfo);
 
-		FSlateDrawElement::MakeLines(OutDrawElements, LayerId, InAllottedGeometry.ToPaintGeometry()
+		FSlateDrawElement::MakeLines(OutDrawElements, LayerId, FSlateInvalidationWidgetSortOrder(),InAllottedGeometry.ToPaintGeometry()
 			, LinePoints, LineColors, DrawEffects, FLinearColor::White/*Color*/, true, CurveThickness * InAllottedGeometry.Scale);
 
 		LinePoints.Empty();
@@ -496,7 +496,7 @@ int32 SAvaEaseCurveEditor::PaintKeys(const FTrackScaleInfo& InScaleInfo, const F
 		const FSlateBrush* KeyBrush = FAppStyle::GetBrush("CurveEd.CurveKey");
 		const int32 LayerToUse = bIsSelected ? SelectedLayerId : LayerId;
 
-		FSlateDrawElement::MakeBox(OutDrawElements, LayerToUse,
+		FSlateDrawElement::MakeBox(OutDrawElements, LayerToUse,FSlateInvalidationWidgetSortOrder(),
 			InAllottedGeometry.ToPaintGeometry(KeyHitSize, FSlateLayoutTransform(KeyIconLocation)),
 			KeyBrush, InDrawEffects,
 			KeyBrush->GetTint(InWidgetStyle) * InWidgetStyle.GetColorAndOpacityTint());
@@ -543,7 +543,7 @@ int32 SAvaEaseCurveEditor::PaintTangentHandle(const FGeometry& InAllottedGeometr
 		LinePoints.Add(FVector2D(InKeyLocation));
 		LinePoints.Add(FVector2D(InTangentLocation));
 
-		FSlateDrawElement::MakeLines(OutDrawElements, InLayerId++, InAllottedGeometry.ToPaintGeometry()
+		FSlateDrawElement::MakeLines(OutDrawElements, InLayerId++, FSlateInvalidationWidgetSortOrder(),InAllottedGeometry.ToPaintGeometry()
 			, LinePoints, InDrawEffects, LineColor, true, TangentHandleLineThickness);
 	}
 
@@ -554,7 +554,7 @@ int32 SAvaEaseCurveEditor::PaintTangentHandle(const FGeometry& InAllottedGeometr
 		const FLinearColor HandleColor = bInSelected ? FStyleColors::AccentBlue.GetSpecifiedColor() : FLinearColor::White;
 
 		FSlateDrawElement::MakeBox(OutDrawElements, InLayerId++
-			, InAllottedGeometry.ToPaintGeometry(TangentHitSize, FSlateLayoutTransform(TangentIconLocation))
+			,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(TangentHitSize, FSlateLayoutTransform(TangentIconLocation))
 			, ImageBrush, InDrawEffects, HandleColor * InWidgetStyle.GetColorAndOpacityTint());
 	}
 

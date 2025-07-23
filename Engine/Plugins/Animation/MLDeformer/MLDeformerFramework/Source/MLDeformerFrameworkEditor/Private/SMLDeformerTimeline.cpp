@@ -414,6 +414,7 @@ namespace UE::MLDeformer
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintGeometry,
 				LinePoints,
 				InArgs.DrawEffects,
@@ -430,6 +431,7 @@ namespace UE::MLDeformer
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					InArgs.StartLayer + 1,
+					FSlateInvalidationWidgetSortOrder(),
 					InArgs.AllottedGeometry.ToPaintGeometry(InArgs.AllottedGeometry.Size, FSlateLayoutTransform(TextOffset)),
 					FrameString,
 					SmallLayoutFont,
@@ -451,6 +453,7 @@ namespace UE::MLDeformer
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					InArgs.StartLayer,
+					FSlateInvalidationWidgetSortOrder(),
 					PaintGeometry,
 					LinePoints,
 					InArgs.DrawEffects,
@@ -519,6 +522,7 @@ namespace UE::MLDeformer
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				ArrowLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				MyGeometry,
 				Brush,
 				DrawEffects,
@@ -549,6 +553,7 @@ namespace UE::MLDeformer
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					Args.StartLayer + 1,
+					FSlateInvalidationWidgetSortOrder(),
 					Args.AllottedGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextOffset)),
 					FrameString,
 					SmallLayoutFont,
@@ -577,6 +582,7 @@ namespace UE::MLDeformer
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					LayerId + 1,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2f(SelectionRangeR - SelectionRangeL, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SelectionRangeL, 0.f))),
 					FAppStyle::GetBrush("WhiteBrush"),
 					ESlateDrawEffect::None,
@@ -586,6 +592,7 @@ namespace UE::MLDeformer
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SelectionRangeL, 0.f))),
 				Args.StartBrush,
 				ESlateDrawEffect::None,
@@ -594,6 +601,7 @@ namespace UE::MLDeformer
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SelectionRangeR - Args.BrushWidth, 0.f))),
 				Args.EndBrush,
 				ESlateDrawEffect::None,
@@ -619,6 +627,7 @@ namespace UE::MLDeformer
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(PlaybackRangeL, 0.0f))),
 			Args.StartBrush,
 			ESlateDrawEffect::None,
@@ -628,6 +637,7 @@ namespace UE::MLDeformer
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(PlaybackRangeR - Args.BrushWidth, 0.0f))),
 			Args.EndBrush,
 			ESlateDrawEffect::None,
@@ -638,6 +648,7 @@ namespace UE::MLDeformer
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(PlaybackRangeL, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(0.f, 0.f))),
 			FAppStyle::GetBrush("WhiteBrush"),
 			ESlateDrawEffect::None,
@@ -647,6 +658,7 @@ namespace UE::MLDeformer
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.Size.X - PlaybackRangeR, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(PlaybackRangeR, 0.0f))),
 			FAppStyle::GetBrush("WhiteBrush"),
 			ESlateDrawEffect::None,
@@ -956,6 +968,7 @@ namespace UE::MLDeformer
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(1.0f, 1.0f), FSlateLayoutTransform(FVector2f(LinePos, 0.0f))),
 				LinePoints,
 				DrawEffects,

@@ -60,6 +60,7 @@ int32 SAvaOutlinerExpanderArrow::OnPaint(const FPaintArgs& Args
 			{
 				FSlateDrawElement::MakeBox(OutDrawElements
 					, LayerId
+					, FSlateInvalidationWidgetSortOrder()
 					, AllottedGeometry.ToPaintGeometry(FVector2D(WireThickness, AllottedGeometry.Size.Y)
 						, FSlateLayoutTransform(FVector2D(CurrentIndent - 3.f, 0)))
 					, VerticalBarBrush
@@ -77,6 +78,7 @@ int32 SAvaOutlinerExpanderArrow::OnPaint(const FPaintArgs& Args
 			
 			FSlateDrawElement::MakeBox(OutDrawElements
 				, LayerId
+				, FSlateInvalidationWidgetSortOrder()
 				, AllottedGeometry.ToPaintGeometry(FVector2D(WireThickness, HalfCellHeight + HalfWireThickness)
 					, FSlateLayoutTransform(FVector2D(CurrentIndent - 3.f, 0)))
 				, VerticalBarBrush
@@ -91,6 +93,7 @@ int32 SAvaOutlinerExpanderArrow::OnPaint(const FPaintArgs& Args
 			
 			FSlateDrawElement::MakeBox(OutDrawElements
 				, LayerId
+				, FSlateInvalidationWidgetSortOrder()
 				, AllottedGeometry.ToPaintGeometry(FVector2D(WireThickness, HalfCellHeight + HalfWireThickness)
 					, FSlateLayoutTransform(FVector2D(CurrentIndent - 3.f, HalfCellHeight - HalfWireThickness)))
 				, VerticalBarBrush
@@ -108,6 +111,7 @@ int32 SAvaOutlinerExpanderArrow::OnPaint(const FPaintArgs& Args
 			
 			FSlateDrawElement::MakeBox(OutDrawElements
 				, LayerId
+				, FSlateInvalidationWidgetSortOrder()
 				, AllottedGeometry.ToPaintGeometry(FVector2D(AllottedGeometry.Size.X - HorizontalWireStart - WireThickness - LeafDepth, WireThickness)
 					, FSlateLayoutTransform(FVector2D(HorizontalWireStart + WireThickness - 3.f, 0.5f * (AllottedGeometry.Size.Y - WireThickness))))
 				, VerticalBarBrush

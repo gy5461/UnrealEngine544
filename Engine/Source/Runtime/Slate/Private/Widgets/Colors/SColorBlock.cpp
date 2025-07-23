@@ -63,7 +63,7 @@ int32 SColorBlock::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 
 	if (ShowBackgroundForAlpha.Get() && InColor.A < 1.0f && !bIgnoreAlpha)
 	{
-		FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), AlphaBackgroundBrush.Get(), DrawEffects);
+		FSlateDrawElement::MakeBox(OutDrawElements, LayerId, FastPathProxyHandle.GetWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), AlphaBackgroundBrush.Get(), DrawEffects);
 	}
 
 	TArray<FSlateGradientStop> GradientStops;
@@ -86,6 +86,7 @@ int32 SColorBlock::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 	FSlateDrawElement::MakeGradient(
 		OutDrawElements,
 		LayerId+1,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		MoveTemp(GradientStops),
 		(AllottedGeometry.GetLocalSize().X > AllottedGeometry.GetLocalSize().Y) ? Orient_Vertical : Orient_Horizontal,

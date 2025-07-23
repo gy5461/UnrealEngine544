@@ -179,7 +179,7 @@ void FPreviewViewport::OnDrawViewport( const FGeometry& AllottedGeometry, const 
 	{
 		// Draw above everything else
 		uint32 PreviewLayer = LayerId+1;
-		FSlateDrawElement::MakeCustom( OutDrawElements, PreviewLayer, PreviewElement );
+		FSlateDrawElement::MakeCustom( OutDrawElements, PreviewLayer,FSlateInvalidationWidgetSortOrder(), PreviewElement );
 	}
 }
 

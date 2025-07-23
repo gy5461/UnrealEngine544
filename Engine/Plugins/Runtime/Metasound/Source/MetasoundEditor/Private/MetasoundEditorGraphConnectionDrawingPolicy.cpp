@@ -566,6 +566,7 @@ namespace Metasound
 			FSlateDrawElement::MakeRotatedBox(
 				DrawElementsList,
 				InLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				FPaintGeometry(MidpointDrawPos, MidpointImage->ImageSize * ZoomFactor, ZoomFactor),
 				MidpointImage,
 				ESlateDrawEffect::None,
@@ -581,6 +582,7 @@ namespace Metasound
 			FSlateDrawElement::MakeDrawSpaceSpline(
 				DrawElementsList,
 				InLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				InData.P0, InData.P0Tangent,
 				InData.P1, InData.P1Tangent,
 				InData.Params.WireThickness,
@@ -611,6 +613,7 @@ namespace Metasound
 					FSlateDrawElement::MakeBox(
 						DrawElementsList,
 						InParams.LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						FPaintGeometry(BubblePos, BubbleSize, ZoomFactor),
 						BubbleImage,
 						ESlateDrawEffect::None,
@@ -771,8 +774,8 @@ namespace Metasound
 				AddPoint(0.0f, InParams.SplineLength);
 			}
 
-			FSlateDrawElement::MakeLines(DrawElementsList, InParams.LayerId, FPaintGeometry(), PointsUp, ESlateDrawEffect::None, InParams.ConnectionData.Params.WireColor, true, InParams.ConnectionData.Params.WireThickness);
-			FSlateDrawElement::MakeLines(DrawElementsList, InParams.LayerId, FPaintGeometry(), PointsDown, ESlateDrawEffect::None, InParams.ConnectionData.Params.WireColor, true, InParams.ConnectionData.Params.WireThickness);
+			FSlateDrawElement::MakeLines(DrawElementsList, InParams.LayerId, FSlateInvalidationWidgetSortOrder(),FPaintGeometry(), PointsUp, ESlateDrawEffect::None, InParams.ConnectionData.Params.WireColor, true, InParams.ConnectionData.Params.WireThickness);
+			FSlateDrawElement::MakeLines(DrawElementsList, InParams.LayerId,FSlateInvalidationWidgetSortOrder(), FPaintGeometry(), PointsDown, ESlateDrawEffect::None, InParams.ConnectionData.Params.WireColor, true, InParams.ConnectionData.Params.WireThickness);
 			if (bDrawRemainingSpline)
 			{
 				FDrawConnectionData FinalData = InParams.ConnectionData;
@@ -787,6 +790,7 @@ namespace Metasound
 			FSlateDrawElement::MakeDrawSpaceSpline(
 				DrawElementsList,
 				WireLayerID,
+				FSlateInvalidationWidgetSortOrder(),
 				InData.P0, InData.P0Tangent,
 				InData.P1, InData.P1Tangent,
 				InData.Params.WireThickness,
@@ -800,6 +804,7 @@ namespace Metasound
 			FSlateDrawElement::MakeDrawSpaceSpline(
 				DrawElementsList,
 				WireAnimationLayerID,
+				FSlateInvalidationWidgetSortOrder(),
 				InData.P0, InData.P0Tangent,
 				InData.P1, InData.P1Tangent,
 				InData.Params.WireThickness,

@@ -209,6 +209,7 @@ namespace NavigationSimulationOverlay
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					SourcePaintGeometry.GetValue(),
 					PaintNode.SourcePoints,
 					ESlateDrawEffect::None,
@@ -235,6 +236,7 @@ namespace NavigationSimulationOverlay
 					FSlateDrawElement::MakeLines(
 						OutDrawElements,
 						LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						SourcePaintGeometry.GetValue(),
 						DestinationPoints,
 						ESlateDrawEffect::None,
@@ -252,6 +254,7 @@ namespace NavigationSimulationOverlay
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						ArrowGeometry.ToPaintGeometry(),
 						PaintNode.ArrowBrush,
 						ESlateDrawEffect::None,

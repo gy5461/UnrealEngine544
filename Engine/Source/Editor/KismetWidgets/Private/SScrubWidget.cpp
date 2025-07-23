@@ -137,6 +137,7 @@ int32 SScrubWidget::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					BackgroundLayer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(Size, FSlateLayoutTransform(Offset)),
 					StyleInfo,
 					DrawEffects,
@@ -152,7 +153,8 @@ int32 SScrubWidget::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
-					TextLayer, 
+					TextLayer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextOffset)), 
 					FrameString, 
 					SmallLayoutFont, 
@@ -167,6 +169,7 @@ int32 SScrubWidget::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
  				FSlateDrawElement::MakeBox(
  					OutDrawElements,
  					BackgroundLayer,
+ 					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(Size, FSlateLayoutTransform(Offset)),
  					StyleInfo,
  					DrawEffects,
@@ -193,6 +196,7 @@ int32 SScrubWidget::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 			FSlateDrawElement::MakeBox( 
 				OutDrawElements,
 				ArrowLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				MyGeometry,
 				StyleInfo,
 				DrawEffects,
@@ -216,6 +220,7 @@ int32 SScrubWidget::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					ArrowLayer+1,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(Size, FSlateLayoutTransform(BarOffset)),
 					StyleInfo,
 					DrawEffects,

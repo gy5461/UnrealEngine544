@@ -248,6 +248,7 @@ int32 SAudioCurveView::PaintGridLines(const FGeometry& AllottedGeometry, const F
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				GridLineLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				GridPoints,
 				LineDrawEffects,
@@ -275,6 +276,7 @@ int32 SAudioCurveView::PaintGridLines(const FGeometry& AllottedGeometry, const F
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			GridLineLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			GridPoints,
 			LineDrawEffects,
@@ -295,6 +297,7 @@ int32 SAudioCurveView::PaintGridLines(const FGeometry& AllottedGeometry, const F
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
 				GridLineLabelLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextOffset)),
 				LabelString,
 				LabelFont,
@@ -351,6 +354,7 @@ int32 SAudioCurveView::PaintCurves(const FGeometry& AllottedGeometry, const FSla
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					LayerId++,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					Points,
 					LineDrawEffects,
@@ -369,6 +373,7 @@ int32 SAudioCurveView::PaintCurves(const FGeometry& AllottedGeometry, const FSla
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			Points,
 			LineDrawEffects,

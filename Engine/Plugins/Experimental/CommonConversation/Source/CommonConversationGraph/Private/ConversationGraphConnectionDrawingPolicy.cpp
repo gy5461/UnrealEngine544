@@ -132,6 +132,7 @@ void FConversationGraphConnectionDrawingPolicy::Internal_DrawLineWithArrow(const
 	FSlateDrawElement::MakeRotatedBox(
 		DrawElementsList,
 		ArrowLayerID,
+		FSlateInvalidationWidgetSortOrder(),
 		FPaintGeometry(ArrowDrawPos, ArrowImage->ImageSize * ZoomFactor, ZoomFactor),
 		ArrowImage,
 		ESlateDrawEffect::None,

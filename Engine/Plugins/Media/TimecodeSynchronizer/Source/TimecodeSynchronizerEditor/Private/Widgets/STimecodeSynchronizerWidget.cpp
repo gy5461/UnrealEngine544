@@ -260,6 +260,7 @@ void STimecodeSynchronizerBarWidget::DrawBoxWithBorder(const FGeometry& InAllott
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		InLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		InAllottedGeometry.ToPaintGeometry(FVector2D(InMaxX - InMinX, InMaxY - InMinY), FSlateLayoutTransform(FVector2D(InMinX, InMinY))),
 		InBorderBrush,
 		ESlateDrawEffect::None,
@@ -273,6 +274,7 @@ void STimecodeSynchronizerBarWidget::DrawBoxWithBorder(const FGeometry& InAllott
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		InLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		InAllottedGeometry.ToPaintGeometry(FVector2D(InMaxX - InMinX-2, InMaxY - InMinY-2), FSlateLayoutTransform(FVector2D(InMinX+1, InMinY+1))),
 		InInsideBrush,
 		ESlateDrawEffect::None,
@@ -298,6 +300,7 @@ void STimecodeSynchronizerBarWidget::DrawText(const FGeometry& InAllottedGeometr
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		InLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		InAllottedGeometry.ToPaintGeometry(InRegion.GetSize() - FVector2D(HOffset, VOffset), FSlateLayoutTransform(FVector2D(HOffset, VOffset))),
 		InText,
 		FontInfo,

@@ -1907,7 +1907,7 @@ int32 SCustomEditorLine::OnPaint(const FPaintArgs& Args, const FGeometry& Allott
 	{
 		LinePoints[1] = FVector2D(BorderPadding.X, BorderPadding.Y + LineLength);
 	}
-	FSlateDrawElement::MakeLines(OutDrawElements, ++RetLayerId, AllottedGeometry.ToPaintGeometry(), LinePoints, ESlateDrawEffect::None, LineColor, false, 2.0);
+	FSlateDrawElement::MakeLines(OutDrawElements, ++RetLayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), LinePoints, ESlateDrawEffect::None, LineColor, false, 2.0);
 
 	return RetLayerId;
 }
@@ -1951,7 +1951,7 @@ int32 SRangeSquare::OnPaint(const FPaintArgs & Args, const FGeometry & AllottedG
 	{
 		FSlateDrawElement::MakeLines
 		(
-			OutDrawElements, ++RetLayerId, AllottedGeometry.ToPaintGeometry(), Points,
+			OutDrawElements, ++RetLayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), Points,
 			ESlateDrawEffect::None,	SquareColor, true,2.0
 		);
 	};

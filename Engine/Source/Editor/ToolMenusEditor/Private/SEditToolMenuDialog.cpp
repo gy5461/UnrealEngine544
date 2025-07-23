@@ -186,6 +186,7 @@ class SMultiBlockDragHandle : public SCompoundWidget
 			(
 				OutDrawElements,
 				LayerId++,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				DropIndicatorBrush,
 				ESlateDrawEffect::None,

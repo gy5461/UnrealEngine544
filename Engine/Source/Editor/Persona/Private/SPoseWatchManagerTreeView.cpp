@@ -368,6 +368,7 @@ int32 SPoseWatchManagerTreeRow::OnPaint(const FPaintArgs& Args, const FGeometry&
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + TextLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(DrawSize, FSlateLayoutTransform(DrawPosition)),	// Position, Size, Scale
 			StyleInfo,													// Style
 			DrawEffects,												// Effects to use

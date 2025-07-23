@@ -20,6 +20,7 @@
 #include "Slate/UMGDragDropOp.h"
 #include "Slate/SlateBrushAsset.h"
 #include "EngineGlobals.h"
+#include "Blueprint/UserWidget.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Engine/Engine.h"
 #include "Engine/GameEngine.h"
@@ -168,6 +169,7 @@ void UWidgetBlueprintLibrary::DrawBox(FPaintContext& Context, FVector2D Position
 		FSlateDrawElement::MakeBox(
 			Context.OutDrawElements,
 			Context.MaxLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			Context.AllottedGeometry.ToPaintGeometry(Size, FSlateLayoutTransform(Position)),
 			&Brush->Brush,
 			ESlateDrawEffect::None,
@@ -182,6 +184,7 @@ void UWidgetBlueprintLibrary::DrawSpline(FPaintContext& Context, FVector2D Start
 	FSlateDrawElement::MakeSpline(
 		Context.OutDrawElements,
 		Context.MaxLayer,
+		FSlateInvalidationWidgetSortOrder(),
 		Context.AllottedGeometry.ToPaintGeometry(),
 		Start,
 		StartDir,
@@ -205,6 +208,7 @@ void UWidgetBlueprintLibrary::DrawLine(FPaintContext& Context, FVector2D Positio
 		FSlateDrawElement::MakeLines(
 			Context.OutDrawElements,
 			Context.MaxLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			Context.AllottedGeometry.ToPaintGeometry(),
 			Points,
 			ESlateDrawEffect::None,
@@ -246,6 +250,7 @@ void UWidgetBlueprintLibrary::DrawLines(FPaintContext& Context, const TArray<FVe
 	FSlateDrawElement::MakeLines(
 		Context.OutDrawElements,
 		Context.MaxLayer,
+		FSlateInvalidationWidgetSortOrder(),
 		Context.AllottedGeometry.ToPaintGeometry(),
 		MoveTemp(ValidatedPoints),
 		ESlateDrawEffect::None,
@@ -264,6 +269,7 @@ void UWidgetBlueprintLibrary::DrawText(FPaintContext& Context, const FString& In
 	FSlateDrawElement::MakeText(
 		Context.OutDrawElements,
 		Context.MaxLayer,
+		FSlateInvalidationWidgetSortOrder(),
 		Context.AllottedGeometry.ToOffsetPaintGeometry(Position),
 		InString,
 		FontInfo,
@@ -283,6 +289,7 @@ void UWidgetBlueprintLibrary::DrawTextFormatted(FPaintContext& Context, const FT
 		FSlateDrawElement::MakeText(
 			Context.OutDrawElements,
 			Context.MaxLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			Context.AllottedGeometry.ToOffsetPaintGeometry(Position),
 			Text,
 			FontInfo,

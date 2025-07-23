@@ -746,6 +746,7 @@ int32 STableViewBase::OnPaint( const FPaintArgs& Args, const FGeometry& Allotted
 		FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				++NewLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				BackgroundBrushResource,
 				DrawEffects,
@@ -766,6 +767,7 @@ int32 STableViewBase::OnPaint( const FPaintArgs& Args, const FGeometry& Allotted
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		++NewLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(CursorSize, FSlateLayoutTransform(SoftwareCursorPosition - (CursorSize / .5f ))),
 		Brush
 		);

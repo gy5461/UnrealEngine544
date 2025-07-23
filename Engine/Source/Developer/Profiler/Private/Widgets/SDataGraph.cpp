@@ -313,6 +313,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 	(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry( FVector2D(AreaX1,AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform() ),
 		TimelineAreaBrush,
 		DrawEffects,
@@ -436,6 +437,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				(
 					OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					GraphPoints,
 					DrawEffects,
@@ -466,6 +468,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				(
 					OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					GraphPoints,
 					DrawEffects,
@@ -523,6 +526,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				(
 					OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					DrawEffects,
@@ -541,7 +545,8 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				FSlateDrawElement::MakeText
 				(
 					OutDrawElements, 
-					LayerId, 
+					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToOffsetPaintGeometry( FVector2D(MarkerPosX,2.0f) ),
 					AccumulatedFrameNumberStr,
 					SummaryFont,
@@ -554,7 +559,8 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				FSlateDrawElement::MakeText
 				(
 					OutDrawElements, 
-					LayerId, 
+					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToOffsetPaintGeometry( FVector2D(MarkerPosX,AllottedGeometry.GetLocalSize().Y-2.0f-MaxFontCharHeight) ),
 					ElapseTimeStr,
 					SummaryFont,
@@ -585,6 +591,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				(
 					OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					DrawEffects,
@@ -603,7 +610,8 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				FSlateDrawElement::MakeText
 				(
 					OutDrawElements, 
-					LayerId, 
+					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToOffsetPaintGeometry( FVector2D(MarkerPosX,2.0f) ),
 					ElapsedTimeStr,
 					SummaryFont,
@@ -617,6 +625,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				(
 					OutDrawElements, 
 					LayerId, 
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToOffsetPaintGeometry( FVector2D(MarkerPosX,AllottedGeometry.Size.Y-2.0f-MaxFontCharHeight) ),
 					AccumulatedFrameNumberStr,
 					SummaryFont,
@@ -766,6 +775,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			DrawEffects,
@@ -797,7 +807,8 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeText
 		(
 			OutDrawElements, 
-			LayerId, 
+			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToOffsetPaintGeometry( FVector2D(2.0f,MarkerPosY+HintOffsetY) ),
 			TimeValueStr,
 			SummaryFont, 
@@ -811,7 +822,8 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeText
 		(
 			OutDrawElements, 
-			LayerId, 
+			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToOffsetPaintGeometry( FVector2D(AreaX1-RightValueSizeX,MarkerPosY+HintOffsetY) ),
 			CounterValueStr,
 			SummaryFont, 
@@ -838,6 +850,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				(
 					OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry( FVector2D(GraphMarkerWidth, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2D(LocalGraphSelectionX[Nx]-HalfGraphMarkerWidth,0.0f)) ),
 					FAppStyle::GetBrush("Brushes.Foldout"),
 					DrawEffects,
@@ -860,6 +873,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 				(
 					OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry( FVector2D(GraphSelectionW/*-GraphMarkerWidth*/, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2D(GraphSelectionX0/*+HalfGraphMarkerWidth*/,0.0f)) ),
 					FAppStyle::GetBrush("Brushes.Foldout"),
 					DrawEffects,
@@ -880,6 +894,7 @@ int32 SDataGraph::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( FVector2D(GraphMarkerWidth, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2D(LocalPositionGraphX-HalfGraphMarkerWidth,0.0f)) ),
 			FAppStyle::Get().GetBrush("Brushes.Recessed"),
 			DrawEffects,

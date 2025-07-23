@@ -307,7 +307,7 @@ int32 STutorialContent::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 										((WidgetGeometry.GetLocalSize() * WidgetGeometry.Scale) + (FVector2D(ShadowBrush->Margin.Right * 2.0f, ShadowBrush->Margin.Bottom * 2.0f) * ShadowBrush->ImageSize * WidgetGeometry.Scale * TutorialConstants::ShadowScale)),
 										WidgetGeometry.Scale * TutorialConstants::ShadowScale);
 		// draw highlight shadow
-		FSlateDrawElement::MakeBox(OutDrawElements, LayerId++, ShadowGeometry, ShadowBrush, ESlateDrawEffect::None, ShadowTint);
+		FSlateDrawElement::MakeBox(OutDrawElements, LayerId++,FSlateInvalidationWidgetSortOrder(), ShadowGeometry, ShadowBrush, ESlateDrawEffect::None, ShadowTint);
 
 		FVector2D PulseOffset = FVector2D(PulseFactor * TutorialConstants::MaxBorderOffset, PulseFactor * TutorialConstants::MaxBorderOffset);
 
@@ -317,7 +317,7 @@ int32 STutorialContent::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 		FPaintGeometry BorderGeometry(BorderPosition, BorderSize, WidgetGeometry.Scale);
 
 		// draw highlight border
-		FSlateDrawElement::MakeBox(OutDrawElements, LayerId++, BorderGeometry, BorderBrush, ESlateDrawEffect::None, BorderTint);
+		FSlateDrawElement::MakeBox(OutDrawElements, LayerId++,FSlateInvalidationWidgetSortOrder(), BorderGeometry, BorderBrush, ESlateDrawEffect::None, BorderTint);
 	}
 
 	return SCompoundWidget::OnPaint(Args, AllottedGeometry, MyCullingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled);

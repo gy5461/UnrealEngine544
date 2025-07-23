@@ -1120,6 +1120,7 @@ int32 SScrollBox::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		++NewLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry( CursorSize, FSlateLayoutTransform(SoftwareCursorPosition - (CursorSize *.5f )) ),
 		Brush
 	);

@@ -743,6 +743,7 @@ int32 FAudioSection::OnPaintSection( FSequencerSectionPainter& Painter ) const
 		FSlateDrawElement::MakeViewport(
 			Painter.DrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			Painter.SectionGeometry.ToPaintGeometry(FVector2f(StoredXSize, StoredSectionHeight), FSlateLayoutTransform(FVector2f(StoredXOffset, 0))),
 			WaveformThumbnail,
 			(Painter.bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect) | ESlateDrawEffect::NoGamma,
@@ -785,6 +786,7 @@ int32 FAudioSection::OnPaintSection( FSequencerSectionPainter& Painter ) const
 			FSlateDrawElement::MakeBox(
 				Painter.DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				Painter.SectionGeometry.MakeChild(
 					FVector2D(2.f, Painter.SectionGeometry.Size.Y - 2.f),
 					FSlateLayoutTransform(FVector2D(OffsetPixel, 1.f))

@@ -199,7 +199,7 @@ int32 SCurveTimelineView::PaintCurve(const FGeometry& AllottedGeometry, const FS
 						float X1 = RangeToScreen.InputToLocalX(PreviousTime);
 						float X2 = RangeToScreen.InputToLocalX(CurrentTime);
 						FPaintGeometry PaintGeo = AllottedGeometry.ToPaintGeometry(FVector2f(X2-X1, Y1-Y2), FSlateLayoutTransform(FVector2f(X1, Y2)));
-						FSlateDrawElement::MakeBox(OutDrawElements, LayerId, PaintGeo, FillBrush, ESlateDrawEffect::None, FillColor.Get());
+						FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), PaintGeo, FillBrush, ESlateDrawEffect::None, FillColor.Get());
 					}
 				}
 			}
@@ -220,6 +220,7 @@ int32 SCurveTimelineView::PaintCurve(const FGeometry& AllottedGeometry, const FS
 						FSlateDrawElement::MakeLines(
 									OutDrawElements,
 											LayerId++,
+											FSlateInvalidationWidgetSortOrder(),
 											AllottedGeometry.ToPaintGeometry(),
 											Points,
 											LineDrawEffects,
@@ -239,6 +240,7 @@ int32 SCurveTimelineView::PaintCurve(const FGeometry& AllottedGeometry, const FS
 				FSlateDrawElement::MakeLines(
 							OutDrawElements,
 									LayerId,
+									FSlateInvalidationWidgetSortOrder(),
 									AllottedGeometry.ToPaintGeometry(),
 									Points,
 									LineDrawEffects,

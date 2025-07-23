@@ -41,6 +41,7 @@ int32 SAvatar::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId++,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		CircleBrush,
 		bParentEnabled && IsEnabled() ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -60,6 +61,7 @@ int32 SAvatar::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId++,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(AllottedGeometry.GetLocalSize(), FSlateLayoutTransform(TextOffset)),
 			Text,
 			FontInfo,

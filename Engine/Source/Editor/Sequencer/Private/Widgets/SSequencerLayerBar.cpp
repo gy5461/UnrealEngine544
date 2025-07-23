@@ -323,6 +323,7 @@ int32 SSequencerLayerBar::OnPaint(const FPaintArgs& Args, const FGeometry& Allot
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(
 			FVector2f(AllottedGeometry.GetLocalSize().X, TotalNodeHeight),
 			FSlateLayoutTransform()
@@ -359,6 +360,7 @@ int32 SSequencerLayerBar::OnPaint(const FPaintArgs& Args, const FGeometry& Allot
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.GetLocalSize().X - 2.f, TotalNodeHeight-3.f), FSlateLayoutTransform(FVector2f(1.f, 1.f))),
 			SelectedSectionOverlay,
 			DrawEffects,

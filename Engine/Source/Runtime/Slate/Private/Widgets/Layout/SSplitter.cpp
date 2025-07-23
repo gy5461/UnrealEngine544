@@ -299,6 +299,7 @@ int32 SSplitter::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeome
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				MaxLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				GeometryAfterSplitter.ToPaintGeometry( HandlePosition, HandleSize, 1.0f ),
 				NormalHandleBrush,
 				ShouldBeEnabled(bParentEnabled) ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -310,6 +311,7 @@ int32 SSplitter::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeome
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				MaxLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				GeometryAfterSplitter.ToPaintGeometry( HandlePosition, HandleSize, 1.0f ),
 				&Style->HandleHighlightBrush,
 				ShouldBeEnabled(bParentEnabled) ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -949,6 +951,7 @@ int32 SSplitter2x2::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		MaxLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(HorizontalSplitterSize, FSlateLayoutTransform(HorizontalSplitterPos)),
 		HorizontalBrush,
 		ShouldBeEnabled(bParentEnabled) ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -962,6 +965,7 @@ int32 SSplitter2x2::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		MaxLayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(VerticalSplitterSize, FSlateLayoutTransform(VerticalSplitterPos)),
 		VerticalBrush,
 		ShouldBeEnabled(bParentEnabled) ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,

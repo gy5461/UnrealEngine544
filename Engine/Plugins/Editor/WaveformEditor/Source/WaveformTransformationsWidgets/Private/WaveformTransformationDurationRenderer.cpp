@@ -23,6 +23,7 @@ int32 FWaveformTransformationDurationRenderer::OnPaint(const FPaintArgs& Args, c
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2D(RightMarginX, AllottedGeometry.Size.Y), FSlateLayoutTransform()),
 			FAppStyle::GetBrush(WaveformTransformationDurationHiglightParams::BackgroundBrushName),
 			ESlateDrawEffect::None,
@@ -37,6 +38,7 @@ int32 FWaveformTransformationDurationRenderer::OnPaint(const FPaintArgs& Args, c
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2D(AllottedGeometry.Size.X, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2D(LeftMarginX, 0.f))),
 			FAppStyle::GetBrush(WaveformTransformationDurationHiglightParams::BackgroundBrushName),
 			ESlateDrawEffect::None,

@@ -122,6 +122,7 @@ public:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				MaxLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( Brush->ImageSize / AllottedGeometry.Scale, FSlateLayoutTransform(GetSoftwareCursorPosition() - ( Brush->ImageSize / 2 )) ),
 				Brush);
 #ifdef DEBUG_DRAG
@@ -131,6 +132,7 @@ public:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				MaxLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( LocalCursorPosition - ( Brush->ImageSize / 2 ) , Brush->ImageSize / AllottedGeometry.Scale ),
 				Brush);
 #endif

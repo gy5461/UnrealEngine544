@@ -292,7 +292,7 @@ void SCameraCalibrationCurveEditorView::PaintView(const FPaintArgs& Args, const 
 			const FVector2D LabelPosition = ViewSize - LabelSize - LabelOffset;
 			const FPaintGeometry LabelGeometry = AllottedGeometry.ToPaintGeometry(FSlateLayoutTransform(LabelPosition));
 
-			FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId + 1, LabelGeometry, AxisDescriptor, FontInfo, DrawEffects, FLinearColor::White);
+			FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId + 1, FSlateInvalidationWidgetSortOrder(),LabelGeometry, AxisDescriptor, FontInfo, DrawEffects, FLinearColor::White);
 		}
 	}
 }

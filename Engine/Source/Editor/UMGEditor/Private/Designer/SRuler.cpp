@@ -193,6 +193,7 @@ int32 SRuler::DrawTicks( FSlateWindowElementList& OutDrawElements, const struct 
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -225,7 +226,8 @@ int32 SRuler::DrawTicks( FSlateWindowElementList& OutDrawElements, const struct 
 
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
-					InArgs.StartLayer, 
+					InArgs.StartLayer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					InArgs.AllottedGeometry.ToPaintGeometry( TextSize, FSlateLayoutTransform(TextOffset) ), 
 					FrameString, 
 					SmallLayoutFont,
@@ -249,6 +251,7 @@ int32 SRuler::DrawTicks( FSlateWindowElementList& OutDrawElements, const struct 
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -269,6 +272,7 @@ int32 SRuler::DrawTicks( FSlateWindowElementList& OutDrawElements, const struct 
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			InArgs.StartLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InArgs.AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			InArgs.DrawEffects,
@@ -289,6 +293,7 @@ int32 SRuler::DrawTicks( FSlateWindowElementList& OutDrawElements, const struct 
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++InArgs.StartLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			InArgs.AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			InArgs.DrawEffects,
@@ -311,6 +316,7 @@ int32 SRuler::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry,
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		WhiteBrush,
 		DrawEffects,

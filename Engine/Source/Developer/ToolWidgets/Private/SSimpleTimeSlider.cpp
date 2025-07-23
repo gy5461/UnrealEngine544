@@ -145,6 +145,7 @@ void SSimpleTimeSlider::DrawTicks( FSlateWindowElementList& OutDrawElements, con
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -163,7 +164,8 @@ void SSimpleTimeSlider::DrawTicks( FSlateWindowElementList& OutDrawElements, con
 
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
-					InArgs.StartLayer+1, 
+					InArgs.StartLayer+1,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					InArgs.AllottedGeometry.ToPaintGeometry( TextSize, FSlateLayoutTransform(TextOffset) ), 
 					FrameString, 
 					SmallLayoutFont, 
@@ -188,6 +190,7 @@ void SSimpleTimeSlider::DrawTicks( FSlateWindowElementList& OutDrawElements, con
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -234,6 +237,7 @@ int32 SSimpleTimeSlider::OnPaintTimeSlider( bool bMirrorLabels, const FGeometry&
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			RangeGeometry,
 			CursorBackground,
 			DrawEffects,
@@ -274,6 +278,7 @@ int32 SSimpleTimeSlider::OnPaintTimeSlider( bool bMirrorLabels, const FGeometry&
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			CursorLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			CursorGeometry,
 			CursorBackground,
 			DrawEffects,
@@ -293,7 +298,8 @@ int32 SSimpleTimeSlider::OnPaintTimeSlider( bool bMirrorLabels, const FGeometry&
 		ScrubColor.G *= 0.2f;
 		FSlateDrawElement::MakeBox( 
 			OutDrawElements,
-			ArrowLayer, 
+			ArrowLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			MyGeometry,
 			bMirrorLabels ? ScrubHandleUp : ScrubHandleDown,
 			DrawEffects, 

@@ -50,6 +50,7 @@ int32 SMediaPlayerEditorCache::OnPaint(const FPaintArgs& Args, const FGeometry& 
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId + 1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.Size.X, ProgressBarHeight.Get()), FSlateLayoutTransform()),
 		FCoreStyle::Get().GetBrush("GenericWhiteBox"),
 		ESlateDrawEffect::None,
@@ -85,6 +86,7 @@ void SMediaPlayerEditorCache::DrawPlayerPosition(FTimespan Time, const FGeometry
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId + 1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(PositionMarkerSize.Get(), MarkerSize), FSlateLayoutTransform(FVector2f(DrawOffset, ProgressBarHeight.Get() + PositionMarkerMargin.Get()))),
 		GenericBrush,
 		ESlateDrawEffect::None,
@@ -139,6 +141,7 @@ void SMediaPlayerEditorCache::DrawSampleStates(const TRangeSet<FTimespan>& Range
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(DrawSize, YScale * BarHeight), FSlateLayoutTransform(FVector2f(DrawOffset, YPos * BarHeight))),
 			GenericBrush,
 			ESlateDrawEffect::None,

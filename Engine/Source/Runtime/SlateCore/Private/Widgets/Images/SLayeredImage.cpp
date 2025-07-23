@@ -72,7 +72,7 @@ int32 SLayeredImage::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGe
 		if (LayerImageResolved && LayerImageResolved->DrawAs != ESlateBrushDrawType::NoDrawType)
 		{
 			const FLinearColor FinalColorAndOpacity(InWidgetStyle.GetColorAndOpacityTint() * Layer.Value.Get().GetColor(InWidgetStyle) * LayerImageResolved->GetTint(InWidgetStyle));
-			FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), LayerImageResolved, DrawEffects, FinalColorAndOpacity);
+			FSlateDrawElement::MakeBox(OutDrawElements, LayerId, FastPathProxyHandle.GetWidgetSortOrder(),AllottedGeometry.ToPaintGeometry(), LayerImageResolved, DrawEffects, FinalColorAndOpacity);
 		}
 	}
 

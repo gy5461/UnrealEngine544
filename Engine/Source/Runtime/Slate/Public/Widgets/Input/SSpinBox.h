@@ -342,6 +342,7 @@ public:
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			BackgroundLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			BackgroundImage,
 			DrawEffects,
@@ -382,6 +383,7 @@ public:
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					FilledLayer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FillSize - FVector2D(Style->InsetPadding.GetTotalSpaceAlong<Orient_Horizontal>(), Style->InsetPadding.GetTotalSpaceAlong<Orient_Vertical>()), FSlateLayoutTransform(Style->InsetPadding.GetTopLeft())),
 					FillImage,
 					DrawEffects,

@@ -70,6 +70,7 @@ int32 SGraphBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeome
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		RetLayerId++,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		BackgroundImage,
 		DrawEffects,
@@ -87,6 +88,7 @@ int32 SGraphBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeome
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				RetLayerId++,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(
 					FVector2f( EndX - StartX, AllottedGeometry.GetLocalSize().Y ),
 					FSlateLayoutTransform(FVector2f( StartX, 0.0f ))),

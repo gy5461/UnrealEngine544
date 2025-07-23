@@ -465,6 +465,7 @@ int32 SGridPanel::LayoutDebugPaint(const FGeometry& AllottedGeometry, const FSla
 			(
 				OutDrawElements, 
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( FVector2f( Columns[Column], Rows[Row] ), FSlateLayoutTransform(FVector2f(XOffset, YOffset)) )
 			);
 

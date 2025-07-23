@@ -194,7 +194,7 @@ void SCurveEditorKeyBarView::DrawLabels(const FGeometry& AllottedGeometry, FSlat
 						);
 					}
 				
-					FSlateDrawElement::MakeBox(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Background, BoxGeometry, WhiteBrush, DrawEffects, CurveColor);
+					FSlateDrawElement::MakeBox(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Background, FastPathProxyHandle.GetWidgetSortOrder(), BoxGeometry, WhiteBrush, DrawEffects, CurveColor);
 				}
 
 				// draw label
@@ -214,7 +214,7 @@ void SCurveEditorKeyBarView::DrawLabels(const FGeometry& AllottedGeometry, FSlat
 					FSlateLayoutTransform(Position)
 				);
 
-				FSlateDrawElement::MakeText(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Labels, LabelGeometry, Label, FontInfo, DrawEffects, FLinearColor::White);
+				FSlateDrawElement::MakeText(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Labels, FastPathProxyHandle.GetWidgetSortOrder(), LabelGeometry, Label, FontInfo, DrawEffects, FLinearColor::White);
 
 			}
 		}

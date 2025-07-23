@@ -8,6 +8,7 @@
 
 FSlateRenderBatch::FSlateRenderBatch(
 	int32 InLayer,
+	const FSlateInvalidationWidgetSortOrder& InSortOrder,
 	const FShaderParams& InShaderParams,
 	const FSlateShaderResource* InResource,
 	ESlateDrawPrimitive InPrimitiveType,
@@ -28,6 +29,7 @@ FSlateRenderBatch::FSlateRenderBatch(
 	, SourceIndices(InSourceIndexArray)
 	, CustomDrawer(nullptr)
 	, LayerId(InLayer)
+	, SortOrder(InSortOrder)
 	, VertexOffset(InVertexOffset)
 	, IndexOffset(InIndexOffset)
 	, NumVertices(0)

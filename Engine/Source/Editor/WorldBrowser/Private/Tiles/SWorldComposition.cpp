@@ -277,6 +277,7 @@ public:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				++LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				EditableArea,
 				FAppStyle::GetBrush(TEXT("Graph.CompactNode.ShadowSelected")),
 				ESlateDrawEffect::None,
@@ -296,6 +297,7 @@ public:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				FAppStyle::GetBrush(TEXT("Graph.PlayInEditor"))
 				);
@@ -322,6 +324,7 @@ public:
 				FSlateDrawElement::MakeRotatedBox(
 					OutDrawElements,
 					++LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					PaintGeometry,
 					CameraImage,
 					ESlateDrawEffect::None,
@@ -346,6 +349,7 @@ public:
 				FSlateDrawElement::MakeRotatedBox(
 					OutDrawElements,
 					++LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					PaintGeometry,
 					CameraImage,
 					ESlateDrawEffect::None,
@@ -493,6 +497,7 @@ protected:
 			FSlateDrawElement::MakeLines( 
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				ESlateDrawEffect::None,
@@ -513,6 +518,7 @@ protected:
 			FSlateDrawElement::MakeLines( 
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				ESlateDrawEffect::None,
@@ -533,6 +539,7 @@ protected:
 		FSlateDrawElement::MakeLines( 
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToOffsetPaintGeometry(FVector2D(10, 40)),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -555,6 +562,7 @@ protected:
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToOffsetPaintGeometry(FVector2D(10, 27)),
 			RulerText,
 			FAppStyle::GetFontStyle("NormalFont"),

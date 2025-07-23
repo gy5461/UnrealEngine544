@@ -130,6 +130,7 @@ namespace UE::Sequencer
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						LayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						PaintGeometry,
 						FAppStyle::GetBrush( "Checker" ),
 						DrawEffects);
@@ -162,6 +163,7 @@ namespace UE::Sequencer
 						FSlateDrawElement::MakeGradient(
 							OutDrawElements,
 							LayerId + 1,
+							FastPathProxyHandle.GetWidgetSortOrder(),
 							PaintGeometry,
 							GradientStops,
 							Orient_Vertical,

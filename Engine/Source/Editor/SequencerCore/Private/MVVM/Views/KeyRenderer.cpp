@@ -642,6 +642,7 @@ int32 FKeyRenderer::DrawCurve(const FKeyBatchParameters& Params, const FGeometry
 	FSlateDrawElement::MakeLines(
 		*PaintArgs.DrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		CurvePoints,
 		PaintArgs.DrawEffects,
@@ -697,6 +698,7 @@ int32 FKeyRenderer::Draw(const FKeyBatchParameters& Params, const FGeometry& All
 				FSlateDrawElement::MakeGradient(
 					*PaintArgs.DrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(
 						FVector2D(KeyBarWidth, KeyBarHeight),
 						FSlateLayoutTransform(FVector2D(StartPx, KeyBarTop))
@@ -711,6 +713,7 @@ int32 FKeyRenderer::Draw(const FKeyBatchParameters& Params, const FGeometry& All
 				FSlateDrawElement::MakeBox(
 					*PaintArgs.DrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					// Center the key along Y.  Ensure the middle of the key is at the actual key time
 					AllottedGeometry.ToPaintGeometry(
 						FVector2D(EndPx - StartPx, KeyBarHeight),
@@ -788,6 +791,7 @@ int32 FKeyRenderer::Draw(const FKeyBatchParameters& Params, const FGeometry& All
 			*PaintArgs.DrawElements,
 			// always draw selected keys on top of other keys
 			bSelected ? LayerId + 1 : LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			// Center the key along Y.  Ensure the middle of the key is at the actual key time
 			AllottedGeometry.ToPaintGeometry(
 				KeySize,
@@ -806,6 +810,7 @@ int32 FKeyRenderer::Draw(const FKeyBatchParameters& Params, const FGeometry& All
 			*PaintArgs.DrawElements,
 			// always draw selected keys on top of other keys
 			bSelected ? LayerId + 2 : LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			// Center the key along Y.  Ensure the middle of the key is at the actual key time
 			AllottedGeometry.ToPaintGeometry(
 				KeySize - 2.0f * BrushBorderWidth,

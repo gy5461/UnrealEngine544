@@ -176,6 +176,7 @@ int32 SDMXPixelMappingRuler::DrawTicks( FSlateWindowElementList& OutDrawElements
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -209,6 +210,7 @@ int32 SDMXPixelMappingRuler::DrawTicks( FSlateWindowElementList& OutDrawElements
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					InArgs.StartLayer, 
+					FSlateInvalidationWidgetSortOrder(),
 					InArgs.AllottedGeometry.ToPaintGeometry( TextSize, FSlateLayoutTransform(TextOffset) ), 
 					FrameString, 
 					SmallLayoutFont,
@@ -232,6 +234,7 @@ int32 SDMXPixelMappingRuler::DrawTicks( FSlateWindowElementList& OutDrawElements
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -252,6 +255,7 @@ int32 SDMXPixelMappingRuler::DrawTicks( FSlateWindowElementList& OutDrawElements
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			InArgs.StartLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			InArgs.AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			InArgs.DrawEffects,
@@ -272,6 +276,7 @@ int32 SDMXPixelMappingRuler::DrawTicks( FSlateWindowElementList& OutDrawElements
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++InArgs.StartLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			InArgs.AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			InArgs.DrawEffects,
@@ -294,6 +299,7 @@ int32 SDMXPixelMappingRuler::OnPaint(const FPaintArgs& Args, const FGeometry& Al
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		WhiteBrush,
 		DrawEffects,

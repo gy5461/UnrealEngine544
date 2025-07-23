@@ -110,6 +110,7 @@ int32 STimeRangeSlider::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
 		LayerId, 
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(RightHandleOffset-LeftHandleOffset-TimeRangeSliderConstants::HandleSize, TimeRangeSliderConstants::HandleSize), FSlateLayoutTransform(FVector2f(HandleOffset, 0.0f))),
 		RangeHandle,
 		ESlateDrawEffect::None,
@@ -118,7 +119,8 @@ int32 STimeRangeSlider::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 	// Draw the left handle box
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
-		LayerId, 
+		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(TimeRangeSliderConstants::HandleSize, TimeRangeSliderConstants::HandleSize), FSlateLayoutTransform(FVector2f(LeftHandleOffset, 0.0f))),
 		RangeHandleLeft,
 		ESlateDrawEffect::None,
@@ -127,7 +129,8 @@ int32 STimeRangeSlider::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 	// Draw the right handle box
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
-		LayerId, 
+		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(TimeRangeSliderConstants::HandleSize, TimeRangeSliderConstants::HandleSize), FSlateLayoutTransform(FVector2f(RightHandleOffset, 0.0f))),
 		RangeHandleRight,
 		ESlateDrawEffect::None,

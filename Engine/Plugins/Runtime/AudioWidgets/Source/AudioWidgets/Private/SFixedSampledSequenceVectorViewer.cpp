@@ -72,6 +72,7 @@ int32 SFixedSampledSequenceVectorViewer::OnPaint(const FPaintArgs& Args,
 
 	FSlateDrawElement::MakeLines(OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		PointsToDraw,
 		ESlateDrawEffect::None,

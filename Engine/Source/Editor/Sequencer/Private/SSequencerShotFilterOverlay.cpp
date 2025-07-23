@@ -41,6 +41,7 @@ int32 SSequencerShotFilterOverlay::OnPaint( const FPaintArgs& Args, const FGeome
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(UpperBound - LowerBound, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2f(LowerBound, 0.f))),
 				FAppStyle::GetBrush("Sequencer.ShotFilter"),
 				ESlateDrawEffect::None,

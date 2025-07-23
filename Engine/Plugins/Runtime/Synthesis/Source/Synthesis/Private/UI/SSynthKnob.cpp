@@ -53,7 +53,7 @@ int32 SSynthKnob::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 	if (BaseImageBrush != nullptr)
 	{
 		const FLinearColor FinalColorAndOpacity(InWidgetStyle.GetColorAndOpacityTint() * BaseImageBrush->GetTint(InWidgetStyle));
-		FSlateDrawElement::MakeBox(OutDrawElements, LayerId++, AllottedGeometry.ToPaintGeometry(), BaseImageBrush, DrawEffects, FinalColorAndOpacity);
+		FSlateDrawElement::MakeBox(OutDrawElements, LayerId++,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), BaseImageBrush, DrawEffects, FinalColorAndOpacity);
 	}
 
 	if (OverlayImageBrush != nullptr)
@@ -67,7 +67,7 @@ int32 SSynthKnob::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 		float RotationAngle = 2.0f * PI * NormalizedRotationAngle;
 		
 		const FLinearColor FinalColorAndOpacity(InWidgetStyle.GetColorAndOpacityTint() * OverlayImageBrush->GetTint(InWidgetStyle));
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, LayerId++, AllottedGeometry.ToPaintGeometry(), OverlayImageBrush, DrawEffects, RotationAngle, ImageCenter, FSlateDrawElement::RelativeToElement, FinalColorAndOpacity);
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, LayerId++,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), OverlayImageBrush, DrawEffects, RotationAngle, ImageCenter, FSlateDrawElement::RelativeToElement, FinalColorAndOpacity);
 	}
 
 	return LayerId;

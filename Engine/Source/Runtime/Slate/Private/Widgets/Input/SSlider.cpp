@@ -116,6 +116,7 @@ int32 SSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeometr
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(BarSize, FSlateLayoutTransform(BarTopLeft)),
 		BarImage,
 		DrawEffects,
@@ -128,6 +129,7 @@ int32 SSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeometr
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(GetThumbImage()->ImageSize, FSlateLayoutTransform(HandleTopLeftPoint)),
 		ThumbImage,
 		DrawEffects,

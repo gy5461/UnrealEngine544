@@ -124,6 +124,7 @@ int32 SAvaLevelViewportRuler::OnPaint(const FPaintArgs& InArgs, const FGeometry&
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				InAllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				ESlateDrawEffect::None,

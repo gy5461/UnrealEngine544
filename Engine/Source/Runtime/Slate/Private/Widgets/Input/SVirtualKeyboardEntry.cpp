@@ -200,6 +200,7 @@ int32 SVirtualKeyboardEntry::OnPaint( const FPaintArgs& Args, const FGeometry& A
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId + TextLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( AllottedGeometry.GetLocalSize(), FSlateLayoutTransform(FVector2f( 0.0, DrawPositionY )) ),
 			ThisHintText,          // Text
 			FontInfo,              // Font information (font name, size)
@@ -241,6 +242,7 @@ int32 SVirtualKeyboardEntry::OnPaint( const FPaintArgs& Args, const FGeometry& A
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId + TextLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(AllottedGeometry.GetLocalSize(), FSlateLayoutTransform(FVector2f(0, DrawPositionY))),
 			VisibleText,           // Text
 			FontInfo,              // Font information (font name, size)

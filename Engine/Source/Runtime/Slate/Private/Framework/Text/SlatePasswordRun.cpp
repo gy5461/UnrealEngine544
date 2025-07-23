@@ -70,6 +70,7 @@ int32 FSlatePasswordRun::OnPaint(const FPaintArgs& PaintArgs, const FTextArgs& T
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, TextArgs.Block->GetSize()), FSlateLayoutTransform(TransformPoint(InverseScale, TextArgs.Block->GetLocationOffset() + DrawShadowOffset))),
 			PasswordString,
 			0,
@@ -84,6 +85,7 @@ int32 FSlatePasswordRun::OnPaint(const FPaintArgs& PaintArgs, const FTextArgs& T
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		++LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, TextArgs.Block->GetSize()), FSlateLayoutTransform(TransformPoint(InverseScale, TextArgs.Block->GetLocationOffset() + DrawTextOffset))),
 		PasswordString,
 		0,

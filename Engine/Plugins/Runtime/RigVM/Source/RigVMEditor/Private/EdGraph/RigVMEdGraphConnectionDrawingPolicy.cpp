@@ -108,7 +108,7 @@ void FRigVMEdGraphConnectionDrawingPolicy::DrawPinGeometries(TMap<TSharedRef<SWi
 						LinePoints[0] = StartPoint;
 						LinePoints[1] = EndPoint;
 
-						FSlateDrawElement::MakeLines(DrawElementsList, WireLayerID, FPaintGeometry(), LinePoints, ESlateDrawEffect::None, Params.WireColor);
+						FSlateDrawElement::MakeLines(DrawElementsList, WireLayerID, FSlateInvalidationWidgetSortOrder(),FPaintGeometry(), LinePoints, ESlateDrawEffect::None, Params.WireColor);
 					}
 					else
 					{

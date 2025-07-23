@@ -275,6 +275,7 @@ int32 STrackLane::PaintLaneForeground(const FGeometry& AllottedGeometry, const F
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId++,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(
 				FVector2f(AllottedGeometry.GetLocalSize().X, TotalNodeHeight),
 				FSlateLayoutTransform()
@@ -306,6 +307,7 @@ int32 STrackLane::PaintLaneForeground(const FGeometry& AllottedGeometry, const F
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId++,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(
 					FVector2f(AllottedGeometry.GetLocalSize().X, TotalNodeHeight),
 					FSlateLayoutTransform()

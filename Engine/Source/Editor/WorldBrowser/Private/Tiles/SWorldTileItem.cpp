@@ -30,6 +30,7 @@ int32 SWorldTileImage::OnPaint(const FPaintArgs& Args, const FGeometry& Allotted
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			ImageBrush,
 			DrawEffects | ESlateDrawEffect::IgnoreTextureAlpha, 
@@ -312,6 +313,7 @@ int32 SWorldTileItem::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedG
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId + 1,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				SelectionGeometry,
 				GetShadowBrush(bSelected || bHighlighted),
 				ESlateDrawEffect::None,

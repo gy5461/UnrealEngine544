@@ -145,7 +145,7 @@ void SCurveEditorEventChannelView::DrawLabels(const FGeometry& AllottedGeometry,
 				FSlateLayoutTransform(FVector2D(0.f, LaneTop))
 			);
 
-			FSlateDrawElement::MakeBox(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Background, BoxGeometry, WhiteBrush, DrawEffects, CurveColor);
+			FSlateDrawElement::MakeBox(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Background, FastPathProxyHandle.GetWidgetSortOrder(), BoxGeometry, WhiteBrush, DrawEffects, CurveColor);
 		}
 
 		// Draw the curve label
@@ -159,7 +159,7 @@ void SCurveEditorEventChannelView::DrawLabels(const FGeometry& AllottedGeometry,
 				FSlateLayoutTransform(Position)
 			);
 
-			FSlateDrawElement::MakeText(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Labels, LabelGeometry, Label, FontInfo, DrawEffects, FLinearColor::White);
+			FSlateDrawElement::MakeText(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Labels, FastPathProxyHandle.GetWidgetSortOrder(), LabelGeometry, Label, FontInfo, DrawEffects, FLinearColor::White);
 		}
 	}
 }

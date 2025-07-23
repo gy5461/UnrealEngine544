@@ -151,6 +151,7 @@ int32 SStateTreeDebuggerTimelines::OnPaint( const FPaintArgs& Args, const FGeome
 	FSlateDrawElement::MakeLines(
 				OutDrawElements,
 						++LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(),
 						Points,
 						ESlateDrawEffect::None,

@@ -639,6 +639,7 @@ void FCanvasSlotExtension::PaintLineWithText(FVector2D Start, FVector2D End, FTe
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		LinePoints,
 		ESlateDrawEffect::None,
@@ -674,6 +675,7 @@ void FCanvasSlotExtension::PaintLineWithText(FVector2D Start, FVector2D End, FTe
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		ChildGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(InverseDesignerScale, FVector2f(1.f, 1.f))),
 		Text,
 		AnchorFont,
@@ -685,6 +687,7 @@ void FCanvasSlotExtension::PaintLineWithText(FVector2D Start, FVector2D End, FTe
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		++LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		ChildGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(InverseDesignerScale)),
 		Text,
 		AnchorFont,
@@ -769,6 +772,7 @@ void FCanvasSlotExtension::PaintCollisionLines(const TSet< FWidgetReference >& S
 											FSlateDrawElement::MakeLines(
 												OutDrawElements,
 												LayerId,
+												FSlateInvalidationWidgetSortOrder(),
 												AllottedGeometry.ToPaintGeometry(),
 												LinePoints,
 												ESlateDrawEffect::None,

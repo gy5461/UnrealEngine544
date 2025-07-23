@@ -182,6 +182,7 @@ void FCameraShakeSourceTriggerSection::PaintShakeName(FSequencerSectionPainter& 
 	FSlateDrawElement::MakeBox(
 		Painter.DrawElements,
 		LayerId + 1,
+		FSlateInvalidationWidgetSortOrder(),
 		Painter.SectionGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(BoxOffset)),
 		FAppStyle::GetBrush("WhiteBrush"),
 		ESlateDrawEffect::None,
@@ -192,6 +193,7 @@ void FCameraShakeSourceTriggerSection::PaintShakeName(FSequencerSectionPainter& 
 	FSlateDrawElement::MakeText(
 		Painter.DrawElements,
 		LayerId + 2,
+		FSlateInvalidationWidgetSortOrder(),
 		Painter.SectionGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(BoxOffset + TextOffset)),
 		ShakeText,
 		SmallLayoutFont,

@@ -287,6 +287,7 @@ public:
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			BackgroundLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			BackgroundImage,
 			DrawEffects,
@@ -327,6 +328,7 @@ public:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				FilledLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FillSize, FSlateLayoutTransform(AllottedGeometry.GetLocalSize() - FillSize)),
 				FillImage,
 				DrawEffects,

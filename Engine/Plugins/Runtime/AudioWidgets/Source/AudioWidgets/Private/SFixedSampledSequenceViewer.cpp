@@ -44,6 +44,7 @@ int32 SFixedSampledSequenceViewer::OnPaint(const FPaintArgs& Args, const FGeomet
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			&BackgroundBrush,
 			ESlateDrawEffect::None,
@@ -72,6 +73,7 @@ int32 SFixedSampledSequenceViewer::OnPaint(const FPaintArgs& Args, const FGeomet
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					BinDrawPoints,
 					ESlateDrawEffect::None,
@@ -90,6 +92,7 @@ int32 SFixedSampledSequenceViewer::OnPaint(const FPaintArgs& Args, const FGeomet
 					FSlateDrawElement::MakeLines(
 						OutDrawElements,
 						LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(),
 						BinDrawPoints,
 						ESlateDrawEffect::None,
@@ -124,6 +127,7 @@ int32 SFixedSampledSequenceViewer::OnPaint(const FPaintArgs& Args, const FGeomet
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						SampleBoxGeometry,
 						&BackgroundBrush,
 						ESlateDrawEffect::None,
@@ -134,6 +138,7 @@ int32 SFixedSampledSequenceViewer::OnPaint(const FPaintArgs& Args, const FGeomet
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					SamplesDrawCoordinates,
 					ESlateDrawEffect::None,
@@ -216,6 +221,7 @@ void SFixedSampledSequenceViewer::DrawGridLines(const FGeometry& AllottedGeometr
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -234,6 +240,7 @@ void SFixedSampledSequenceViewer::DrawGridLines(const FGeometry& AllottedGeometr
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					++LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,
@@ -255,6 +262,7 @@ void SFixedSampledSequenceViewer::DrawGridLines(const FGeometry& AllottedGeometr
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,

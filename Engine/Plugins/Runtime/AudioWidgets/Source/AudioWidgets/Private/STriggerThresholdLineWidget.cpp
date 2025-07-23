@@ -30,7 +30,7 @@ int32 STriggerThresholdLineWidget::OnPaint(const FPaintArgs& Args,
 
 	const TArray<FVector2D> TriggerLine({ StartLinePoint, EndLinePoint });
 
-	FSlateDrawElement::MakeLines(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), TriggerLine, ESlateDrawEffect::None, LineColor, true, 1.0f);
+	FSlateDrawElement::MakeLines(OutDrawElements, LayerId, FSlateInvalidationWidgetSortOrder(),AllottedGeometry.ToPaintGeometry(), TriggerLine, ESlateDrawEffect::None, LineColor, true, 1.0f);
 
 	return LayerId;
 }

@@ -104,6 +104,7 @@ FSubSectionPainterResult FSubSectionPainterUtil::PaintSection(TSharedPtr<const I
 		FSlateDrawElement::MakeText(
             InPainter.DrawElements,
             ++LayerId,
+            FSlateInvalidationWidgetSortOrder(),
             InPainter.SectionGeometry.ToPaintGeometry(
                 FVector2D(InPainter.SectionGeometry.Size.X, GetFontHeight()),
                 FSlateLayoutTransform(TopLeft + FVector2D(ContentPadding.Left, ContentPadding.Top) + FVector2D(11.f, GetFontHeight()*2.f))
@@ -163,6 +164,7 @@ void FSubSectionPainterUtil::DoPaintNonLoopingSection(const UMovieSceneSubSectio
 			FSlateDrawElement::MakeBox(
 				InPainter.DrawElements,
 				InPainter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InPainter.SectionGeometry.ToPaintGeometry(
 					FVector2f(InPainter.SectionGeometry.Size.X, InPainter.SectionGeometry.Size.Y),
 					FSlateLayoutTransform()
@@ -179,6 +181,7 @@ void FSubSectionPainterUtil::DoPaintNonLoopingSection(const UMovieSceneSubSectio
 		FSlateDrawElement::MakeBox(
 			InPainter.DrawElements,
 			InPainter.LayerId++,
+			FSlateInvalidationWidgetSortOrder(),
 			InPainter.SectionGeometry.ToPaintGeometry(
 				FVector2f(InPainter.SectionGeometry.Size.X, InPainter.SectionGeometry.Size.Y),
 				FSlateLayoutTransform()
@@ -196,6 +199,7 @@ void FSubSectionPainterUtil::DoPaintNonLoopingSection(const UMovieSceneSubSectio
 			FSlateDrawElement::MakeBox(
 				InPainter.DrawElements,
 				InPainter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InPainter.SectionGeometry.ToPaintGeometry(
 					FVector2f(StartOffset * PixelsPerFrame, InPainter.SectionGeometry.Size.Y),
 					FSlateLayoutTransform()
@@ -209,6 +213,7 @@ void FSubSectionPainterUtil::DoPaintNonLoopingSection(const UMovieSceneSubSectio
 			FSlateDrawElement::MakeBox(
 				InPainter.DrawElements,
 				InPainter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InPainter.SectionGeometry.ToPaintGeometry(
 					FVector2f(1.0f, InPainter.SectionGeometry.Size.Y),
 					FSlateLayoutTransform(FVector2f(StartOffset * PixelsPerFrame, 0.f))
@@ -225,6 +230,7 @@ void FSubSectionPainterUtil::DoPaintNonLoopingSection(const UMovieSceneSubSectio
 			FSlateDrawElement::MakeBox(
 				InPainter.DrawElements,
 				InPainter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InPainter.SectionGeometry.ToPaintGeometry(
 					FVector2f((SectionSize - EndOffset) * PixelsPerFrame, InPainter.SectionGeometry.Size.Y),
 					FSlateLayoutTransform(FVector2f(EndOffset * PixelsPerFrame, 0.f))
@@ -239,6 +245,7 @@ void FSubSectionPainterUtil::DoPaintNonLoopingSection(const UMovieSceneSubSectio
 			FSlateDrawElement::MakeBox(
 				InPainter.DrawElements,
 				InPainter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InPainter.SectionGeometry.ToPaintGeometry(
 					FVector2f(1.0f, InPainter.SectionGeometry.Size.Y),
 					FSlateLayoutTransform(FVector2f(EndOffset * PixelsPerFrame, 0.f))
@@ -283,6 +290,7 @@ void FSubSectionPainterUtil::DoPaintLoopingSection(const UMovieSceneSubSection& 
         FSlateDrawElement::MakeBox(
             InPainter.DrawElements,
             InPainter.LayerId++,
+            FSlateInvalidationWidgetSortOrder(),
             InPainter.SectionGeometry.ToPaintGeometry(
                 FVector2f(1.0f, InPainter.SectionGeometry.Size.Y),
                 FSlateLayoutTransform(FVector2f(CurOffset * PixelsPerFrame, 0.f))
@@ -296,6 +304,7 @@ void FSubSectionPainterUtil::DoPaintLoopingSection(const UMovieSceneSubSection& 
             FSlateDrawElement::MakeBox(
                 InPainter.DrawElements,
                 InPainter.LayerId++,
+                FSlateInvalidationWidgetSortOrder(),
                 InPainter.SectionGeometry.ToPaintGeometry(
                     FVector2f(1.0f, InPainter.SectionGeometry.Size.Y),
                     FSlateLayoutTransform(FVector2f(CurOffset * PixelsPerFrame - 1.f, 0.f))

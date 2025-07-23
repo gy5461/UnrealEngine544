@@ -21,6 +21,7 @@ int32 SDisplayClusterConfiguratorLayeringBox::OnPaint(const FPaintArgs& Args, co
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		ContentLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToInflatedPaintGeometry(ShadowSize),
 		ShadowResource,
 		ESlateDrawEffect::None,

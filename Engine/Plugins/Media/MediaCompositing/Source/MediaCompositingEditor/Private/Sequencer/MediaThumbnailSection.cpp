@@ -294,6 +294,7 @@ void FMediaThumbnailSection::DrawFilmBorder(FSequencerSectionPainter& InPainter,
 	FSlateDrawElement::MakeBox(
 		InPainter.DrawElements,
 		InPainter.LayerId++,
+		FSlateInvalidationWidgetSortOrder(),
 		InPainter.SectionGeometry.ToPaintGeometry(FVector2D(SectionSize.X - 2.0f, 7.0f), FSlateLayoutTransform(FVector2D(1.0f, 4.0f))),
 		FilmBorder,
 		InPainter.bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect
@@ -303,6 +304,7 @@ void FMediaThumbnailSection::DrawFilmBorder(FSequencerSectionPainter& InPainter,
 	FSlateDrawElement::MakeBox(
 		InPainter.DrawElements,
 		InPainter.LayerId++,
+		FSlateInvalidationWidgetSortOrder(),
 		InPainter.SectionGeometry.ToPaintGeometry(FVector2D(SectionSize.X - 2.0f, 7.0f), FSlateLayoutTransform(FVector2D(1.0f, SectionSize.Y - 11.0f))),
 		FilmBorder,
 		InPainter.bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect
@@ -331,6 +333,7 @@ void FMediaThumbnailSection::DrawLoopIndicators(FSequencerSectionPainter& InPain
 		FSlateDrawElement::MakeBox(
 			InPainter.DrawElements,
 			InPainter.LayerId++,
+			FSlateInvalidationWidgetSortOrder(),
 			InPainter.SectionGeometry.ToPaintGeometry(FVector2D(1.0f, SectionSize.Y), FSlateLayoutTransform(FVector2D(DrawOffset, 0.0f))),
 			GenericBrush,
 			ESlateDrawEffect::None,
@@ -373,6 +376,7 @@ void FMediaThumbnailSection::DrawSampleStates(FSequencerSectionPainter& InPainte
 			FSlateDrawElement::MakeBox(
 				InPainter.DrawElements,
 				InPainter.LayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InPainter.SectionGeometry.ToPaintGeometry(FVector2D(DrawSize, BarHeight), FSlateLayoutTransform(FVector2D(DrawOffset, SectionSize.Y - BarHeight - 1.0f))),
 				GenericBrush,
 				ESlateDrawEffect::None,
@@ -426,6 +430,7 @@ void FMediaThumbnailSection::DrawMediaInfo(FSequencerSectionPainter& InPainter,
 		FSlateDrawElement::MakeText(
 			InPainter.DrawElements,
 			InPainter.LayerId++,
+			FSlateInvalidationWidgetSortOrder(),
 			InPainter.SectionGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextOffset)),
 			TileString,
 			SmallLayoutFont,
@@ -445,6 +450,7 @@ void FMediaThumbnailSection::DrawMediaInfo(FSequencerSectionPainter& InPainter,
 		FSlateDrawElement::MakeText(
 			InPainter.DrawElements,
 			InPainter.LayerId++,
+			FSlateInvalidationWidgetSortOrder(),
 			InPainter.SectionGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextOffset)),
 			MipString,
 			SmallLayoutFont,

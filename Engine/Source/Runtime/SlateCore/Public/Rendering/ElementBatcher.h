@@ -9,6 +9,7 @@
 #include "Stats/Stats.h"
 #include "SlateGlobals.h"
 #include "Containers/StaticArray.h"
+#include "FastUpdate/SlateInvalidationWidgetSortOrder.h"
 
 class FSlateBatchData;
 class FSlateDrawElement;
@@ -190,6 +191,7 @@ public:
 	/** Adds a new render batch to list of batches */
 	FSlateRenderBatch& AddRenderBatch(
 		int32 InLayer,
+		const FSlateInvalidationWidgetSortOrder& InSortOrder,
 		const FShaderParams& InShaderParams,
 		const FSlateShaderResource* InResource,
 		ESlateDrawPrimitive InPrimitiveType,
@@ -362,6 +364,7 @@ private:
 
 	FSlateRenderBatch& CreateRenderBatch(
 		int32 Layer,
+		const FSlateInvalidationWidgetSortOrder& InSortOrder,
 		const FShaderParams& ShaderParams,
 		const FSlateShaderResource* InResource,
 		ESlateDrawPrimitive PrimitiveType,
@@ -371,11 +374,12 @@ private:
 		int8 SceneIndex,
 		const FSlateClippingState* ClippingState)
 	{
-		return CreateRenderBatch(BatchData, Layer, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, SceneIndex, ClippingState);
+		return CreateRenderBatch(BatchData, Layer, InSortOrder, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, SceneIndex, ClippingState);
 	}
 
 	FSlateRenderBatch& CreateRenderBatch(
 		int32 Layer,
+		const FSlateInvalidationWidgetSortOrder& SortOrder,
 		const FShaderParams& ShaderParams,
 		const FSlateShaderResource* InResource,
 		ESlateDrawPrimitive PrimitiveType,
@@ -384,12 +388,13 @@ private:
 		ESlateBatchDrawFlag DrawFlags,
 		const FSlateDrawElement& DrawElement)
 	{
-		return CreateRenderBatch(BatchData, Layer, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, DrawElement);
+		return CreateRenderBatch(BatchData, Layer, SortOrder, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, DrawElement);
 	}
 
 	FSlateRenderBatch& CreateRenderBatch(
 		FSlateBatchData* SlateBatchData,
 		int32 Layer,
+		const FSlateInvalidationWidgetSortOrder& InSortOrder,
 		const FShaderParams& ShaderParams,
 		const FSlateShaderResource* InResource,
 		ESlateDrawPrimitive PrimitiveType,
@@ -402,6 +407,7 @@ private:
 	FSlateRenderBatch& CreateRenderBatch(
 		FSlateBatchData* SlateBatchData,
 		int32 Layer,
+		const FSlateInvalidationWidgetSortOrder& SortOrder,
 		const FShaderParams& ShaderParams,
 		const FSlateShaderResource* InResource,
 		ESlateDrawPrimitive PrimitiveType,

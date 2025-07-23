@@ -108,6 +108,7 @@ int32 SSimpleTextureViewer::OnPaint(const FPaintArgs& Args, const FGeometry& All
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			ImageGeometry.ToPaintGeometry(),
 			ThisBackgroundImage,
 			DrawEffects,
@@ -127,6 +128,7 @@ int32 SSimpleTextureViewer::OnPaint(const FPaintArgs& Args, const FGeometry& All
 		FSlateDrawElement::MakeLines( 
 			OutDrawElements,
 			RetLayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -144,6 +146,7 @@ int32 SSimpleTextureViewer::OnPaint(const FPaintArgs& Args, const FGeometry& All
 		FSlateDrawElement::MakeLines( 
 			OutDrawElements,
 			RetLayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,

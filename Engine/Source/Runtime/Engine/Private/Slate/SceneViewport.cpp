@@ -1336,7 +1336,7 @@ void FSceneViewport::PaintDebugCanvas(const FGeometry& AllottedGeometry, FSlateW
 
 		DebugCanvasDrawer->BeginRenderingCanvas(CanvasRect);
 
-		FSlateDrawElement::MakeCustom(OutDrawElements, LayerId, DebugCanvasDrawer);
+		FSlateDrawElement::MakeCustom(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), DebugCanvasDrawer);
 	}
 }
 

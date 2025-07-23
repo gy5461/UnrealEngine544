@@ -309,6 +309,7 @@ int32 STabDrawer::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			ResizeHandleGeometry.ToPaintGeometry(),
 			SplitterBrush,
 			ESlateDrawEffect::None,
@@ -319,6 +320,7 @@ int32 STabDrawer::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		RenderTransformedChildGeometry.ToPaintGeometry(),
 		ShadowBrush,
 		ESlateDrawEffect::None,
@@ -329,6 +331,7 @@ int32 STabDrawer::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		OffsetPaintGeom,
 		BackgroundBrush,
 		ESlateDrawEffect::None,
@@ -346,6 +349,7 @@ int32 STabDrawer::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			OutLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			OffsetPaintGeom,
 			BorderBrush,
 			ESlateDrawEffect::None,
@@ -408,6 +412,7 @@ int32 STabDrawer::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			OutLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			OffsetPaintGeom,
 			AboveTabBrush,
 			ESlateDrawEffect::None,
@@ -419,6 +424,7 @@ int32 STabDrawer::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			OutLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			NotchOffsetPaintGeom,
 			BorderSquareEdgeBrush,
 			ESlateDrawEffect::None,
@@ -430,6 +436,7 @@ int32 STabDrawer::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			OutLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			OffsetPaintGeom,
 			BelowTabBrush,
 			ESlateDrawEffect::None,

@@ -232,7 +232,7 @@ int32 SAvaEaseCurvePreview::OnPaint(const FPaintArgs& InArgs, const FGeometry& I
 			ZeroValueLinePoints.Add(FVector2D(LocalWidth - OneFifthWidth, ZeroOutputY));
 			ZeroValueLinePoints.Add(FVector2D(LocalWidth, ZeroOutputY));
 			TArray<FLinearColor> ZeroValueLineColors;
-			FSlateDrawElement::MakeLines(OutDrawElements, InLayerId, AbovePaintGeometry
+			FSlateDrawElement::MakeLines(OutDrawElements, InLayerId, FSlateInvalidationWidgetSortOrder(),AbovePaintGeometry
 				, ZeroValueLinePoints, ValueLineColors, DrawEffects, FLinearColor::White, false, InAllottedGeometry.Scale);
 		}
 
@@ -244,7 +244,7 @@ int32 SAvaEaseCurvePreview::OnPaint(const FPaintArgs& InArgs, const FGeometry& I
 			OneValueLinePoints.Add(FVector2D(OneFifthWidth, OneOutputY));
 			OneValueLinePoints.Add(FVector2D(LocalWidth - OneFifthWidth, OneOutputY));
 			OneValueLinePoints.Add(FVector2D(LocalWidth, OneOutputY));
-			FSlateDrawElement::MakeLines(OutDrawElements, InLayerId, AbovePaintGeometry
+			FSlateDrawElement::MakeLines(OutDrawElements, InLayerId,FSlateInvalidationWidgetSortOrder(), AbovePaintGeometry
 				, OneValueLinePoints, ValueLineColors, DrawEffects, FLinearColor::White, false, InAllottedGeometry.Scale);
 		}
 	}
@@ -261,13 +261,13 @@ int32 SAvaEaseCurvePreview::OnPaint(const FPaintArgs& InArgs, const FGeometry& I
 			const TArray<FVector2D> LinePoints = { FVector2D(Point.X, LocalSize.Y), Point };
 			const TArray<FLinearColor> LineColors = { UnderCurveColor.GetValue(), UnderCurveColor.GetValue() };
 
-			FSlateDrawElement::MakeLines(OutDrawElements, LayerId++, AbovePaintGeometry,
+			FSlateDrawElement::MakeLines(OutDrawElements, LayerId++,FSlateInvalidationWidgetSortOrder(), AbovePaintGeometry,
 				LinePoints, LineColors, DrawEffects, FLinearColor::White, true, 2.0f * InAllottedGeometry.Scale);
 		}
 	}
 
 	// Draw curve
-	FSlateDrawElement::MakeLines(OutDrawElements, LayerId++, AbovePaintGeometry,
+	FSlateDrawElement::MakeLines(OutDrawElements, LayerId++,FSlateInvalidationWidgetSortOrder(), AbovePaintGeometry,
 		CurvePoints, CurveColors, DrawEffects, FLinearColor::White, true, CurveThickness * InAllottedGeometry.Scale);
 
 	// Draw animation
@@ -291,7 +291,7 @@ int32 SAvaEaseCurvePreview::OnPaint(const FPaintArgs& InArgs, const FGeometry& I
 				MotionTrailLocation += AdditionalAboveHeight;
 
 				FSlateDrawElement::MakeBox(OutDrawElements, LayerId++
-					, InAllottedGeometry.ToPaintGeometry(FVector2D(MotionTrailSize), FSlateLayoutTransform(MotionTrailLocation))
+					,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(FVector2D(MotionTrailSize), FSlateLayoutTransform(MotionTrailLocation))
 					, ImageBrush, DrawEffects, MotionTrail.Color * InWidgetStyle.GetColorAndOpacityTint());
 			}
 		}
@@ -300,7 +300,7 @@ int32 SAvaEaseCurvePreview::OnPaint(const FPaintArgs& InArgs, const FGeometry& I
 		const FVector2D TangentIconLocation = CurrentAnimateLocation - (AnimationSize * 0.5f);
 
 		FSlateDrawElement::MakeBox(OutDrawElements, LayerId++
-			, InAllottedGeometry.ToPaintGeometry(FVector2D(AnimationSize), FSlateLayoutTransform(TangentIconLocation + AdditionalAboveHeight))
+			,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(FVector2D(AnimationSize), FSlateLayoutTransform(TangentIconLocation + AdditionalAboveHeight))
 			, ImageBrush, DrawEffects, AnimationColor * InWidgetStyle.GetColorAndOpacityTint());
 	}
 

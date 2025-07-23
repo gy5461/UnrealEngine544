@@ -1773,7 +1773,8 @@ int32 SAnimNotifyNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allotted
 		FVector2D DurationBoxPosition = FVector2D(NotifyScrubHandleCentre, (NotifyHeight - TextSize.Y) * 0.5f);
 		FSlateDrawElement::MakeBox( 
 			OutDrawElements,
-			LayerId, 
+			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(DurationBoxSize, FSlateLayoutTransform(DurationBoxPosition)), 
 			StyleInfo,
 			ESlateDrawEffect::None,
@@ -1807,7 +1808,8 @@ int32 SAnimNotifyNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allotted
 	{
 		FSlateDrawElement::MakeBox( 
 			OutDrawElements,
-			LayerId, 
+			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(LabelSize, FSlateLayoutTransform(LabelPosition)),
 			StyleInfo,
 			ESlateDrawEffect::None,
@@ -1836,6 +1838,7 @@ int32 SAnimNotifyNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allotted
 	FSlateDrawElement::MakeText( 
 		OutDrawElements,
 		TextLayerID,
+		FSlateInvalidationWidgetSortOrder(),
 		TextGeometry,
 		Text,
 		Font,
@@ -1856,6 +1859,7 @@ int32 SAnimNotifyNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allotted
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			BranchPointLayerID,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(BranchingPointIconSize, FSlateLayoutTransform(BranchPointIconPos)),
 			FAppStyle::GetBrush(TEXT("AnimNotifyEditor.BranchingPoint")),
 			ESlateDrawEffect::None,
@@ -2090,7 +2094,8 @@ void SAnimNotifyNode::DrawScrubHandle( float ScrubHandleCentre, FSlateWindowElem
 	FVector2D ScrubHandlePosition(ScrubHandleCentre - ScrubHandleSize.X / 2.0f, (NotifyHeight - ScrubHandleSize.Y) / 2.f);
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
-		ScrubHandleID, 
+		ScrubHandleID,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(ScrubHandleSize, FSlateLayoutTransform(ScrubHandlePosition)), 
 		FAppStyle::GetBrush( TEXT( "Sequencer.KeyDiamond" ) ),
 		ESlateDrawEffect::None,
@@ -2099,7 +2104,8 @@ void SAnimNotifyNode::DrawScrubHandle( float ScrubHandleCentre, FSlateWindowElem
 
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
-		ScrubHandleID, 
+		ScrubHandleID,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(ScrubHandleSize, FSlateLayoutTransform(ScrubHandlePosition)), 
 		FAppStyle::GetBrush( TEXT( "Sequencer.KeyDiamondBorder" ) ),
 		ESlateDrawEffect::None,
@@ -2124,7 +2130,8 @@ void SAnimNotifyNode::DrawHandleOffset( const float& Offset, const float& Handle
 
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
-		MarkerLayer, 
+		MarkerLayer,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(MarkerSize, FSlateLayoutTransform(MarkerPosition)), 
 		FAppStyle::GetBrush( TEXT( "Sequencer.Timeline.NotifyAlignmentMarker" ) ),
 		ESlateDrawEffect::None,
@@ -2264,6 +2271,7 @@ int32 SAnimNotifyTrack::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			CustomLayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			TArray<FVector2D>({ FVector2D(0.0f, AllottedGeometry.GetLocalSize().Y), FVector2D(AllottedGeometry.GetLocalSize().X, AllottedGeometry.GetLocalSize().Y) }),
 			ESlateDrawEffect::None,
@@ -2289,6 +2297,7 @@ int32 SAnimNotifyTrack::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 			FSlateDrawElement::MakeLines( 
 				OutDrawElements,
 				CustomLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				MyGeometry,
 				LinePoints,
 				ESlateDrawEffect::None,
@@ -4939,6 +4948,7 @@ int32 SAnimNotifyPanel::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId++,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(Marquee.Rect.GetSize(), FSlateLayoutTransform(Marquee.Rect.GetUpperLeft())),
 			FAppStyle::GetBrush(TEXT("MarqueeSelection"))
 			);

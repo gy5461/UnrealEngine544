@@ -139,6 +139,7 @@ int32 SOperatorStackEditorStackRow::OnPaintDropIndicator(EItemDropZone InZone, c
 			(
 				OutDrawElements,
 				InLayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				InGeometry.ToPaintGeometry(FVector2D(InGeometry.GetLocalSize() - Offset), FSlateLayoutTransform(Offset)),
 				DropIndicatorBrush,
 				ESlateDrawEffect::None,

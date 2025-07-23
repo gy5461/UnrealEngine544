@@ -41,6 +41,7 @@ int32 SNiagaraStackIndent::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2D(SingleIndentWidth, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2D((SingleIndentWidth * i) + PaintOffsetX, 0))),
 				BackgroundBrush,
 				ESlateDrawEffect::None,
@@ -49,6 +50,7 @@ int32 SNiagaraStackIndent::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2D(SingleIndentWidth, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2D((SingleIndentWidth * i) + PaintOffsetX, 0))),
 				DropShadowBrush);
 		}
@@ -58,6 +60,7 @@ int32 SNiagaraStackIndent::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2D(SingleIndentWidth, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2D((SingleIndentWidth * (IndentLevel - 1)), 0))),
 			DropShadowBrush);
 	}

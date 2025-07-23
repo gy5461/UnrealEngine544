@@ -135,7 +135,7 @@ int32 STutorialButton::OnPaint(const FPaintArgs& Args, const FGeometry& Allotted
 			FPaintGeometry BorderGeometry(BorderPosition, BorderSize, AllottedGeometry.Scale);
 
 			// draw highlight border
-			FSlateDrawElement::MakeBox(OutDrawElements, LayerId++, BorderGeometry, PulseBrush, ESlateDrawEffect::None, FLinearColor(PulseColor.R, PulseColor.G, PulseColor.B, AlphaFactor0));
+			FSlateDrawElement::MakeBox(OutDrawElements, LayerId++,FSlateInvalidationWidgetSortOrder(), BorderGeometry, PulseBrush, ESlateDrawEffect::None, FLinearColor(PulseColor.R, PulseColor.G, PulseColor.B, AlphaFactor0));
 		}
 
 		{
@@ -147,7 +147,7 @@ int32 STutorialButton::OnPaint(const FPaintArgs& Args, const FGeometry& Allotted
 			FPaintGeometry BorderGeometry(BorderPosition, BorderSize, AllottedGeometry.Scale);
 
 			// draw highlight border
-			FSlateDrawElement::MakeBox(OutDrawElements, LayerId++, BorderGeometry, PulseBrush, ESlateDrawEffect::None, FLinearColor(PulseColor.R, PulseColor.G, PulseColor.B, AlphaFactor1));
+			FSlateDrawElement::MakeBox(OutDrawElements, LayerId++,FSlateInvalidationWidgetSortOrder(), BorderGeometry, PulseBrush, ESlateDrawEffect::None, FLinearColor(PulseColor.R, PulseColor.G, PulseColor.B, AlphaFactor1));
 		}
 	}
 

@@ -277,6 +277,7 @@ int32 STextBlock::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToOffsetPaintGeometry(LocalShadowOffset),
 				LocalText,
 				LocalFont,
@@ -295,6 +296,7 @@ int32 STextBlock::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LocalText,
 			LocalFont,

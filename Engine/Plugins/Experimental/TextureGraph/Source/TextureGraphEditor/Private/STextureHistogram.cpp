@@ -659,6 +659,7 @@ void STextureHistogramCurve::DrawHistogramCurve(const FGeometry& AllottedGeometr
 	FSlateDrawElement::MakeLines(
 		ElementList,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		ShadePoints,
 		ESlateDrawEffect::None,
@@ -723,6 +724,7 @@ void STextureHistogramCurve::DrawShadeForCurve(const FGeometry& AllottedGeometry
 	FSlateDrawElement::MakeCustomVerts(
 		ElementList,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		Handle,
 		Vertices,
 		Indices,
@@ -818,6 +820,7 @@ void STextureHistogramBars::DrawHistogramBars(const FGeometry& AllottedGeometry,
 		FSlateDrawElement::MakeBox(
 			ElementList,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( FVector2D(BarWidth, NormalizedCounts[BinIndex]), FSlateLayoutTransform(FVector2D(BarPosition.X, MaxBarHeight - NormalizedCounts[BinIndex]))),
 			MyBrush,
 			ESlateDrawEffect::None,
@@ -900,6 +903,7 @@ void STextureHistogramReferenceLines::DrawReferenceLines(const FGeometry& Allott
 	FSlateDrawElement::MakeLines(
 		ElementList,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		ReferenceLinePoints,
 		ESlateDrawEffect::None,
@@ -921,6 +925,7 @@ void STextureHistogramReferenceLines::DrawReferenceLines(const FGeometry& Allott
 		FSlateDrawElement::MakeLines(
 			ElementList,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			Points,
 			ESlateDrawEffect::None,
@@ -940,6 +945,7 @@ void STextureHistogramReferenceLines::DrawReferenceLines(const FGeometry& Allott
 			FSlateDrawElement::MakeLines(
 				ElementList,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				Points2,
 				ESlateDrawEffect::PreMultipliedAlpha,
@@ -962,6 +968,7 @@ void STextureHistogramReferenceLines::DrawReferenceLines(const FGeometry& Allott
 		FSlateDrawElement::MakeText(
 			ElementList,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(TextSize,FSlateLayoutTransform(TextPosition)),
 			UnitText,
 			FontInfo,
@@ -984,6 +991,7 @@ void STextureHistogramReferenceLines::DrawReferenceLines(const FGeometry& Allott
 		FSlateDrawElement::MakeLines(
 			ElementList,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			Points,
 			ESlateDrawEffect::None,
@@ -1004,6 +1012,7 @@ void STextureHistogramReferenceLines::DrawReferenceLines(const FGeometry& Allott
 			FSlateDrawElement::MakeLines(
 				ElementList,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				Points2,
 				ESlateDrawEffect::PreMultipliedAlpha,
@@ -1018,6 +1027,7 @@ void STextureHistogramReferenceLines::DrawReferenceLines(const FGeometry& Allott
 		FSlateDrawElement::MakeText(
 			ElementList,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextPosition)),
 			UnitText,
 			FontInfo,
@@ -1034,6 +1044,7 @@ void STextureHistogramReferenceLines::DrawReferenceLines(const FGeometry& Allott
 	FSlateDrawElement::MakeText(
 		ElementList,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextPosition)),
 		UnitText,
 		FontInfo,

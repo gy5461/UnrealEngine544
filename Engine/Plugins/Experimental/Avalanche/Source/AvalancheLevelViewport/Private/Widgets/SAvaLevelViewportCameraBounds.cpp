@@ -87,6 +87,7 @@ void SAvaLevelViewportCameraBounds::DrawCameraBounds(const FPaintArgs& InPaintAr
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		InOutLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		TopRect,
 		White,
 		ESlateDrawEffect::NoPixelSnapping,
@@ -96,6 +97,7 @@ void SAvaLevelViewportCameraBounds::DrawCameraBounds(const FPaintArgs& InPaintAr
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		InOutLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		LeftRect,
 		White,
 		ESlateDrawEffect::NoPixelSnapping,
@@ -105,6 +107,7 @@ void SAvaLevelViewportCameraBounds::DrawCameraBounds(const FPaintArgs& InPaintAr
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		InOutLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		RightRect,
 		White,
 		ESlateDrawEffect::NoPixelSnapping,
@@ -114,6 +117,7 @@ void SAvaLevelViewportCameraBounds::DrawCameraBounds(const FPaintArgs& InPaintAr
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		InOutLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		BottomRect,
 		White,
 		ESlateDrawEffect::NoPixelSnapping,

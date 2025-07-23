@@ -652,6 +652,7 @@ void FConsoleSlateDebuggerInvalidate::HandlePaintDebugInfo(const FPaintArgs& InA
 		FSlateDrawElement::MakeText(
 			InOutDrawElements
 			, InOutLayerId
+			, FSlateInvalidationWidgetSortOrder()
 			, InAllottedGeometry.ToPaintGeometry(FVector2f(1.f, 1.f), FSlateLayoutTransform(TextElementLocation))
 			, Text
 			, FontInfo
@@ -693,6 +694,7 @@ void FConsoleSlateDebuggerInvalidate::HandlePaintDebugInfo(const FPaintArgs& InA
 			FSlateDrawElement::MakeBox(
 				InOutDrawElements,
 				InOutLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				InvalidatedPaintGeometry,
 				BoxBrush,
 				ESlateDrawEffect::None,
@@ -707,11 +709,13 @@ void FConsoleSlateDebuggerInvalidate::HandlePaintDebugInfo(const FPaintArgs& InA
 			FSlateDrawElement::MakeDebugQuad(
 				InOutDrawElements,
 				InOutLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				InvalidatorPaintGeometry,
 				ColorWithOpacity);
 			FSlateDrawElement::MakeBox(
 				InOutDrawElements,
 				InOutLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				InvalidatorPaintGeometry,
 				CheckerboardBrush,
 				ESlateDrawEffect::None,
@@ -745,6 +749,7 @@ void FConsoleSlateDebuggerInvalidate::HandlePaintDebugInfo(const FPaintArgs& InA
 		FSlateDrawElement::MakeText(
 			InOutDrawElements
 			, InOutLayerId
+			, FSlateInvalidationWidgetSortOrder()
 			, InAllottedGeometry.ToPaintGeometry(FVector2f(1.f, 1.f), FSlateLayoutTransform(TextElementLocation))
 			, FString::Printf(TEXT("Slate Performance Threshold Reached: %d"), LastPerformanceThresholdFrameCount)
 			, NormalFontInfo

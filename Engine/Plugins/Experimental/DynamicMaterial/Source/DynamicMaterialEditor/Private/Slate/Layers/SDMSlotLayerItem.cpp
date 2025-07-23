@@ -559,6 +559,7 @@ int32 SDMSlotLayerItem::OnLayerItemPaintDropIndicator(EItemDropZone InItemDropZo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId++,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2D(AllottedGeometry.GetLocalSize() - Offset), FSlateLayoutTransform(Offset)),
 		DropIndicatorBrush,
 		ESlateDrawEffect::None,

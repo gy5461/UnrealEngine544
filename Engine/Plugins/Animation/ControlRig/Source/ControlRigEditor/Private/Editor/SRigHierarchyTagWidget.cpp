@@ -78,6 +78,7 @@ int32 SRigHierarchyTagWidget::OnPaint(const FPaintArgs& Args, const FGeometry& A
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId++,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(
 			AllottedGeometry.GetLocalSize() - Padding.GetDesiredSize(),
 			FSlateLayoutTransform(FVector2d(Padding.Left, Padding.Top))

@@ -210,6 +210,7 @@ int32 SDropTarget::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				DashLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.GetLocalSize().X-Inset*2, HorizontalImage->ImageSize.Y), FSlateLayoutTransform(FVector2f(Inset, 0))),
 				HorizontalImage,
 				ESlateDrawEffect::None,
@@ -219,6 +220,7 @@ int32 SDropTarget::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				DashLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.Size.X-Inset * 2, HorizontalImage->ImageSize.Y), FSlateLayoutTransform(FVector2f(Inset, AllottedGeometry.GetLocalSize().Y - HorizontalImage->ImageSize.Y))),
 				HorizontalImage,
 				ESlateDrawEffect::None,
@@ -228,6 +230,7 @@ int32 SDropTarget::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				DashLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(VerticalImage->ImageSize.X, AllottedGeometry.GetLocalSize().Y-Inset * 2), FSlateLayoutTransform(FVector2f(0, Inset))),
 				VerticalImage,
 				ESlateDrawEffect::None,
@@ -237,6 +240,7 @@ int32 SDropTarget::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				DashLayer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(VerticalImage->ImageSize.X, AllottedGeometry.GetLocalSize().Y-Inset * 2), FSlateLayoutTransform(FVector2f(AllottedGeometry.GetLocalSize().X - VerticalImage->ImageSize.X, Inset))),
 				VerticalImage,
 				ESlateDrawEffect::None,

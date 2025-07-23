@@ -192,6 +192,7 @@ int32 FParticleSection::OnPaintSection( FSequencerSectionPainter& InPainter ) co
 		FSlateDrawElement::MakeBox(
 			InPainter.DrawElements,
 			InPainter.LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			InPainter.SectionGeometry.ToPaintGeometry( FVector2f( XSize, SequencerSectionConstants::KeySize.Y ), FSlateLayoutTransform(FVector2f( XOffset, (InPainter.SectionGeometry.GetLocalSize().Y - SequencerSectionConstants::KeySize.Y) / 2.f )) ),
 			FAppStyle::GetBrush( "Sequencer.Section.Background" ),
 			DrawEffects
@@ -199,6 +200,7 @@ int32 FParticleSection::OnPaintSection( FSequencerSectionPainter& InPainter ) co
 		FSlateDrawElement::MakeBox(
 			InPainter.DrawElements,
 			InPainter.LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			InPainter.SectionGeometry.ToPaintGeometry( FVector2f( XSize, SequencerSectionConstants::KeySize.Y ), FSlateLayoutTransform(FVector2f( XOffset, (InPainter.SectionGeometry.GetLocalSize().Y - SequencerSectionConstants::KeySize.Y) / 2.f )) ),
 			FAppStyle::GetBrush( "Sequencer.Section.BackgroundTint" ),
 			DrawEffects,

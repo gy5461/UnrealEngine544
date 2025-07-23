@@ -104,9 +104,9 @@ bool FSlateBatchData::IsStencilClippingRequired() const
 	return bIsStencilBufferRequired;
 }
 
-FSlateRenderBatch& FSlateBatchData::AddRenderBatch(int32 InLayer, const FShaderParams& InShaderParams, const FSlateShaderResource* InResource, ESlateDrawPrimitive InPrimitiveType, ESlateShader InShaderType, ESlateDrawEffect InDrawEffects, ESlateBatchDrawFlag InDrawFlags, int8 SceneIndex)
+FSlateRenderBatch& FSlateBatchData::AddRenderBatch(int32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FShaderParams& InShaderParams, const FSlateShaderResource* InResource, ESlateDrawPrimitive InPrimitiveType, ESlateShader InShaderType, ESlateDrawEffect InDrawEffects, ESlateBatchDrawFlag InDrawFlags, int8 SceneIndex)
 {
-	return RenderBatches.Emplace_GetRef(InLayer, InShaderParams, InResource, InPrimitiveType, InShaderType, InDrawEffects, InDrawFlags, SceneIndex, &UncachedSourceBatchVertices, &UncachedSourceBatchIndices, UncachedSourceBatchVertices.Num(), UncachedSourceBatchIndices.Num());
+	return RenderBatches.Emplace_GetRef(InLayer, InSortOrder, InShaderParams, InResource, InPrimitiveType, InShaderType, InDrawEffects, InDrawFlags, SceneIndex, &UncachedSourceBatchVertices, &UncachedSourceBatchIndices, UncachedSourceBatchVertices.Num(), UncachedSourceBatchIndices.Num());
 }
 
 void FSlateBatchData::AddCachedBatches(const TSparseArray<FSlateRenderBatch>& InCachedBatches)
@@ -209,8 +209,13 @@ void FSlateBatchData::MergeRenderBatches()
 			// Stable sort because order in the same layer should be preserved
 			BatchIndices.StableSort
 			(
-				[](const TPair<int32, int32>& A, const TPair<int32, int32>& B)
+				[&](const TPair<int32, int32>& A, const TPair<int32, int32>& B)
 				{
+					if (A.Value == B.Value)
+					{
+						return RenderBatches[A.Key].GetSortOrder() < RenderBatches[B.Key].GetSortOrder();
+					}
+					
 					return A.Value < B.Value;
 				}
 			);
@@ -625,6 +630,7 @@ void FSlateElementBatcher::GenerateIndexedVertexBatches(
 		// Process valid range, we always create the batch - even if it may not have any elements later on (Ex: 1 point lines).
 		FSlateRenderBatch& RenderBatch = CreateRenderBatch(
 			NewBatchParams.Layer
+			, NewBatchParams.SortOrder
 			, NewBatchParams.ShaderParams
 			, NewBatchParams.Resource
 			, NewBatchParams.PrimitiveType
@@ -653,8 +659,9 @@ void FSlateElementBatcher::AddDebugQuadElement(const FSlateBoxElement& DrawEleme
 	const FVector2f LocalSize = DrawElement.GetLocalSize();
 	ESlateDrawEffect InDrawEffects = DrawElement.GetDrawEffects();
 	const int32 Layer = DrawElement.GetLayer();
+	const FSlateInvalidationWidgetSortOrder& SortOrder = DrawElement.GetSortOrder();
 
-	FSlateRenderBatch& RenderBatch = CreateRenderBatch(Layer, FShaderParams(), nullptr, ESlateDrawPrimitive::TriangleList, ESlateShader::Default, ESlateDrawEffect::None, ESlateBatchDrawFlag::None, DrawElement);
+	FSlateRenderBatch& RenderBatch = CreateRenderBatch(Layer, SortOrder, FShaderParams(), nullptr, ESlateDrawPrimitive::TriangleList, ESlateShader::Default, ESlateDrawEffect::None, ESlateBatchDrawFlag::None, DrawElement);
 	
 	const FColor Color = PackVertexColor(DrawElement.GetTint());
 
@@ -1252,6 +1259,7 @@ void FSlateElementBatcher::AddTextElement(const FSlateTextElement& DrawElement)
 	ESlateDrawEffect InDrawEffects = DrawElement.GetDrawEffects();
 
 	const int32 Layer = DrawElement.GetLayer();
+	FSlateInvalidationWidgetSortOrder SortOrder = DrawElement.GetSortOrder();
 
 	// extract the layout transform from the draw element
 	FSlateLayoutTransform LayoutTransform(DrawElement.GetScale(), FVector2f(DrawElement.GetPosition()));
@@ -1387,7 +1395,7 @@ void FSlateElementBatcher::AddTextElement(const FSlateTextElement& DrawElement)
 					}
 					check(ShaderType != ESlateShader::Default);
 
-					RenderBatch = &CreateRenderBatch(InLayer, FShaderParams(), FontShaderResource, ESlateDrawPrimitive::TriangleList, ShaderType, InDrawEffects, ESlateBatchDrawFlag::None, DrawElement);
+					RenderBatch = &CreateRenderBatch(InLayer, SortOrder, FShaderParams(), FontShaderResource, ESlateDrawPrimitive::TriangleList, ShaderType, InDrawEffects, ESlateBatchDrawFlag::None, DrawElement);
 
 					// Reserve memory for the glyphs.  This isn't perfect as the text could contain spaces and we might not render the rest of the text in this batch but its better than resizing constantly
 					const int32 GlyphsLeft = NumChars - CharIndex;
@@ -1700,6 +1708,7 @@ void FSlateElementBatcher::AddGradientElement( const FSlateGradientElement& Draw
 	const FVector2f LocalSize = DrawElement.GetLocalSize();
 	const ESlateDrawEffect InDrawEffects = DrawElement.GetDrawEffects();
 	const int32 Layer = DrawElement.GetLayer();
+	FSlateInvalidationWidgetSortOrder SortOrder = DrawElement.GetSortOrder();
 	const float DrawScale = DrawElement.GetScale();
 
 	// There must be at least one gradient stop
@@ -1718,6 +1727,7 @@ void FSlateElementBatcher::AddGradientElement( const FSlateGradientElement& Draw
 	FSlateRenderBatch& RenderBatch = 
 		CreateRenderBatch( 
 			Layer,
+			SortOrder,
 			ShaderParams,
 			nullptr,
 			ESlateDrawPrimitive::TriangleList,
@@ -2113,6 +2123,7 @@ void FSlateElementBatcher::AddSplineElement(const FSlateSplineElement& DrawEleme
 	const FSlateRenderTransform& RenderTransform = DrawElement.GetRenderTransform();
 	const ESlateDrawEffect InDrawEffects = DrawElement.GetDrawEffects();
 	const int32 Layer = DrawElement.GetLayer();
+	FSlateInvalidationWidgetSortOrder SortOrder = DrawElement.GetSortOrder();
 
 	// Filter size to use for anti-aliasing.
 	// Increasing this value will increase the fuzziness of line edges.
@@ -2125,7 +2136,7 @@ void FSlateElementBatcher::AddSplineElement(const FSlateSplineElement& DrawEleme
 
 	const float InsideFilterU = (HalfThickness - FilterRadius) / FilteredHalfThickness;
 	const FVector4f ShaderParams = FVector4f(InsideFilterU, 0.0f, 0.0f, 0.0f);
-	FSlateRenderBatch& RenderBatch = CreateRenderBatch(Layer, FShaderParams::MakePixelShaderParams(ShaderParams), nullptr, ESlateDrawPrimitive::TriangleList, ESlateShader::LineSegment, InDrawEffects, ESlateBatchDrawFlag::None, DrawElement);
+	FSlateRenderBatch& RenderBatch = CreateRenderBatch(Layer, SortOrder, FShaderParams::MakePixelShaderParams(ShaderParams), nullptr, ESlateDrawPrimitive::TriangleList, ESlateShader::LineSegment, InDrawEffects, ESlateBatchDrawFlag::None, DrawElement);
 
 	// Thickness is given in screenspace, convert it to local space for geometry build
 	const float LocalHalfThickness = FilteredHalfThickness / DrawElement.GetScale();
@@ -2677,6 +2688,7 @@ void FSlateElementBatcher::AddViewportElement( const FSlateViewportElement& Draw
 	const FVector2f LocalSize = DrawElement.GetLocalSize();
 	ESlateDrawEffect InDrawEffects = DrawElement.GetDrawEffects();
 	const int32 Layer = DrawElement.GetLayer();
+	FSlateInvalidationWidgetSortOrder SortOrder = DrawElement.GetSortOrder();
 
 	const FColor FinalColor = PackVertexColor(DrawElement.GetTint());
 
@@ -2695,7 +2707,7 @@ void FSlateElementBatcher::AddViewportElement( const FSlateViewportElement& Draw
 	bool bUseBatchDataHDR = (bCompositeHDRViewports && bIsHDRViewport);
 
 	FSlateBatchData* UsedBatchData = bUseBatchDataHDR ? BatchDataHDR : BatchData;
-	FSlateRenderBatch& RenderBatch = CreateRenderBatch(UsedBatchData, Layer, FShaderParams(), ViewportResource, ESlateDrawPrimitive::TriangleList, ShaderType, InDrawEffects, DrawFlags, DrawElement);
+	FSlateRenderBatch& RenderBatch = CreateRenderBatch(UsedBatchData, Layer, SortOrder, FShaderParams(), ViewportResource, ESlateDrawPrimitive::TriangleList, ShaderType, InDrawEffects, DrawFlags, DrawElement);
 
 	// Tag this batch as requiring vsync if the viewport requires it.
 	if( ViewportResource != nullptr && !DrawElement.bAllowViewportScaling )
@@ -2743,7 +2755,7 @@ void FSlateElementBatcher::AddViewportElement( const FSlateViewportElement& Draw
 		// an alpha=0 quad to allow the scene RT to be composited properly. AFAICT, game UI is rendered on top of it
 		DrawFlags = ESlateBatchDrawFlag::NoBlending;
 		const FColor TransparentBlackColor(0, 0, 0, 0);
-		FSlateRenderBatch& RenderBatch2 = CreateRenderBatch(Layer, FShaderParams(), nullptr, ESlateDrawPrimitive::TriangleList, ShaderType, InDrawEffects, DrawFlags, DrawElement);
+		FSlateRenderBatch& RenderBatch2 = CreateRenderBatch(Layer, SortOrder, FShaderParams(), nullptr, ESlateDrawPrimitive::TriangleList, ShaderType, InDrawEffects, DrawFlags, DrawElement);
 		RenderBatch2.AddVertex(FSlateVertex::Make<Rounding>(RenderTransform, TopLeft, FVector2f(0.0f, 0.0f), TransparentBlackColor));
 		RenderBatch2.AddVertex(FSlateVertex::Make<Rounding>(RenderTransform, TopRight, FVector2f(1.0f, 0.0f), TransparentBlackColor));
 		RenderBatch2.AddVertex(FSlateVertex::Make<Rounding>(RenderTransform, BotLeft, FVector2f(0.0f, 1.0f), TransparentBlackColor));
@@ -2769,6 +2781,7 @@ void FSlateElementBatcher::AddBorderElement( const FSlateBoxElement& DrawElement
 	const ESlateDrawEffect InDrawEffects = DrawElement.GetDrawEffects();
 
 	const int32 Layer = DrawElement.GetLayer();
+	FSlateInvalidationWidgetSortOrder SortOrder = DrawElement.GetSortOrder();
 
 	const float DrawScale = DrawElement.GetScale();
 
@@ -2861,7 +2874,7 @@ void FSlateElementBatcher::AddBorderElement( const FSlateBoxElement& DrawElement
 	// Pass the tiling information as a flag so we can pick the correct texture addressing mode
 	ESlateBatchDrawFlag DrawFlags = (ESlateBatchDrawFlag::TileU|ESlateBatchDrawFlag::TileV);
 
-	FSlateRenderBatch& RenderBatch = CreateRenderBatch( Layer, ShaderParams, Resource, ESlateDrawPrimitive::TriangleList, ESlateShader::Border, InDrawEffects, DrawFlags, DrawElement);
+	FSlateRenderBatch& RenderBatch = CreateRenderBatch( Layer, SortOrder, ShaderParams, Resource, ESlateDrawPrimitive::TriangleList, ESlateShader::Border, InDrawEffects, DrawFlags, DrawElement);
 
 	// Ensure tiling of at least 1.  
 	TopTiling = TopTiling >= 1.0f ? TopTiling : 1.0f;
@@ -2994,8 +3007,9 @@ void FSlateElementBatcher::AddBorderElement( const FSlateBoxElement& DrawElement
 void FSlateElementBatcher::AddCustomElement( const FSlateCustomDrawerElement& DrawElement )
 {
 	const int32 Layer = DrawElement.GetLayer();
+	FSlateInvalidationWidgetSortOrder SortOrder = DrawElement.GetSortOrder();
 
-	FSlateRenderBatch& RenderBatch = CreateRenderBatch(Layer, FShaderParams(), nullptr, ESlateDrawPrimitive::None, ESlateShader::Default, ESlateDrawEffect::None, ESlateBatchDrawFlag::None, DrawElement);
+	FSlateRenderBatch& RenderBatch = CreateRenderBatch(Layer, SortOrder, FShaderParams(), nullptr, ESlateDrawPrimitive::None, ESlateShader::Default, ESlateDrawEffect::None, ESlateBatchDrawFlag::None, DrawElement);
 	RenderBatch.CustomDrawer = DrawElement.CustomDrawer.Pin().Get();
 	RenderBatch.bIsMergable = false;
 	RenderBatch.CustomDrawer->PostCustomElementAdded(*this);
@@ -3004,11 +3018,13 @@ void FSlateElementBatcher::AddCustomElement( const FSlateCustomDrawerElement& Dr
 void FSlateElementBatcher::AddCustomVerts(const FSlateCustomVertsElement& DrawElement)
 {
 	const int32 Layer = DrawElement.GetLayer();
+	FSlateInvalidationWidgetSortOrder SortOrder = DrawElement.GetSortOrder();
 
 	if (DrawElement.Vertices.Num() > 0)
 	{
 		FSlateRenderBatch& RenderBatch = CreateRenderBatch(
-			Layer, 
+			Layer,
+			SortOrder,
 			FShaderParams(), 
 			DrawElement.ResourceProxy != nullptr ? DrawElement.ResourceProxy->Resource : nullptr,
 			ESlateDrawPrimitive::TriangleList,
@@ -3083,6 +3099,7 @@ void FSlateElementBatcher::AddPostProcessPass(const FSlatePostProcessElement& Dr
 	const FVector2f Position = DrawElement.GetPosition();
 
 	const int32 Layer = DrawElement.GetLayer();
+	FSlateInvalidationWidgetSortOrder SortOrder = DrawElement.GetSortOrder();
 
 	// Determine the four corners of the quad
 	FVector2f TopLeft = FVector2f::ZeroVector;
@@ -3107,13 +3124,14 @@ void FSlateElementBatcher::AddPostProcessPass(const FSlatePostProcessElement& Dr
 			FVector4f(DrawElement.PostProcessData.X, DrawElement.PostProcessData.Y, (float)DrawElement.DownsampleAmount, 0.f),
 			FVector4f(DrawElement.CornerRadius));
 
-		CreateRenderBatch(Layer, Params, nullptr, ESlateDrawPrimitive::TriangleList, ESlateShader::PostProcess, ESlateDrawEffect::None, ESlateBatchDrawFlag::None, DrawElement);
+		CreateRenderBatch(Layer, SortOrder, Params, nullptr, ESlateDrawPrimitive::TriangleList, ESlateShader::PostProcess, ESlateDrawEffect::None, ESlateBatchDrawFlag::None, DrawElement);
 	}
 }
 
 FSlateRenderBatch& FSlateElementBatcher::CreateRenderBatch(
 	FSlateBatchData* SlateBatchData
 	, int32 Layer
+	, const FSlateInvalidationWidgetSortOrder& SortOrder
 	, const FShaderParams& ShaderParams
 	, const FSlateShaderResource* InResource
 	, ESlateDrawPrimitive PrimitiveType
@@ -3124,8 +3142,8 @@ FSlateRenderBatch& FSlateElementBatcher::CreateRenderBatch(
 	, const FSlateClippingState* ClippingState)
 {
 	FSlateRenderBatch& NewBatch = CurrentCachedElementList
-		? CurrentCachedElementList->AddRenderBatch(Layer, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, SceneIndex)
-		: SlateBatchData->AddRenderBatch(Layer, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, SceneIndex);
+		? CurrentCachedElementList->AddRenderBatch(Layer, SortOrder, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, SceneIndex)
+		: SlateBatchData->AddRenderBatch(Layer, SortOrder, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, SceneIndex);
 
 	NewBatch.ClippingState = ClippingState;
 
@@ -3139,7 +3157,8 @@ FSlateRenderBatch& FSlateElementBatcher::CreateRenderBatch(
 
 FSlateRenderBatch& FSlateElementBatcher::CreateRenderBatch(
 	FSlateBatchData* SlateBatchData,
-	int32 Layer, 
+	int32 Layer,
+	const FSlateInvalidationWidgetSortOrder& SortOrder,
 	const FShaderParams& ShaderParams,
 	const FSlateShaderResource* InResource,
 	ESlateDrawPrimitive PrimitiveType,
@@ -3149,8 +3168,8 @@ FSlateRenderBatch& FSlateElementBatcher::CreateRenderBatch(
 	const FSlateDrawElement& DrawElement)
 {
 	FSlateRenderBatch& NewBatch = CurrentCachedElementList
-		? CurrentCachedElementList->AddRenderBatch(Layer, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, DrawElement.GetSceneIndex())
-		: SlateBatchData->AddRenderBatch(Layer, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, DrawElement.GetSceneIndex());
+		? CurrentCachedElementList->AddRenderBatch(Layer, SortOrder, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, DrawElement.GetSceneIndex())
+		: SlateBatchData->AddRenderBatch(Layer, SortOrder, ShaderParams, InResource, PrimitiveType, ShaderType, DrawEffects, DrawFlags, DrawElement.GetSceneIndex());
 
 	NewBatch.ClippingState = ResolveClippingState(DrawElement);
 
@@ -3378,6 +3397,7 @@ void FSlateElementBatcher::BuildShapedTextSequence(const FShapedTextBuildContext
 					}
 
 					RenderBatch = &CreateRenderBatch(Context.LayerId,
+						Context.DrawElement->GetSortOrder(),
 						ShaderParams,
 						FontShaderResource,
 						ESlateDrawPrimitive::TriangleList,

@@ -61,6 +61,7 @@ int32 SStateTreeDebuggerEventTimelineView::PaintEvents(const FGeometry& Allotted
 				FSlateDrawElement::MakeBox
 				(OutDrawElements,
 					LayerId++,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2f((XEnd - XStart) - HSizeReduction, EventSize.Y - VSizeReduction), FSlateLayoutTransform(FVector2f(XStart, Y + VerticalOffset))),
 					Brush,
 					ESlateDrawEffect::None,
@@ -82,6 +83,7 @@ int32 SStateTreeDebuggerEventTimelineView::PaintEvents(const FGeometry& Allotted
 						FSlateDrawElement::MakeText(
 							OutDrawElements,
 							LayerId,
+							FSlateInvalidationWidgetSortOrder(),
 							AllottedGeometry.ToPaintGeometry(EventSize, FSlateLayoutTransform(FVector2D(XStart + TextLeftOffset, Y))),
 							Description,
 							FontInfo,
@@ -125,6 +127,7 @@ int32 SStateTreeDebuggerEventTimelineView::PaintEvents(const FGeometry& Allotted
 				FSlateDrawElement::MakeBox
 				(OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(EventSize, FSlateLayoutTransform(FVector2f(X, Y))),
 					EventBrush,
 					ESlateDrawEffect::None,
@@ -133,6 +136,7 @@ int32 SStateTreeDebuggerEventTimelineView::PaintEvents(const FGeometry& Allotted
 				FSlateDrawElement::MakeBox
 				(OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(EventSize, FSlateLayoutTransform(FVector2f(X, Y))),
 					EventBorderBrush,
 					ESlateDrawEffect::None,

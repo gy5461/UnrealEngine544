@@ -200,6 +200,7 @@ int32 STreeMap::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeomet
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			ThisBackgroundImage,
 			DrawEffects,
@@ -269,6 +270,7 @@ int32 STreeMap::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeomet
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						LayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						VisualPaintGeometry,
 						bIsMouseOverNode ? ThisHoveredNodeBackground : ThisNodeBackground,
 						DrawEffects,
@@ -301,6 +303,7 @@ int32 STreeMap::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeomet
 						FSlateDrawElement::MakeBox(
 							OutDrawElements,
 							LayerId,
+							FastPathProxyHandle.GetWidgetSortOrder(),
 							BackgroundPaintGeometry,
 							BlendedVisual.NodeData->BackgroundBrush,
 							DrawEffects,
@@ -321,6 +324,7 @@ int32 STreeMap::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeomet
 							FSlateDrawElement::MakeBox(
 								OutDrawElements,
 								LayerId,
+								FastPathProxyHandle.GetWidgetSortOrder(),
 								VisualPaintGeometry,
 								ThisHoveredNodeBackground,
 								DrawEffects,
@@ -402,6 +406,7 @@ int32 STreeMap::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeomet
 									FSlateDrawElement::MakeText(
 										OutDrawElements,
 										LayerId,
+										FastPathProxyHandle.GetWidgetSortOrder(),
 										AllottedGeometry.ToOffsetPaintGeometry( ShadowOffset + FVector2D( TextX, TextY ) ),
 										BlendedVisual.NodeData->Name,
 										BlendedVisual.NameFont,
@@ -422,6 +427,7 @@ int32 STreeMap::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeomet
 									FSlateDrawElement::MakeText(
 										OutDrawElements,
 										LayerId,
+										FastPathProxyHandle.GetWidgetSortOrder(),
 										AllottedGeometry.ToOffsetPaintGeometry( ShadowOffset + FVector2D( TextX, TextY ) ),
 										BlendedVisual.NodeData->Name2,
 										BlendedVisual.Name2Font,
@@ -448,6 +454,7 @@ int32 STreeMap::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeomet
 									FSlateDrawElement::MakeText(
 										OutDrawElements,
 										LayerId,
+										FastPathProxyHandle.GetWidgetSortOrder(),
 										AllottedGeometry.ToOffsetPaintGeometry( ShadowOffset + FVector2D( TextX, TextY ) ),
 										BlendedVisual.NodeData->CenterText,
 										*BlendedVisualCenterTextFont,
@@ -491,6 +498,7 @@ int32 STreeMap::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeomet
 			FSlateDrawElement::MakeSpline(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( FVector2f( 1.0, 1.0f ), FSlateLayoutTransform(ShadowOffset) ),
 				SplineStart,
 				SplineStartDir,

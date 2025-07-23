@@ -162,6 +162,7 @@ int32 SMeshWidget::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 				ensure(Run.GetInstanceOffset() + Run.GetNumInstances() <= RunRenderData.PerInstanceBuffer->GetNumInstances());
 				FSlateDrawElement::MakeCustomVerts(OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					RunRenderData.RenderingResourceHandle,
 					RunRenderData.VertexData,
 					RunRenderData.IndexData,
@@ -196,13 +197,13 @@ int32 SMeshWidget::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 					const int32 NumInstances = RunRenderData.PerInstanceBuffer->GetNumInstances();
 					if (NumInstances > 0)
 					{
-						FSlateDrawElement::MakeCustomVerts(OutDrawElements, LayerId, RunRenderData.RenderingResourceHandle, RunRenderData.VertexData, RunRenderData.IndexData, RunRenderData.PerInstanceBuffer.Get(), 0, NumInstances);
+						FSlateDrawElement::MakeCustomVerts(OutDrawElements, LayerId,FastPathProxyHandle.GetWidgetSortOrder(), RunRenderData.RenderingResourceHandle, RunRenderData.VertexData, RunRenderData.IndexData, RunRenderData.PerInstanceBuffer.Get(), 0, NumInstances);
 					}
 				}
 				else
 				{
 					// Drawing a single widget, no instancing
-					FSlateDrawElement::MakeCustomVerts(OutDrawElements, LayerId, RunRenderData.RenderingResourceHandle, RunRenderData.VertexData, RunRenderData.IndexData, nullptr, 0, 0);
+					FSlateDrawElement::MakeCustomVerts(OutDrawElements, LayerId,FastPathProxyHandle.GetWidgetSortOrder(),RunRenderData.RenderingResourceHandle, RunRenderData.VertexData, RunRenderData.IndexData, nullptr, 0, 0);
 				}
 			}
 			else

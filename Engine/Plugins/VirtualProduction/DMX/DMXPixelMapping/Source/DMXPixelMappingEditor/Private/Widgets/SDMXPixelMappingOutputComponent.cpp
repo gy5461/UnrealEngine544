@@ -134,6 +134,7 @@ namespace UE::DMX
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			BoxPoints,
 			ESlateDrawEffect::None,
@@ -162,6 +163,7 @@ namespace UE::DMX
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				PivotPointsX,
 				ESlateDrawEffect::None,
@@ -172,6 +174,7 @@ namespace UE::DMX
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				PivotPointsY,
 				ESlateDrawEffect::None,

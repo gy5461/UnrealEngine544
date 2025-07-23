@@ -122,6 +122,7 @@ void SCurveEditorViewNormalized::DrawBufferedCurves(const FGeometry& AllottedGeo
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			CurveLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			ScreenSpaceInterpolatingPoints,
 			DrawEffects,

@@ -102,6 +102,7 @@ namespace PropertyInfoViewStyle
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(TabSize, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2f(TabSize * IndentCount, 0.f))),
 				BackgroundBrush,
 				ESlateDrawEffect::None,
@@ -111,6 +112,7 @@ namespace PropertyInfoViewStyle
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId + 1,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(TabSize, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2f(TabSize * IndentCount, 0.f))),
 				DropShadowBrush
 			);

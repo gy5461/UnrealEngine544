@@ -51,7 +51,7 @@ int32 SSegmentedTimelineView::PaintBlock(const FGeometry& AllottedGeometry, cons
 			FPaintGeometry BoxGeometry = AllottedGeometry.ToPaintGeometry(FVector2f(BoxMax - BoxMin, Size.Y - 2), FSlateLayoutTransform(FVector2f(BoxMin, 1.f)));
 
 			const FSlateBrush* Brush = FAppStyle::GetBrush("Sequencer.SectionArea.Background");
-			FSlateDrawElement::MakeBox(OutDrawElements, LayerId, BoxGeometry, Brush, ESlateDrawEffect::None, bOverrideColorsProvided ? OverrideColors.GetValue()[Index % OverrideColors->Num()] : Color);
+			FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FastPathProxyHandle.GetWidgetSortOrder(), BoxGeometry, Brush, ESlateDrawEffect::None, bOverrideColorsProvided ? OverrideColors.GetValue()[Index % OverrideColors->Num()] : Color);
 			++Index;
 		}
 		

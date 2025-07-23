@@ -189,7 +189,7 @@ void FTrackHeader::DrawInternal(const ITimingTrackDrawContext& Context, bool bDr
 				FVector2D(ArrowX + ArrowSizeX, ArrowY + ArrowSizeY / 2.0f),
 				FVector2D(ArrowX, ArrowY)
 			};
-			FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, DrawContext.Geometry.ToPaintGeometry(), Points, DrawContext.DrawEffects, Color, false, 1.0f);
+			FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId,FSlateInvalidationWidgetSortOrder(), DrawContext.Geometry.ToPaintGeometry(), Points, DrawContext.DrawEffects, Color, false, 1.0f);
 		}
 		else
 		{

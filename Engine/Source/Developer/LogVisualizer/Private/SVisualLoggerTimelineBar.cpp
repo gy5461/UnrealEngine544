@@ -156,6 +156,7 @@ int32 SVisualLoggerTimelineBar::OnPaint(const FPaintArgs& Args, const FGeometry&
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		RetLayerId++,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		FLogVisualizerStyle::Get().GetBrush("Sequencer.SectionArea.Background"),
 		ESlateDrawEffect::None,
@@ -244,6 +245,7 @@ int32 SVisualLoggerTimelineBar::OnPaint(const FPaintArgs& Args, const FGeometry&
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				RetLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(
 				FVector2f(BarWidth, AllottedGeometry.GetLocalSize().Y),
 				FSlateLayoutTransform(FVector2f(StartPos, 0.0f))),
@@ -263,6 +265,7 @@ int32 SVisualLoggerTimelineBar::OnPaint(const FPaintArgs& Args, const FGeometry&
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			RetLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(
 			FVector2f(6.f, AllottedGeometry.GetLocalSize().Y),
 			FSlateLayoutTransform(FVector2f(LinePos - 3.f, 0.0f))),
@@ -280,6 +283,7 @@ int32 SVisualLoggerTimelineBar::OnPaint(const FPaintArgs& Args, const FGeometry&
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			RetLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(
 			FVector2f(6, AllottedGeometry.GetLocalSize().Y),
 			FSlateLayoutTransform(FVector2f(LinePos - 3, 0.0f))),
@@ -300,6 +304,7 @@ int32 SVisualLoggerTimelineBar::OnPaint(const FPaintArgs& Args, const FGeometry&
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++RetLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(
 			FVector2f(4, AllottedGeometry.GetLocalSize().Y),
 			FSlateLayoutTransform(FVector2f(LinePos - 2, 0.0f))),

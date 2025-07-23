@@ -43,6 +43,7 @@ int32 SAnimTrack::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					LayerId++,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(
 						FVector2D(AllottedGeometry.GetLocalSize().X, TotalNodeHeight),
 						FSlateLayoutTransform()
@@ -57,6 +58,7 @@ int32 SAnimTrack::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeome
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				LayerId++,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				TArray<FVector2D>({ FVector2D(0.0f, TotalNodeHeight), FVector2D(AllottedGeometry.GetLocalSize().X, TotalNodeHeight) }),
 				ESlateDrawEffect::None,

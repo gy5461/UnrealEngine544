@@ -69,7 +69,7 @@ struct FSlateCachedElementList
 
 	FSlateCachedElementData* GetOwningData() { return ParentData; }
 
-	FSlateRenderBatch& AddRenderBatch(int32 InLayer, const FShaderParams& InShaderParams, const FSlateShaderResource* InResource, ESlateDrawPrimitive InPrimitiveType, ESlateShader InShaderType, ESlateDrawEffect InDrawEffects, ESlateBatchDrawFlag InDrawFlags, int8 SceneIndex);
+	FSlateRenderBatch& AddRenderBatch(int32 InLayer, const FSlateInvalidationWidgetSortOrder& SortOrder, const FShaderParams& InShaderParams, const FSlateShaderResource* InResource, ESlateDrawPrimitive InPrimitiveType, ESlateShader InShaderType, ESlateDrawEffect InDrawEffects, ESlateBatchDrawFlag InDrawFlags, int8 SceneIndex);
 
 	void AddCachedClipState(FSlateCachedClipState& ClipStateToCache);
 

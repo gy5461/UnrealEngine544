@@ -41,6 +41,7 @@ int32 SSimpleGradient::OnPaint( const FPaintArgs& Args, const FGeometry& Allotte
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			StyleInfo,
 			DrawEffects
@@ -55,6 +56,7 @@ int32 SSimpleGradient::OnPaint( const FPaintArgs& Args, const FGeometry& Allotte
 	FSlateDrawElement::MakeGradient(
 		OutDrawElements,
 		LayerId + 1,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		GradientStops,
 		Orientation,

@@ -595,6 +595,7 @@ int32 SChannelView::DrawLane(const FPaintArgs& Args, const FGeometry& AllottedGe
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId++,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			FAppStyle::GetBrush(HighlightBrushName),
 			DrawEffects,
@@ -612,6 +613,7 @@ int32 SChannelView::DrawLane(const FPaintArgs& Args, const FGeometry& AllottedGe
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId++,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			FAppStyle::GetBrush(HighlightBrushName),
 			DrawEffects,

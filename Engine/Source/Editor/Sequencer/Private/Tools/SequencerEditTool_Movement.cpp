@@ -378,6 +378,7 @@ int32 FSequencerEditTool_Movement::OnPaint(const FGeometry& AllottedGeometry, co
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(CursorDecorator->ImageSize, FSlateLayoutTransform(DragPosition + FVector2f(5.f, -25.f))),
 			CursorDecorator
 			);
@@ -420,6 +421,7 @@ int32 FSequencerEditTool_Movement::OnPaint(const FGeometry& AllottedGeometry, co
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					LayerId + 1,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2f(1.0f, 1.0f), FSlateLayoutTransform(FVector2f(OldPos.X, 0.0f))),
 					LinePoints,
 					ESlateDrawEffect::None,
@@ -431,6 +433,7 @@ int32 FSequencerEditTool_Movement::OnPaint(const FGeometry& AllottedGeometry, co
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					LayerId + 1,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2f(1.0f, 1.0f), FSlateLayoutTransform(FVector2f(NewPos.X, 0.0f))),
 					LinePoints,
 					ESlateDrawEffect::None,
@@ -445,7 +448,8 @@ int32 FSequencerEditTool_Movement::OnPaint(const FGeometry& AllottedGeometry, co
 
 				FSlateDrawElement::MakeBox( 
 					OutDrawElements,
-					LayerId + 2, 
+					LayerId + 2,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(TimeStringSize + 2.0f * BoxPadding, FSlateLayoutTransform(TimePos - BoxPadding)),
 					FAppStyle::GetBrush("WhiteBrush"),
 					ESlateDrawEffect::None, 
@@ -455,6 +459,7 @@ int32 FSequencerEditTool_Movement::OnPaint(const FGeometry& AllottedGeometry, co
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					LayerId + 3,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(TimeStringSize, FSlateLayoutTransform(TimePos)),
 					TimeString,
 					SmallLayoutFont,
@@ -470,7 +475,8 @@ int32 FSequencerEditTool_Movement::OnPaint(const FGeometry& AllottedGeometry, co
 
 				FSlateDrawElement::MakeBox( 
 					OutDrawElements,
-					LayerId + 2, 
+					LayerId + 2,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(OffsetStringSize + 2.0f * BoxPadding, FSlateLayoutTransform(OffsetPos - BoxPadding)),
 					FAppStyle::GetBrush("WhiteBrush"),
 					ESlateDrawEffect::None, 
@@ -480,6 +486,7 @@ int32 FSequencerEditTool_Movement::OnPaint(const FGeometry& AllottedGeometry, co
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					LayerId + 3,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(TimeStringSize, FSlateLayoutTransform(OffsetPos)),
 					OffsetString,
 					SmallLayoutFont,

@@ -199,6 +199,7 @@ int32 FCameraCutSection::OnPaintSection(FSequencerSectionPainter& InPainter) con
 		FSlateDrawElement::MakeBox(
 			InPainter.DrawElements,
 			InPainter.LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			InPainter.SectionGeometry.ToPaintGeometry(InPainter.SectionGeometry.GetLocalSize() - FVector2D(1.f, 1.f), FSlateLayoutTransform(FVector2D(1.f, 1.f))),
 			ErroredSectionOverlay,
 			DrawEffects,

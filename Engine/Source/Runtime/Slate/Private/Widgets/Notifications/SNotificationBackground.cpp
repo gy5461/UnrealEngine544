@@ -37,6 +37,7 @@ int32 SNotificationBackground::OnPaint(const FPaintArgs& Args, const FGeometry& 
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			BorderBrush,
 			ESlateDrawEffect::None,
@@ -47,6 +48,7 @@ int32 SNotificationBackground::OnPaint(const FPaintArgs& Args, const FGeometry& 
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(WatermarkSize, WatermarkSize), FSlateLayoutTransform(FVector2f(4.0f, 4.0f))),
 			WatermarkBrush,
 			ESlateDrawEffect::None,

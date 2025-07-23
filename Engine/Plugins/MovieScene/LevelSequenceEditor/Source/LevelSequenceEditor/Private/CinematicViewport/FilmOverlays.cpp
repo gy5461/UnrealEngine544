@@ -144,6 +144,7 @@ struct FFilmOverlay_Grid : IFilmOverlay
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				ESlateDrawEffect::None,
@@ -160,6 +161,7 @@ struct FFilmOverlay_Grid : IFilmOverlay
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				ESlateDrawEffect::None,
@@ -196,6 +198,7 @@ struct FFilmOverlay_Rabatment : IFilmOverlay
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -208,6 +211,7 @@ struct FFilmOverlay_Rabatment : IFilmOverlay
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -236,6 +240,7 @@ struct FFilmOverlay_Crosshair : IFilmOverlay
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -246,6 +251,7 @@ struct FFilmOverlay_Crosshair : IFilmOverlay
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -258,6 +264,7 @@ struct FFilmOverlay_Crosshair : IFilmOverlay
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -268,6 +275,7 @@ struct FFilmOverlay_Crosshair : IFilmOverlay
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -322,6 +330,7 @@ struct FFilmOverlay_SafeFrame : IFilmOverlay
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -398,6 +407,7 @@ struct FFilmOverlay_LetterBox : IFilmOverlay
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(LetterBoxSize, FSlateLayoutTransform(FVector2D(0.f, 0.f))),
 				Brush,
 				ESlateDrawEffect::None,
@@ -407,6 +417,7 @@ struct FFilmOverlay_LetterBox : IFilmOverlay
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(LetterBoxSize, FSlateLayoutTransform(FVector2D(AllottedGeometry.GetLocalSize().X - LetterBoxSize.X, 0.f))),
 				Brush,
 				ESlateDrawEffect::None,
@@ -422,6 +433,7 @@ struct FFilmOverlay_LetterBox : IFilmOverlay
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(LetterBoxSize, FSlateLayoutTransform(FVector2D(0.f, 0.f))),
 				Brush,
 				ESlateDrawEffect::None,
@@ -431,6 +443,7 @@ struct FFilmOverlay_LetterBox : IFilmOverlay
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(LetterBoxSize, FSlateLayoutTransform(FVector2D(0.f, AllottedGeometry.GetLocalSize().Y - LetterBoxSize.Y))),
 				Brush,
 				ESlateDrawEffect::None,

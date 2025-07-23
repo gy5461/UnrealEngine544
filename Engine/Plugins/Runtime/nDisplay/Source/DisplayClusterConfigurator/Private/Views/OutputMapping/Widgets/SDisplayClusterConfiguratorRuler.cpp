@@ -178,6 +178,7 @@ int32 SDisplayClusterConfiguratorRuler::DrawTicks( FSlateWindowElementList& OutD
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -211,6 +212,7 @@ int32 SDisplayClusterConfiguratorRuler::DrawTicks( FSlateWindowElementList& OutD
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					InArgs.StartLayer, 
+					FSlateInvalidationWidgetSortOrder(),
 					InArgs.AllottedGeometry.ToPaintGeometry( TextSize, FSlateLayoutTransform(TextOffset) ), 
 					FrameString, 
 					SmallLayoutFont,
@@ -234,6 +236,7 @@ int32 SDisplayClusterConfiguratorRuler::DrawTicks( FSlateWindowElementList& OutD
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -254,6 +257,7 @@ int32 SDisplayClusterConfiguratorRuler::DrawTicks( FSlateWindowElementList& OutD
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			InArgs.StartLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			InArgs.AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			InArgs.DrawEffects,
@@ -274,6 +278,7 @@ int32 SDisplayClusterConfiguratorRuler::DrawTicks( FSlateWindowElementList& OutD
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++InArgs.StartLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			InArgs.AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			InArgs.DrawEffects,
@@ -296,6 +301,7 @@ int32 SDisplayClusterConfiguratorRuler::OnPaint(const FPaintArgs& Args, const FG
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		WhiteBrush,
 		DrawEffects,

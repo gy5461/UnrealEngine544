@@ -292,6 +292,7 @@ void FSequencerTimeSliderController::DrawTicks( FSlateWindowElementList& OutDraw
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			InArgs.StartLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			PaintGeometry,
 			LinePoints,
 			InArgs.DrawEffects,
@@ -307,7 +308,8 @@ void FSequencerTimeSliderController::DrawTicks( FSlateWindowElementList& OutDraw
 			FVector2D TextOffset( MajorLinePx + 5.f, InArgs.bMirrorLabels ? 1.f : FMath::Abs( InArgs.AllottedGeometry.Size.Y - (InArgs.MajorTickHeight+3.f) ) );
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
-				InArgs.StartLayer+1, 
+				InArgs.StartLayer+1,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( InArgs.AllottedGeometry.Size, FSlateLayoutTransform(TextOffset) ), 
 				FrameString, 
 				TickFrameFont,
@@ -329,6 +331,7 @@ void FSequencerTimeSliderController::DrawTicks( FSlateWindowElementList& OutDraw
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintGeometry,
 				LinePoints,
 				InArgs.DrawEffects,
@@ -386,6 +389,7 @@ int32 FSequencerTimeSliderController::DrawMarkedFrames( const FGeometry& Allotte
 			FSlateDrawElement::MakeLines(
 				DrawElements,
 				LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				DrawEffects,
@@ -411,6 +415,7 @@ int32 FSequencerTimeSliderController::DrawMarkedFrames( const FGeometry& Allotte
 					FSlateDrawElement::MakeBox(
 						DrawElements,
 						LayerId + 1,
+						FSlateInvalidationWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(
 							TextSize + ScrubConstants::MarkLabelBoxMargin + ScrubConstants::MarkLabelBoxWideMargin,
 							FSlateLayoutTransform(FVector2D(LinePos, 0.f))),
@@ -423,6 +428,7 @@ int32 FSequencerTimeSliderController::DrawMarkedFrames( const FGeometry& Allotte
 				FSlateDrawElement::MakeText(
 					DrawElements,
 					LayerId + 1,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextPosition)),
 					LabelString,
 					(bIsHovered || bIsSelected) ? SmallBoldLayoutFont : SmallLayoutFont,
@@ -460,6 +466,7 @@ int32 FSequencerTimeSliderController::DrawVerticalFrames(const FGeometry& Allott
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			DrawEffects,
@@ -554,6 +561,7 @@ int32 FSequencerTimeSliderController::OnPaintTimeSlider( bool bMirrorLabels, con
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			ArrowLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			MyGeometry,
 			Brush,
 			DrawEffects,
@@ -591,7 +599,8 @@ int32 FSequencerTimeSliderController::OnPaintTimeSlider( bool bMirrorLabels, con
 
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
-				Args.StartLayer+1, 
+				Args.StartLayer+1,
+				FSlateInvalidationWidgetSortOrder(),
 				Args.AllottedGeometry.ToPaintGeometry( TextSize, FSlateLayoutTransform(TextOffset) ), 
 				FrameString, 
 				SmallLayoutFont,
@@ -618,6 +627,7 @@ int32 FSequencerTimeSliderController::OnPaintTimeSlider( bool bMirrorLabels, con
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId+1,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( FVector2f(RangeSizeX, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(RangePosX, 0.f)) ),
 				bMirrorLabels ? VanillaScrubHandleDownBrush : VanillaScrubHandleUpBrush,
 				DrawEffects,
@@ -653,6 +663,7 @@ int32 FSequencerTimeSliderController::DrawSelectionRange(const FGeometry& Allott
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(SelectionRangeR - SelectionRangeL, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SelectionRangeL, 0.f))),
 				FAppStyle::GetBrush("WhiteBrush"),
 				ESlateDrawEffect::None,
@@ -663,6 +674,7 @@ int32 FSequencerTimeSliderController::DrawSelectionRange(const FGeometry& Allott
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SelectionRangeL, 0.f))),
 			Args.StartBrush,
 			ESlateDrawEffect::None,
@@ -672,6 +684,7 @@ int32 FSequencerTimeSliderController::DrawSelectionRange(const FGeometry& Allott
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SelectionRangeR - Args.BrushWidth, 0.f))),
 			Args.EndBrush,
 			ESlateDrawEffect::None,
@@ -706,6 +719,7 @@ int32 FSequencerTimeSliderController::DrawPlaybackRange(const FGeometry& Allotte
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(PlaybackRangeL, 0.f))),
 		Args.StartBrush,
 		ESlateDrawEffect::None,
@@ -715,6 +729,7 @@ int32 FSequencerTimeSliderController::DrawPlaybackRange(const FGeometry& Allotte
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(PlaybackRangeR - Args.BrushWidth, 0.f))),
 		Args.EndBrush,
 		ESlateDrawEffect::None,
@@ -725,6 +740,7 @@ int32 FSequencerTimeSliderController::DrawPlaybackRange(const FGeometry& Allotte
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(PlaybackRangeL, AllottedGeometry.Size.Y), FSlateLayoutTransform()),
 		FAppStyle::GetBrush("WhiteBrush"),
 		ESlateDrawEffect::None,
@@ -734,6 +750,7 @@ int32 FSequencerTimeSliderController::DrawPlaybackRange(const FGeometry& Allotte
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.Size.X - PlaybackRangeR, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(PlaybackRangeR, 0.f))),
 		FAppStyle::GetBrush("WhiteBrush"),
 		ESlateDrawEffect::None,
@@ -773,6 +790,7 @@ int32 FSequencerTimeSliderController::DrawSubSequenceRange(const FGeometry& Allo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SubSequenceRangeL, 0.f))),
 		LineBrushL,
 		ESlateDrawEffect::None,
@@ -783,6 +801,7 @@ int32 FSequencerTimeSliderController::DrawSubSequenceRange(const FGeometry& Allo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(Args.BrushWidth, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SubSequenceRangeR - Args.BrushWidth, 0.f))),
 		LineBrushR,
 		ESlateDrawEffect::None,
@@ -793,6 +812,7 @@ int32 FSequencerTimeSliderController::DrawSubSequenceRange(const FGeometry& Allo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(SubSequenceRangeL, AllottedGeometry.Size.Y), FSlateLayoutTransform()),
 		FAppStyle::GetBrush("WhiteBrush"),
 		ESlateDrawEffect::None,
@@ -802,6 +822,7 @@ int32 FSequencerTimeSliderController::DrawSubSequenceRange(const FGeometry& Allo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.Size.X - SubSequenceRangeR, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SubSequenceRangeR, 0.f))),
 		FAppStyle::GetBrush("WhiteBrush"),
 		ESlateDrawEffect::None,
@@ -812,6 +833,7 @@ int32 FSequencerTimeSliderController::DrawSubSequenceRange(const FGeometry& Allo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(16.f, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SubSequenceRangeL - 16.f, 0.f))),
 		FAppStyle::GetBrush("Sequencer.Timeline.SubSequenceRangeHashL"),
 		ESlateDrawEffect::None,
@@ -821,6 +843,7 @@ int32 FSequencerTimeSliderController::DrawSubSequenceRange(const FGeometry& Allo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId+1,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(16.f, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(SubSequenceRangeR, 0.f))),
 		FAppStyle::GetBrush("Sequencer.Timeline.SubSequenceRangeHashR"),
 		ESlateDrawEffect::None,
@@ -1440,6 +1463,7 @@ int32 FSequencerTimeSliderController::OnPaintViewArea( const FGeometry& Allotted
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2f(ScrubMetrics.FrameExtentsPx.Size<float>(), AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(ScrubMetrics.FrameExtentsPx.GetLowerBoundValue(), 0.0f))),
 				ScrubFillBrush,
 				DrawEffects,
@@ -1460,6 +1484,7 @@ int32 FSequencerTimeSliderController::OnPaintViewArea( const FGeometry& Allotted
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				LayerId+1,
+				FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				DrawEffects,

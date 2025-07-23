@@ -55,6 +55,7 @@ public:
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			VerticalLine,
 			ESlateDrawEffect::None,
@@ -66,6 +67,7 @@ public:
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			HorizontalLine,
 			ESlateDrawEffect::None,

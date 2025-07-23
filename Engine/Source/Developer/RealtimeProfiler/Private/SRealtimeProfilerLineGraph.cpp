@@ -121,6 +121,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry( FVector2D(AllottedGeometry.GetLocalSize().X,AllottedGeometry.Size.Y), FSlateLayoutTransform() ),
 		TimelineAreaBrush,
 		DrawEffects,
@@ -140,6 +141,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		AxisPoints,
 		DrawEffects,
@@ -214,6 +216,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			DrawEffects,
@@ -227,6 +230,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			UnitFramePoints,
 			DrawEffects,
@@ -238,6 +242,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			UnitRenderPoints,
 			DrawEffects,
@@ -249,6 +254,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			UnitGamePoints,
 			DrawEffects,
@@ -260,6 +266,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			UnitGPUPoints,
 			DrawEffects,
@@ -281,6 +288,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		FPS30LinePoints,
 		DrawEffects,
@@ -297,6 +305,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		FPS60LinePoints,
 		DrawEffects,
@@ -313,6 +322,7 @@ int32 SRealtimeProfilerLineGraph::OnPaint( const FPaintArgs& Args, const FGeomet
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		MouseCursorPoints,
 		DrawEffects,

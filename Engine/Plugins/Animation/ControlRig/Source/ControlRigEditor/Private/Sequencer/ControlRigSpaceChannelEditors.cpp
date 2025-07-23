@@ -1627,7 +1627,7 @@ int32 DrawExtra(FMovieSceneControlRigSpaceChannel* Channel, const UMovieSceneSec
 					FSlateLayoutTransform(FVector2D(BoxPos, LaneTop))
 				);
 
-				FSlateDrawElement::MakeBox(PaintArgs.DrawElements, LayerId, BoxGeometry, WhiteBrush, DrawEffects, CurveColor);
+				FSlateDrawElement::MakeBox(PaintArgs.DrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), BoxGeometry, WhiteBrush, DrawEffects, CurveColor);
 			}
 			const double LowerSecondsForLabel = (InputMin > LowerSeconds) ? InputMin : LowerSeconds;
 			double LabelPos = PaintArgs.TimeToPixel.SecondsToPixel(LowerSecondsForLabel) + 10;
@@ -1645,7 +1645,7 @@ int32 DrawExtra(FMovieSceneControlRigSpaceChannel* Channel, const UMovieSceneSec
 				FSlateLayoutTransform(Position)
 			);
 
-			FSlateDrawElement::MakeText(PaintArgs.DrawElements, LayerId, LabelGeometry, Label, FontInfo, DrawEffects, FLinearColor::White);
+			FSlateDrawElement::MakeText(PaintArgs.DrawElements, LayerId, FSlateInvalidationWidgetSortOrder(),LabelGeometry, Label, FontInfo, DrawEffects, FLinearColor::White);
 		}
 	}
 

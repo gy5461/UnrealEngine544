@@ -141,6 +141,7 @@ int32 SBuiltInFunctionVisualizer::OnPaint(const FPaintArgs& Args, const FGeometr
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		Points,
 		ESlateDrawEffect::None);
@@ -153,6 +154,7 @@ int32 SBuiltInFunctionVisualizer::OnPaint(const FPaintArgs& Args, const FGeometr
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + 1,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.MakeChild(
 				FVector2D(AllottedGeometry.Size.X, 7.f),
 				FSlateLayoutTransform(PointOffset)

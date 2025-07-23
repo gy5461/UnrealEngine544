@@ -53,7 +53,7 @@ int32 SSynth2DSlider::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedG
 	const ESlateDrawEffect DrawEffects = bEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect;
 
 	const FLinearColor FinalColorAndOpacity(InWidgetStyle.GetColorAndOpacityTint() * Style->BackgroundImage.GetTint(InWidgetStyle));
-	FSlateDrawElement::MakeBox(OutDrawElements, LayerId++, AllottedGeometry.ToPaintGeometry(), &Style->BackgroundImage, DrawEffects, FinalColorAndOpacity);
+	FSlateDrawElement::MakeBox(OutDrawElements, LayerId++, FSlateInvalidationWidgetSortOrder(),AllottedGeometry.ToPaintGeometry(), &Style->BackgroundImage, DrawEffects, FinalColorAndOpacity);
 
 	HandleTopLeftPoint = FVector2D(SliderHandleOffsetX - (HandleSize.X * SliderPercentX) + 0.5f * IndentationX,
 		SliderHandleOffsetY - (HandleSize.Y * SliderPercentY) + 0.5f * IndentationY);
@@ -62,6 +62,7 @@ int32 SSynth2DSlider::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedG
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId++,
+		FSlateInvalidationWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(Style->NormalThumbImage.ImageSize, FSlateLayoutTransform(HandleTopLeftPoint)),
 		LockedAttribute.Get() ? &Style->DisabledThumbImage : &Style->NormalThumbImage,
 		DrawEffects,

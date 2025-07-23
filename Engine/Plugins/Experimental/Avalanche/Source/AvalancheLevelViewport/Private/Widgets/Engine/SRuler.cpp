@@ -193,6 +193,7 @@ int32 UE::AvaLevelViewport::Private::SRuler::DrawTicks( FSlateWindowElementList&
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -226,6 +227,7 @@ int32 UE::AvaLevelViewport::Private::SRuler::DrawTicks( FSlateWindowElementList&
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					InArgs.StartLayer, 
+					FSlateInvalidationWidgetSortOrder(),
 					InArgs.AllottedGeometry.ToPaintGeometry( TextSize, FSlateLayoutTransform(TextOffset) ), 
 					FrameString, 
 					SmallLayoutFont,
@@ -249,6 +251,7 @@ int32 UE::AvaLevelViewport::Private::SRuler::DrawTicks( FSlateWindowElementList&
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -269,6 +272,7 @@ int32 UE::AvaLevelViewport::Private::SRuler::DrawTicks( FSlateWindowElementList&
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			InArgs.StartLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			InArgs.AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			InArgs.DrawEffects,
@@ -289,6 +293,7 @@ int32 UE::AvaLevelViewport::Private::SRuler::DrawTicks( FSlateWindowElementList&
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++InArgs.StartLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			InArgs.AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			InArgs.DrawEffects,
@@ -311,6 +316,7 @@ int32 UE::AvaLevelViewport::Private::SRuler::OnPaint(const FPaintArgs& Args, con
 	FSlateDrawElement::MakeBox( 
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		WhiteBrush,
 		DrawEffects,

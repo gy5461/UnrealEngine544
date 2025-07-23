@@ -80,6 +80,7 @@ void SDMXPixelMappingOutputComponentText::OnPaintComponentName(const FPaintArgs&
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(LayoutTransform),
 		Model->GetName(),
 		FCoreStyle::GetDefaultFontStyle("Regular", ClampedFontSize),
@@ -110,6 +111,7 @@ void SDMXPixelMappingOutputComponentText::OnPaintCellID(const FPaintArgs& Args, 
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(LayoutTransform),
 		Model->GetCellIDText(),
 		Font,
@@ -137,6 +139,7 @@ void SDMXPixelMappingOutputComponentText::OnPaintPatchInfo(const FPaintArgs& Arg
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FixtureIDLayoutTransform),
 		Model->GetFixtureIDText(),
 		FCoreStyle::GetDefaultFontStyle("Regular", ClampedFontSize),
@@ -149,6 +152,7 @@ void SDMXPixelMappingOutputComponentText::OnPaintPatchInfo(const FPaintArgs& Arg
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(AddressesLayoutTransform),
 		Model->GetAddressesText(),
 		FCoreStyle::GetDefaultFontStyle("Regular", ClampedFontSize),

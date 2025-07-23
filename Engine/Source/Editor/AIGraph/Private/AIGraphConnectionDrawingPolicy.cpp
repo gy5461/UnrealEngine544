@@ -105,6 +105,7 @@ void FAIGraphConnectionDrawingPolicy::Internal_DrawLineWithArrow(const FVector2D
 	FSlateDrawElement::MakeRotatedBox(
 		DrawElementsList,
 		ArrowLayerID,
+		FSlateInvalidationWidgetSortOrder(),
 		FPaintGeometry(ArrowDrawPos, ArrowImage->ImageSize * ZoomFactor, ZoomFactor),
 		ArrowImage,
 		ESlateDrawEffect::None,

@@ -255,6 +255,7 @@ public:
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						++LayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(TransformPoint(PickedWidget->GetAccumulatedLayoutTransform().GetScale(), PickedWidget->GetLocalSize()), FSlateLayoutTransform(RootDrawOffset + PickedWidget->GetAccumulatedLayoutTransform().GetTranslation())),
 						Brush,
 						ESlateDrawEffect::None,
@@ -269,6 +270,7 @@ public:
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						++LayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(TransformPoint(SelectedWidget->GetAccumulatedLayoutTransform().GetScale(), SelectedWidget->GetLocalSize()), FSlateLayoutTransform(RootDrawOffset + SelectedWidget->GetAccumulatedLayoutTransform().GetTranslation())),
 						Brush,
 						ESlateDrawEffect::None,

@@ -1162,7 +1162,8 @@ int32 SWorldPartitionEditorGrid2D::PaintGrid(const FGeometry& AllottedGeometry, 
 		
 		FSlateDrawElement::MakeLines(
 			OutDrawElements, 
-			LayerId, 
+			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(), 
 			LinePoints, 
 			ESlateDrawEffect::None, 
@@ -1183,7 +1184,8 @@ int32 SWorldPartitionEditorGrid2D::PaintGrid(const FGeometry& AllottedGeometry, 
 		
 		FSlateDrawElement::MakeLines(
 			OutDrawElements, 
-			LayerId, 
+			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(), 
 			LinePoints, 
 			ESlateDrawEffect::None, 
@@ -1454,6 +1456,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintActors(const FGeometry& AllottedGeometr
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					++LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(LabelTextSize + BackgroundGrowSize, FSlateLayoutTransform(LabelTextPos - BackgroundGrowSize)),
 					&BackgroundBrush,
 					ESlateDrawEffect::None,
@@ -1552,6 +1555,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintActors(const FGeometry& AllottedGeometr
 								FSlateDrawElement::MakeBox(
 									OutDrawElements,
 									++LayerId,
+									FastPathProxyHandle.GetWidgetSortOrder(),
 									RectAreaGeometry,
 									LoaderAdapter->IsLoaded() ? &LoadedBrush : &UnloadedBrush,
 									ESlateDrawEffect::None,
@@ -1594,6 +1598,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintActors(const FGeometry& AllottedGeometr
 							(
 								OutDrawElements,
 								++LayerId,
+								FastPathProxyHandle.GetWidgetSortOrder(),
 								AllottedGeometry.ToPaintGeometry(),
 								LinePoints,
 								ESlateDrawEffect::None,
@@ -1673,6 +1678,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintActors(const FGeometry& AllottedGeometr
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						++LayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						ActorGeometryShadow,
 						FAppStyle::GetBrush(TEXT("Border")),
 						ESlateDrawEffect::None,
@@ -1682,6 +1688,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintActors(const FGeometry& AllottedGeometr
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						++LayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						ActorGeometry,
 						FAppStyle::GetBrush(TEXT("Border")),
 						ESlateDrawEffect::None,
@@ -1727,6 +1734,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintTextInfo(const FGeometry& AllottedGeome
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToOffsetPaintGeometry(FVector2D(InX, InY)),
 		LinePoints,
 		ESlateDrawEffect::None,
@@ -1757,6 +1765,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintTextInfo(const FGeometry& AllottedGeome
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToOffsetPaintGeometry(FVector2D(10, 107)),
 			RulerText,
 			FAppStyle::GetFontStyle("NormalFont"),
@@ -1769,6 +1778,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintTextInfo(const FGeometry& AllottedGeome
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToOffsetPaintGeometry(FVector2D(10, 107 + TextSize.Y + 2)),
 			RulerText,
 			FAppStyle::GetFontStyle("NormalFont"),
@@ -1792,6 +1802,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintViewer(const FGeometry& AllottedGeometr
 		FSlateDrawElement::MakeRotatedBox(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintGeometryShadow,
 			Image,
 			ESlateDrawEffect::None,
@@ -1809,6 +1820,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintViewer(const FGeometry& AllottedGeometr
 		FSlateDrawElement::MakeRotatedBox(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintGeometry,
 			Image,
 			ESlateDrawEffect::None,
@@ -1879,6 +1891,7 @@ uint32 SWorldPartitionEditorGrid2D::PaintSelection(const FGeometry& AllottedGeom
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					CellGeometry,
 					&CellBrush,
 					ESlateDrawEffect::None,
@@ -1888,7 +1901,8 @@ uint32 SWorldPartitionEditorGrid2D::PaintSelection(const FGeometry& AllottedGeom
 
 			FSlateDrawElement::MakeLines(
 				OutDrawElements, 
-				LayerId, 
+				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(), 
 				LinePoints, 
 				ESlateDrawEffect::None, 
@@ -1918,7 +1932,8 @@ uint32 SWorldPartitionEditorGrid2D::PaintSelection(const FGeometry& AllottedGeom
 
 			FSlateDrawElement::MakeLines(
 				OutDrawElements, 
-				LayerId, 
+				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(), 
 				LinePoints, 
 				ESlateDrawEffect::None, 
@@ -1971,6 +1986,7 @@ int32 SWorldPartitionEditorGrid2D::PaintSoftwareCursor(const FGeometry& Allotted
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(CursorSize, FSlateLayoutTransform(MouseCursorPos - (CursorSize * 0.5f))),
 			Brush
 		);
@@ -1997,6 +2013,7 @@ int32 SWorldPartitionEditorGrid2D::PaintMinimap(const FGeometry& AllottedGeometr
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			WorldImageGeometry,
 			&WorldMiniMapBrush,
 			ESlateDrawEffect::None,
@@ -2049,6 +2066,7 @@ int32 SWorldPartitionEditorGrid2D::PaintMinimap(const FGeometry& AllottedGeometr
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					++LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					ShadowAreaGeometry,
 					&ShadowdBrush,
 					ESlateDrawEffect::None,
@@ -2072,6 +2090,7 @@ int32 SWorldPartitionEditorGrid2D::PaintMinimap(const FGeometry& AllottedGeometr
 			(
 				OutDrawElements,
 				++LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				LinePoints,
 				ESlateDrawEffect::None,
@@ -2126,7 +2145,8 @@ int32 SWorldPartitionEditorGrid2D::PaintMeasureTool(const FGeometry& AllottedGeo
 
 		FSlateDrawElement::MakeLines(
 			OutDrawElements, 
-			LayerId, 
+			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(), 
 			LinePoints, 
 			ESlateDrawEffect::None, 
@@ -2162,6 +2182,7 @@ int32 SWorldPartitionEditorGrid2D::DrawTextLabel(FSlateWindowElementList& OutDra
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2D(1, 1), FSlateLayoutTransform(LabelTextPos + FVector2D(2, 2))),
 			Label,
 			Font,
@@ -2172,6 +2193,7 @@ int32 SWorldPartitionEditorGrid2D::DrawTextLabel(FSlateWindowElementList& OutDra
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2D(1,1), FSlateLayoutTransform(LabelTextPos)),
 			Label,
 			Font,

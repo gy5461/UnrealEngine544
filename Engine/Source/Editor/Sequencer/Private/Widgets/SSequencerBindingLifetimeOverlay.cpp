@@ -88,6 +88,7 @@ namespace UE
 						FSlateDrawElement::MakeBox(
 							OutDrawElements,
 							LayerId + 50,
+							FastPathProxyHandle.GetWidgetSortOrder(),
 							AllottedGeometry.ToPaintGeometry(FVector2f(1.0f, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(ExcludedRangeL, 0.f))),
 							FAppStyle::GetBrush("WhiteBrush"),
 							ESlateDrawEffect::None,
@@ -99,6 +100,7 @@ namespace UE
 						FSlateDrawElement::MakeBox(
 							OutDrawElements,
 							LayerId + 50,
+							FastPathProxyHandle.GetWidgetSortOrder(),
 							AllottedGeometry.ToPaintGeometry(FVector2f(ExcludedRangeR - ExcludedRangeL, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(ExcludedRangeL, 0.0f))),
 							InactiveLifetimeOverlay,
 							ESlateDrawEffect::None
@@ -109,6 +111,7 @@ namespace UE
 						FSlateDrawElement::MakeBox(
 							OutDrawElements,
 							LayerId + 50,
+							FastPathProxyHandle.GetWidgetSortOrder(),
 							AllottedGeometry.ToPaintGeometry(FVector2f(1.0f, AllottedGeometry.Size.Y), FSlateLayoutTransform(FVector2f(ExcludedRangeR, 0.f))),
 							FAppStyle::GetBrush("WhiteBrush"),
 							ESlateDrawEffect::None,

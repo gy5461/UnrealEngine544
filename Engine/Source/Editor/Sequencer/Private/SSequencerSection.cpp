@@ -166,6 +166,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 					FSlateDrawElement::MakeBox(
 						DrawElements,
 						LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						PreRollArea.ToPaintGeometry(),
 						PreRollBrush,
 						DrawEffects
@@ -193,6 +194,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 					FSlateDrawElement::MakeBox(
 						DrawElements,
 						LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						PostRollArea.ToPaintGeometry(),
 						PreRollBrush,
 						DrawEffects
@@ -219,6 +221,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 			FSlateDrawElement::MakeBox(
 				DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				ExpandedSectionGeometry.ToPaintGeometry(),
 				CollapsedSectionBackgroundBrush,
 				DrawEffects,
@@ -231,6 +234,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 				FSlateDrawElement::MakeBox(
 					DrawElements,
 					++LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					ExpandedSectionGeometry.ToPaintGeometry(ExpandedSectionGeometry.GetLocalSize() - FVector2f(2.f,2.f), FSlateLayoutTransform(FVector2f(1.f, 1.f))),
 					CollapsedSelectedSectionOverlay,
 					DrawEffects,
@@ -255,6 +259,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 			FSlateDrawElement::MakeBox(
 				DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				HeaderGeometry.ToPaintGeometry(),
 				SectionHeaderBackgroundBrush,
 				DrawEffects,
@@ -267,6 +272,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 			FSlateDrawElement::MakeBox(
 				DrawElements,
 				++LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				ContentsGeometry.ToPaintGeometry(),
 				SectionContentsBackgroundBrush,
 				DrawEffects,
@@ -279,6 +285,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 				FSlateDrawElement::MakeBox(
 					DrawElements,
 					++LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					HeaderGeometry.ToPaintGeometry(HeaderGeometry.GetLocalSize() - FVector2f(2.f, 2.f), FSlateLayoutTransform(FVector2f(1.f, 1.f))),
 					SectionHeaderSelectedSectionOverlay,
 					DrawEffects,
@@ -291,6 +298,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 				FSlateDrawElement::MakeBox(
 					DrawElements,
 					++LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					ContentsGeometry.ToPaintGeometry(ContentsGeometry.GetLocalSize() - FVector2f(2.f, 2.f), FSlateLayoutTransform(FVector2f(1.f, 1.f))),
 					SectionHeaderSelectedSectionOverlay,
 					DrawEffects,
@@ -410,6 +418,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 		FSlateDrawElement::MakeText(
 			DrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			SectionGeometry.MakeChild(
 				FVector2D(SectionGeometry.Size.X, FontHeight),
 				FSlateLayoutTransform(TextPosition)
@@ -615,6 +624,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 				FSlateDrawElement::MakeCustomVerts(
 					DrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					ResourceHandle,
 					Verts,
 					Indices,
@@ -626,6 +636,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 				FSlateDrawElement::MakeLines(
 					DrawElements,
 					LayerId + 1,
+					FSlateInvalidationWidgetSortOrder(),
 					RangeGeometry.ToPaintGeometry(),
 					BorderPoints,
 					BorderPointColors,
@@ -694,6 +705,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 			FSlateDrawElement::MakeBox(
 				DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				RangeGeometry.ToPaintGeometry(),
 				PinCusionBrush,
 				DrawEffects,
@@ -704,6 +716,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 			FSlateDrawElement::MakeBox(
 				DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintGeometry,
 				OverlapBorderBrush,
 				DrawEffects,
@@ -768,6 +781,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 			FSlateDrawElement::MakeBox(
 				DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				SectionGeometry.MakeChild(
 					LaneSize,
 					FSlateLayoutTransform(FVector2D(0.f, LaneTop))
@@ -800,6 +814,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 			FSlateDrawElement::MakeBox(
 				DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				SectionGeometry.ToPaintGeometry(),
 				FAppStyle::GetBrush(SelectionBorder),
 				DrawEffects,
@@ -814,6 +829,7 @@ struct FSequencerSectionPainterImpl : FSequencerSectionPainter
 			FSlateDrawElement::MakeBox(
 				DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				SectionGeometry.ToPaintGeometry(),
 				FAppStyle::GetBrush(SelectionBorder),
 				DrawEffects,
@@ -1347,6 +1363,7 @@ void DrawFrameTimeHint(FSequencerSectionPainter& InPainter, const FFrameTime& Cu
 	FSlateDrawElement::MakeBox(
 		InPainter.DrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		InPainter.SectionGeometry.ToPaintGeometry(TextSize + 2.0f * BoxPadding, FSlateLayoutTransform(TextOffset - BoxPadding)),
 		FAppStyle::GetBrush("WhiteBrush"),
 		ESlateDrawEffect::None,
@@ -1358,6 +1375,7 @@ void DrawFrameTimeHint(FSequencerSectionPainter& InPainter, const FFrameTime& Cu
 	FSlateDrawElement::MakeText(
 		InPainter.DrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		InPainter.SectionGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextOffset)),
 		FrameTimeString,
 		SmallLayoutFont,
@@ -1444,6 +1462,7 @@ int32 SSequencerSection::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId++,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			FAppStyle::GetBrush(BackgroundTrackTintBrushName),
 			DrawEffects,
@@ -1496,6 +1515,7 @@ int32 SSequencerSection::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			SectionGeometry.MakeChild(
 				FVector2D(SectionGeometry.Size.X, GetFontHeight()),
 				FSlateLayoutTransform(TopLeft + FVector2D(ContentPadding.Left, TitlePosition) + FVector2D(1.f, 1.f))
@@ -1509,6 +1529,7 @@ int32 SSequencerSection::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			SectionGeometry.MakeChild(
 				FVector2D(SectionGeometry.Size.X, GetFontHeight()),
 				FSlateLayoutTransform(TopLeft + FVector2D(ContentPadding.Left, TitlePosition))
@@ -1701,6 +1722,7 @@ void SSequencerSection::PaintEasingHandles( FSequencerSectionPainter& InPainter,
 			FSlateDrawElement::MakeCustomVerts(
 				InPainter.DrawElements,
 				InPainter.LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				HandleResource,
 				Verts,
 				Indices,
@@ -1740,6 +1762,7 @@ void SSequencerSection::PaintEasingHandles( FSequencerSectionPainter& InPainter,
 			FSlateDrawElement::MakeCustomVerts(
 				InPainter.DrawElements,
 				InPainter.LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				HandleResource,
 				Verts,
 				Indices,
@@ -1851,6 +1874,7 @@ void SSequencerSection::DrawSectionHandles( const FGeometry& AllottedGeometry, F
 			(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				SectionRectLeft.ToPaintGeometry(),
 				LeftGripBrush,
 				DrawEffects,
@@ -1869,6 +1893,7 @@ void SSequencerSection::DrawSectionHandles( const FGeometry& AllottedGeometry, F
 			(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				SectionRectRight.ToPaintGeometry(),
 				RightGripBrush,
 				DrawEffects,

@@ -137,6 +137,7 @@ int32 SObjectNameEditableTextBox::OnPaint( const FPaintArgs& Args, const FGeomet
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId + TextLayer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( DrawSize, FSlateLayoutTransform(DrawPosition) ),	// Position, Size, Scale
 			StyleInfo,													// Style
 			DrawEffects,												// Effects to use

@@ -169,6 +169,7 @@ void FVisualLoggerTimeSliderController::DrawTicks( FSlateWindowElementList& OutD
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -187,7 +188,8 @@ void FVisualLoggerTimeSliderController::DrawTicks( FSlateWindowElementList& OutD
 
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
-					InArgs.StartLayer+1, 
+					InArgs.StartLayer+1,
+					FSlateInvalidationWidgetSortOrder(),
 					InArgs.AllottedGeometry.ToPaintGeometry( TextSize, FSlateLayoutTransform(TextOffset) ), 
 					FrameString, 
 					SmallLayoutFont, 
@@ -212,6 +214,7 @@ void FVisualLoggerTimeSliderController::DrawTicks( FSlateWindowElementList& OutD
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				InArgs.StartLayer,
+				FSlateInvalidationWidgetSortOrder(),
 				InArgs.AllottedGeometry.ToPaintGeometry( TickSize, FSlateLayoutTransform(Offset) ),
 				LinePoints,
 				InArgs.DrawEffects,
@@ -274,6 +277,7 @@ int32 FVisualLoggerTimeSliderController::OnPaintTimeSlider( bool bMirrorLabels, 
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			CursorLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			CursorGeometry,
 			CursorBackground,
 			DrawEffects,
@@ -291,7 +295,8 @@ int32 FVisualLoggerTimeSliderController::OnPaintTimeSlider( bool bMirrorLabels, 
 		ScrubColor.G *= 0.2f;
 		FSlateDrawElement::MakeBox( 
 			OutDrawElements,
-			ArrowLayer, 
+			ArrowLayer,
+			FSlateInvalidationWidgetSortOrder(),
 			MyGeometry,
 			bMirrorLabels ? ScrubHandleUp : ScrubHandleDown,
 			DrawEffects, 
@@ -653,6 +658,7 @@ int32 FVisualLoggerTimeSliderController::OnPaintSectionView( const FGeometry& Al
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			CursorGeometry,
 			CursorBackground,
 			DrawEffects,
@@ -668,6 +674,7 @@ int32 FVisualLoggerTimeSliderController::OnPaintSectionView( const FGeometry& Al
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( FVector2f(1.0f,1.0f), FSlateLayoutTransform(FVector2f(LinePos, 0.0f )) ),
 			LinePoints,
 			DrawEffects,

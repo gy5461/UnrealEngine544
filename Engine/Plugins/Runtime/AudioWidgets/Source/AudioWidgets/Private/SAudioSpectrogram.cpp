@@ -170,7 +170,7 @@ int32 SAudioSpectrogram::OnPaint(const FPaintArgs& Args, const FGeometry& Allott
 	SpectrogramViewport->SetRenderParams(RenderParams);
 
 	// Create the viewport using child geometry:
-	FSlateDrawElement::MakeViewport(OutDrawElements, LayerId, ChildGeometry.ToPaintGeometry(), SpectrogramViewport, ESlateDrawEffect::NoGamma);
+	FSlateDrawElement::MakeViewport(OutDrawElements, LayerId, FSlateInvalidationWidgetSortOrder(),ChildGeometry.ToPaintGeometry(), SpectrogramViewport, ESlateDrawEffect::NoGamma);
 
 	return LayerId + 1;
 }

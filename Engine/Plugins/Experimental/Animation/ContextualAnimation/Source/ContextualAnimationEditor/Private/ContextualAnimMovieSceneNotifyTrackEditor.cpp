@@ -486,6 +486,7 @@ void FContextualAnimNotifySection::PaintNotifyName(FSequencerSectionPainter& Pai
 	FSlateDrawElement::MakeBox(
 		Painter.DrawElements,
 		LayerId + 1,
+		FSlateInvalidationWidgetSortOrder(),
 		Painter.SectionGeometry.ToPaintGeometry(BoxSize, FSlateLayoutTransform(BoxOffset)),
 		FAppStyle::GetBrush("WhiteBrush"),
 		ESlateDrawEffect::None,
@@ -498,6 +499,7 @@ void FContextualAnimNotifySection::PaintNotifyName(FSequencerSectionPainter& Pai
 		FSlateDrawElement::MakeText(
 			Painter.DrawElements,
 			LayerId + 2,
+			FSlateInvalidationWidgetSortOrder(),
 			Painter.SectionGeometry.ToPaintGeometry(IconSize, FSlateLayoutTransform(BoxOffset + IconOffset)),
 			WarningString,
 			FontAwesomeFont,
@@ -509,6 +511,7 @@ void FContextualAnimNotifySection::PaintNotifyName(FSequencerSectionPainter& Pai
 	FSlateDrawElement::MakeText(
 		Painter.DrawElements,
 		LayerId + 2,
+		FSlateInvalidationWidgetSortOrder(),
 		Painter.SectionGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(BoxOffset + TextOffset)),
 		InEventString,
 		SmallLayoutFont,

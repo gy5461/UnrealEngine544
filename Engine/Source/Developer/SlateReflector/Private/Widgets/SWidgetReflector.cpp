@@ -1455,6 +1455,7 @@ void SWidgetReflector::DrawWidgetVisualization(const FPaintGeometry& WidgetGeome
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			WidgetGeometry,
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -1469,6 +1470,7 @@ void SWidgetReflector::DrawWidgetVisualization(const FPaintGeometry& WidgetGeome
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			WidgetGeometry,
 			FCoreStyle::Get().GetBrush(TEXT("Debug.Border")),
 			ESlateDrawEffect::None,

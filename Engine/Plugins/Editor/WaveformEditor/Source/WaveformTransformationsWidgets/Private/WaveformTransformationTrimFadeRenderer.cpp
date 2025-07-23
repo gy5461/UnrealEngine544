@@ -32,6 +32,7 @@ int32 FWaveformTransformationTrimFadeRenderer::DrawTrimHandles(const FGeometry& 
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -48,6 +49,7 @@ int32 FWaveformTransformationTrimFadeRenderer::DrawTrimHandles(const FGeometry& 
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -66,6 +68,7 @@ int32 FWaveformTransformationTrimFadeRenderer::DrawFadeCurves(const FGeometry& A
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			FadeInCurvePoints,
 			ESlateDrawEffect::None,
@@ -79,6 +82,7 @@ int32 FWaveformTransformationTrimFadeRenderer::DrawFadeCurves(const FGeometry& A
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			FadeOutCurvePoints,
 			ESlateDrawEffect::None,

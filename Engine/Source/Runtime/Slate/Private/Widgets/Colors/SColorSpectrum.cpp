@@ -89,6 +89,7 @@ int32 SColorSpectrum::OnPaint( const FPaintArgs& Args, const FGeometry& Allotted
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		Image,
 		DrawEffects,
@@ -106,6 +107,7 @@ int32 SColorSpectrum::OnPaint( const FPaintArgs& Args, const FGeometry& Allotted
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId + 1,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(SelectorImage->ImageSize, FSlateLayoutTransform(CalcRelativeSelectedPosition() * AllottedGeometry.Size - SelectorImage->ImageSize * 0.5f)),
 		SelectorImage,
 		DrawEffects,

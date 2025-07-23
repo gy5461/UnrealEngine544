@@ -159,13 +159,13 @@ int32 SViewport::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeome
 	{
 		if( ViewportInterfacePin.IsValid() && ViewportInterfacePin->GetViewportRenderTargetTexture() != nullptr )
 		{
-			FSlateDrawElement::MakeViewport( OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), ViewportInterfacePin, DrawEffects, InWidgetStyle.GetColorAndOpacityTint() );
+			FSlateDrawElement::MakeViewport( OutDrawElements, LayerId,FastPathProxyHandle.GetWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), ViewportInterfacePin, DrawEffects, InWidgetStyle.GetColorAndOpacityTint() );
 		}
 		else
 		{
 			// Viewport isn't ready yet, so just draw a black box
 			static FSlateColorBrush BlackBrush( FColor::Black );
-			FSlateDrawElement::MakeBox( OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), &BlackBrush, DrawEffects, BlackBrush.GetTint( InWidgetStyle ) );
+			FSlateDrawElement::MakeBox( OutDrawElements, LayerId,FastPathProxyHandle.GetWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), &BlackBrush, DrawEffects, BlackBrush.GetTint( InWidgetStyle ) );
 		}
 	}
 
@@ -199,6 +199,7 @@ int32 SViewport::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeome
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( CursorSize, FSlateLayoutTransform(CursorPositionLocalSpace - (CursorSize *.5f )) ),
 			Brush
 		);

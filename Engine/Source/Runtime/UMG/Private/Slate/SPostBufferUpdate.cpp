@@ -242,7 +242,7 @@ int32 SPostBufferUpdate::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 #if !UE_SERVER
 	FSlateRect RenderBoundingRect = AllottedGeometry.GetRenderBoundingRect();
 	FPaintGeometry PaintGeometry(RenderBoundingRect.GetTopLeft(), RenderBoundingRect.GetSize(), AllottedGeometry.GetAccumulatedLayoutTransform().GetScale());
-	FSlateDrawElement::MakeCustom(OutDrawElements, LayerId, PostBufferUpdater);
+	FSlateDrawElement::MakeCustom(OutDrawElements, LayerId, FastPathProxyHandle.GetWidgetSortOrder(), PostBufferUpdater);
 #endif // !UE_SERVER
 
 	// Increment LayerId to ensure items afterwards are not processed

@@ -222,6 +222,7 @@ int32 SFlipbookTimeline::OnPaint(const FPaintArgs& Args, const FGeometry& Allott
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		LinePoints,
 		ESlateDrawEffect::None,

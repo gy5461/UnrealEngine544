@@ -69,7 +69,7 @@ void FAudioSpectrumPlotGridAndLabelDrawingHelper::DrawSoundLevelGridLines(const 
 		const float GridLineLocalY = ScaleInfo.SoundLevelToLocalY(SoundLevel);
 		LinePoints[0] = { LocalBackgroundRect.Left, GridLineLocalY };
 		LinePoints[1] = { LocalBackgroundRect.Right, GridLineLocalY };
-		FSlateDrawElement::MakeLines(ElementList, LayerId, AllottedGeometry.ToPaintGeometry(), LinePoints, ESlateDrawEffect::None, LineColor);
+		FSlateDrawElement::MakeLines(ElementList, LayerId, FSlateInvalidationWidgetSortOrder(),AllottedGeometry.ToPaintGeometry(), LinePoints, ESlateDrawEffect::None, LineColor);
 	}
 }
 
@@ -84,7 +84,7 @@ void FAudioSpectrumPlotGridAndLabelDrawingHelper::DrawFrequencyGridLines(const i
 		const float GridLineLocalX = ScaleInfo.FrequencyToLocalX(Freq);
 		LinePoints[0] = { GridLineLocalX, LocalBackgroundRect.Top };
 		LinePoints[1] = { GridLineLocalX, LocalBackgroundRect.Bottom };
-		FSlateDrawElement::MakeLines(ElementList, LayerId, AllottedGeometry.ToPaintGeometry(), LinePoints, ESlateDrawEffect::None, LineColor);
+		FSlateDrawElement::MakeLines(ElementList, LayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), LinePoints, ESlateDrawEffect::None, LineColor);
 	}
 }
 
@@ -164,7 +164,7 @@ void FAudioSpectrumPlotGridAndLabelDrawingHelper::DrawLabelIfNoOverlap(const int
 	if (!IsOverlappingPreviouslyDrawnLabel(ModifiedLabelRect))
 	{
 		const FPaintGeometry LabelPaintGeometry = AllottedGeometry.MakeChild(LabelDrawSize, LabelTransform).ToPaintGeometry();
-		FSlateDrawElement::MakeText(ElementList, LayerId, LabelPaintGeometry, LabelText, Font, ESlateDrawEffect::None, TextColor);
+		FSlateDrawElement::MakeText(ElementList, LayerId,FSlateInvalidationWidgetSortOrder(), LabelPaintGeometry, LabelText, Font, ESlateDrawEffect::None, TextColor);
 		DrawnLabelRects.Add(LabelRect);
 	}
 }
@@ -296,7 +296,7 @@ int32 SAudioSpectrumPlot::DrawSolidBackgroundRectangle(const FGeometry& Allotted
 {
 	const FSlateBrush BackgroundBrush;
 	const FLinearColor BoxColor = GetBackgroundColor(InWidgetStyle);
-	FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), &BackgroundBrush, ESlateDrawEffect::None, BoxColor);
+	FSlateDrawElement::MakeBox(OutDrawElements, LayerId, FSlateInvalidationWidgetSortOrder(),AllottedGeometry.ToPaintGeometry(), &BackgroundBrush, ESlateDrawEffect::None, BoxColor);
 
 	return LayerId + 1;
 }
@@ -504,7 +504,7 @@ int32 SAudioSpectrumPlot::DrawPowerSpectrum(const FGeometry& AllottedGeometry, F
 
 		// Actually draw the line points:
 		const FLinearColor& LineColor = GetSpectrumColor(InWidgetStyle);
-		FSlateDrawElement::MakeLines(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), LinePoints, ESlateDrawEffect::None, LineColor, true, 1.0f);
+		FSlateDrawElement::MakeLines(OutDrawElements, LayerId, FSlateInvalidationWidgetSortOrder(),AllottedGeometry.ToPaintGeometry(), LinePoints, ESlateDrawEffect::None, LineColor, true, 1.0f);
 		LayerId++;
 	}
 

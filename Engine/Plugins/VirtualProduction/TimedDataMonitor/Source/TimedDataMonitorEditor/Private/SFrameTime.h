@@ -62,6 +62,7 @@ public:
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			RetLayerId++,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			BackgroundImage,
 			DrawEffects,
@@ -106,6 +107,7 @@ public:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				RetLayerId++,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintRect,
 				FillImage,
 				DrawEffects,
@@ -127,6 +129,7 @@ public:
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				RetLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				WarnLinePoints,
 				DrawEffects,
@@ -143,6 +146,7 @@ public:
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				RetLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				TargetLinePoints,
 				DrawEffects,

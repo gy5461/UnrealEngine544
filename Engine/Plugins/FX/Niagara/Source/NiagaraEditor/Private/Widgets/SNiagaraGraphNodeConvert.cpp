@@ -253,6 +253,7 @@ int32 SNiagaraGraphNodeConvert::OnPaint(const FPaintArgs& Args, const FGeometry&
 			FSlateDrawElement::MakeSpline(
 				OutDrawElements,
 				NewLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				LocalStart,
 				StartDirection,
@@ -288,6 +289,7 @@ int32 SNiagaraGraphNodeConvert::OnPaint(const FPaintArgs& Args, const FGeometry&
 			FSlateDrawElement::MakeSpline(
 				OutDrawElements,
 				NewLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				LocalStart,
 				StartDirection,

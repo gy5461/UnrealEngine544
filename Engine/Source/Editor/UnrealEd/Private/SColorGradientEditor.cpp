@@ -246,6 +246,7 @@ int32 SColorGradientEditor::OnPaint( const FPaintArgs& Args, const FGeometry& Al
 			(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				ColorMarkAreaGeometry.ToPaintGeometry(),
 				WhiteBrush,
 				DrawEffects,
@@ -260,6 +261,7 @@ int32 SColorGradientEditor::OnPaint( const FPaintArgs& Args, const FGeometry& Al
 			(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AlphaMarkAreaGeometry.ToPaintGeometry(),
 				WhiteBrush,
 				DrawEffects,
@@ -299,6 +301,7 @@ int32 SColorGradientEditor::OnPaint( const FPaintArgs& Args, const FGeometry& Al
 				( 
 					OutDrawElements,
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					GradientAreaGeometry.ToPaintGeometry(),
 					FAppStyle::GetBrush("Checkerboard"),
 					DrawEffects 
@@ -310,6 +313,7 @@ int32 SColorGradientEditor::OnPaint( const FPaintArgs& Args, const FGeometry& Al
 			( 
 				OutDrawElements, 
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				GradientAreaGeometry.ToPaintGeometry(),
 				Stops,
 				Orient_Vertical,
@@ -368,6 +372,7 @@ int32 SColorGradientEditor::OnPaint( const FPaintArgs& Args, const FGeometry& Al
 				( 
 					OutDrawElements, 
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					PaintGeom,
 					GradientColorMessage,
 					FCoreStyle::GetDefaultFontStyle("Regular", 8),
@@ -385,6 +390,7 @@ int32 SColorGradientEditor::OnPaint( const FPaintArgs& Args, const FGeometry& Al
 				( 
 					OutDrawElements, 
 					LayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					PaintGeom,
 					GradientAlphaMessage,
 					FCoreStyle::GetDefaultFontStyle("Regular", 8),
@@ -842,6 +848,7 @@ void SColorGradientEditor::DrawGradientStopMark( const FGradientStopMark& Mark, 
 	( 
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		Geometry.ToPaintGeometry( HandleSize, FSlateLayoutTransform(HandlePosition) ),
 		bColor ? ColorStopBrush : AlphaStopBrush,
 		DrawEffects,
@@ -860,6 +867,7 @@ void SColorGradientEditor::DrawGradientStopMark( const FGradientStopMark& Mark, 
 	( 
 		OutDrawElements,
 		LayerId+1,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		Geometry.ToPaintGeometry( HandleColorSize, FSlateLayoutTransform(HandleColorPosition) ),
 		WhiteBrush,
 		DrawEffects,

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "RenderingCommon.h"
+#include "FastUpdate/SlateInvalidationWidgetSortOrder.h"
 #include "Layout/Clipping.h"
 #include "Templates/UnrealTemplate.h"
 
@@ -17,6 +18,7 @@ struct FSlateDataPayload;
 struct FSlateRenderBatchParams
 {
 	int32 Layer;
+	FSlateInvalidationWidgetSortOrder SortOrder;
 	FShaderParams ShaderParams;
 	const FSlateShaderResource* Resource = nullptr;
 	ESlateDrawPrimitive PrimitiveType;
@@ -45,6 +47,7 @@ class FSlateRenderBatch
 public:
 	FSlateRenderBatch(
 		int32 InLayer,
+		const FSlateInvalidationWidgetSortOrder& SortOrder,
 		const FShaderParams& InShaderParams,
 		const FSlateShaderResource* InResource,
 		ESlateDrawPrimitive InPrimitiveType,
@@ -161,6 +164,8 @@ public:
 
 	int32 GetLayer() const { return LayerId; }
 
+	const FSlateInvalidationWidgetSortOrder& GetSortOrder() const { return SortOrder; }
+
 	const FSlateClippingState* GetClippingState() const { return ClippingState; }
 
 	const FSlateShaderResource* GetShaderResource() const { return ShaderResource; }
@@ -202,6 +207,8 @@ public:
 
 	/** The layer we need to sort by  */
 	int32 LayerId;
+
+	FSlateInvalidationWidgetSortOrder SortOrder;
 
 	int32 VertexOffset;
 

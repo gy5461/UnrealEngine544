@@ -100,11 +100,11 @@ void FCurveEditorMultiScaleTool::OnPaint(const FPaintArgs& Args, const FGeometry
 		MultiScaleWidget.GetXSliderGeometry(BoundsGeometry, DragDelta.Get(FVector2D::ZeroVector).X, XSliderGeometry);
 		MultiScaleWidget.GetYSliderGeometry(BoundsGeometry, DragDelta.Get(FVector2D::ZeroVector).Y, YSliderGeometry);
 
-		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId, XSliderGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, XSliderHighlightColor);
-		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId, XSliderGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId,FSlateInvalidationWidgetSortOrder(), XSliderGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, XSliderHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId,FSlateInvalidationWidgetSortOrder(), XSliderGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 
-		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId, YSliderGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, YSliderHighlightColor);
-		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId, YSliderGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId,FSlateInvalidationWidgetSortOrder(), YSliderGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, YSliderHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId, FSlateInvalidationWidgetSortOrder(),YSliderGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 	}
 
 	// Draw Sidebars
@@ -112,8 +112,8 @@ void FCurveEditorMultiScaleTool::OnPaint(const FPaintArgs& Args, const FGeometry
 		FGeometry XSidebarGeometry, YSidebarGeometry;
 		MultiScaleWidget.GetXSidebarGeometry(BoundsGeometry, AllottedGeometry, bXSliderHovered, XSidebarGeometry);
 		MultiScaleWidget.GetYSidebarGeometry(BoundsGeometry, AllottedGeometry, bYSliderHovered, YSidebarGeometry);
-		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId, XSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
-		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId, YSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId,FSlateInvalidationWidgetSortOrder(), XSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, PaintOnLayerId, FSlateInvalidationWidgetSortOrder(),YSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 	}
 
 	// Draw pivots
@@ -157,13 +157,13 @@ void FCurveEditorMultiScaleTool::OnPaint(const FPaintArgs& Args, const FGeometry
 			const double TangentMul = 2.f;
 			const double Thickness = 1.5f;
 			const FVector2D PivotIconOffset = PivotSize * .5f;
-			FSlateDrawElement::MakeSpline(OutDrawElements, PaintOnLayerId, PivotGeometry.ToPaintGeometry(), FVector2D(-CurveEditorMultiScaleTool::PivotRadius, 0.f) + PivotIconOffset, FVector2D(CurveEditorMultiScaleTool::PivotRadius, 0.f) * TangentMul,
+			FSlateDrawElement::MakeSpline(OutDrawElements, PaintOnLayerId,FSlateInvalidationWidgetSortOrder(), PivotGeometry.ToPaintGeometry(), FVector2D(-CurveEditorMultiScaleTool::PivotRadius, 0.f) + PivotIconOffset, FVector2D(CurveEditorMultiScaleTool::PivotRadius, 0.f) * TangentMul,
 				FVector2D(0.f, -CurveEditorMultiScaleTool::PivotRadius) + PivotIconOffset, FVector2D(0.f, -CurveEditorMultiScaleTool::PivotRadius) * TangentMul, Thickness, ESlateDrawEffect::None, PivotColor);
-			FSlateDrawElement::MakeSpline(OutDrawElements, PaintOnLayerId, PivotGeometry.ToPaintGeometry(), FVector2D(CurveEditorMultiScaleTool::PivotRadius, 0.f) + PivotIconOffset, FVector2D(-CurveEditorMultiScaleTool::PivotRadius, 0.f) * TangentMul,
+			FSlateDrawElement::MakeSpline(OutDrawElements, PaintOnLayerId,FSlateInvalidationWidgetSortOrder(), PivotGeometry.ToPaintGeometry(), FVector2D(CurveEditorMultiScaleTool::PivotRadius, 0.f) + PivotIconOffset, FVector2D(-CurveEditorMultiScaleTool::PivotRadius, 0.f) * TangentMul,
 				FVector2D(0.f, CurveEditorMultiScaleTool::PivotRadius) + PivotIconOffset, FVector2D(0.f, CurveEditorMultiScaleTool::PivotRadius) * TangentMul, Thickness, ESlateDrawEffect::None, PivotColor);
-			FSlateDrawElement::MakeSpline(OutDrawElements, PaintOnLayerId, PivotGeometry.ToPaintGeometry(), FVector2D(0.f, CurveEditorMultiScaleTool::PivotRadius) + PivotIconOffset, FVector2D(0.f, -CurveEditorMultiScaleTool::PivotRadius) * TangentMul,
+			FSlateDrawElement::MakeSpline(OutDrawElements, PaintOnLayerId,FSlateInvalidationWidgetSortOrder(), PivotGeometry.ToPaintGeometry(), FVector2D(0.f, CurveEditorMultiScaleTool::PivotRadius) + PivotIconOffset, FVector2D(0.f, -CurveEditorMultiScaleTool::PivotRadius) * TangentMul,
 				FVector2D(-CurveEditorMultiScaleTool::PivotRadius, 0.f) + PivotIconOffset, FVector2D(-CurveEditorMultiScaleTool::PivotRadius, 0.f) * TangentMul, Thickness, ESlateDrawEffect::None, PivotColor);
-			FSlateDrawElement::MakeSpline(OutDrawElements, PaintOnLayerId, PivotGeometry.ToPaintGeometry(), FVector2D(0.f, -CurveEditorMultiScaleTool::PivotRadius) + PivotIconOffset, FVector2D(0.f, CurveEditorMultiScaleTool::PivotRadius) * TangentMul,
+			FSlateDrawElement::MakeSpline(OutDrawElements, PaintOnLayerId,FSlateInvalidationWidgetSortOrder(), PivotGeometry.ToPaintGeometry(), FVector2D(0.f, -CurveEditorMultiScaleTool::PivotRadius) + PivotIconOffset, FVector2D(0.f, CurveEditorMultiScaleTool::PivotRadius) * TangentMul,
 				FVector2D(CurveEditorMultiScaleTool::PivotRadius, 0.f) + PivotIconOffset, FVector2D(CurveEditorMultiScaleTool::PivotRadius, 0.f) * TangentMul, Thickness, ESlateDrawEffect::None, PivotColor);
 		}
 

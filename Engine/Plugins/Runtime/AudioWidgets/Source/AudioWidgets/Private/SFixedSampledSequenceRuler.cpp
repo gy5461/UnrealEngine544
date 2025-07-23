@@ -44,6 +44,7 @@ int32 SFixedSampledSequenceRuler::OnPaint(const FPaintArgs& Args, const FGeometr
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		++LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		&BackgroundBrush,
 		ESlateDrawEffect::None,
@@ -77,6 +78,7 @@ void SFixedSampledSequenceRuler::DrawRulerTicks(const FGeometry& AllottedGeometr
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -95,6 +97,7 @@ void SFixedSampledSequenceRuler::DrawRulerTicks(const FGeometry& AllottedGeometr
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					++LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,
@@ -133,6 +136,7 @@ void SFixedSampledSequenceRuler::DrawTickTimeString(uint32 TickFrame, const doub
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		++LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(AllottedGeometry.Size, FSlateLayoutTransform(TextOffset)),
 		TimeString,
 		TicksTextFont,
@@ -251,6 +255,7 @@ void SFixedSampledSequenceRuler::DrawPlayheadHandle(const FGeometry& AllottedGeo
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		HandleGeometry,
 		&HandleBrush,
 		ESlateDrawEffect::None,

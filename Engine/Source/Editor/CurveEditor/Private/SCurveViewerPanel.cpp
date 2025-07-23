@@ -72,6 +72,7 @@ void SCurveViewerPanel::DrawCurves(const FGeometry& AllottedGeometry, FSlateWind
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			BaseLayerId + CurveViewConstants::ELayerOffset::Curves,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintGeometry,
 			Params.InterpolatingPoints,
 			DrawEffects,
@@ -101,7 +102,7 @@ void SCurveViewerPanel::DrawCurves(const FGeometry& AllottedGeometry, FSlateWind
 					FSlateLayoutTransform(Point.ScreenPosition - (PointDrawInfo.ScreenSize * 0.5f))
 				);
 
-				FSlateDrawElement::MakeBox(OutDrawElements, KeyLayerId, PointGeometry, PointDrawInfo.Brush, DrawEffects, PointTint );
+				FSlateDrawElement::MakeBox(OutDrawElements, KeyLayerId, FastPathProxyHandle.GetWidgetSortOrder(),PointGeometry, PointDrawInfo.Brush, DrawEffects, PointTint );
 			}
 		}
 	}

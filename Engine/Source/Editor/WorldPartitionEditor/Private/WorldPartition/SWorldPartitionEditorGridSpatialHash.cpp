@@ -102,6 +102,7 @@ int32 SWorldPartitionEditorGridSpatialHash::PaintGrid(const FGeometry& AllottedG
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			GridGeometry,
 			&ShadowBrush,
 			ESlateDrawEffect::None,
@@ -142,7 +143,8 @@ int32 SWorldPartitionEditorGridSpatialHash::PaintGrid(const FGeometry& AllottedG
 
 					FSlateDrawElement::MakeLines(
 						OutDrawElements, 
-						LayerId, 
+						LayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(), 
 						LinePoints, 
 						ESlateDrawEffect::None, 
@@ -162,7 +164,8 @@ int32 SWorldPartitionEditorGridSpatialHash::PaintGrid(const FGeometry& AllottedG
 					LinePoints[1] = WorldToScreen.TransformPoint(LineEndH);
 
 					FSlateDrawElement::MakeLines(
-						OutDrawElements, LayerId, 
+						OutDrawElements, LayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(), 
 						LinePoints, 
 						ESlateDrawEffect::None, 
@@ -235,6 +238,7 @@ int32 SWorldPartitionEditorGridSpatialHash::PaintGrid(const FGeometry& AllottedG
 						FSlateDrawElement::MakeText(
 							OutDrawElements,
 							++LayerId,
+							FastPathProxyHandle.GetWidgetSortOrder(),
 							AllottedGeometry.ToPaintGeometry(FVector2D(1,1), FSlateLayoutTransform(WorldToScreen.TransformPoint(FVector2D(x + EffectiveCellSize / 2, y + EffectiveCellSize / 2)) - CoordTextSize / 2)),
 							FString::Printf(TEXT("(%lld,%lld)"), x / EffectiveCellSize, y / EffectiveCellSize),
 							CoordsFont,

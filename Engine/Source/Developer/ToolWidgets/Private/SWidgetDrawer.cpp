@@ -200,6 +200,7 @@ class SDrawerOverlay : public SCompoundWidget
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				ResizeHandleGeometry.ToPaintGeometry(),
 				SplitterBrush,
 				ESlateDrawEffect::None,
@@ -210,6 +211,7 @@ class SDrawerOverlay : public SCompoundWidget
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			RenderTransformedChildGeometry.ToPaintGeometry(),
 			ShadowBrush,
 			ESlateDrawEffect::None,
@@ -219,6 +221,7 @@ class SDrawerOverlay : public SCompoundWidget
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			RenderTransformedChildGeometry.ToPaintGeometry( FVector2f(AllottedGeometry.GetLocalSize().X - (ShadowOffset.X * 2), TargetHeight), FSlateLayoutTransform(ShadowOffset) ),
 			BackgroundBrush,
 			ESlateDrawEffect::None,
@@ -230,6 +233,7 @@ class SDrawerOverlay : public SCompoundWidget
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			OutLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.GetLocalSize().X, ShadowOffset.Y), FSlateLayoutTransform(FVector2f(0.0f, AllottedGeometry.GetLocalSize().Y - ShadowOffset.Y))),
 			ShadowBrush,
 			ESlateDrawEffect::None,
@@ -239,6 +243,7 @@ class SDrawerOverlay : public SCompoundWidget
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			OutLayerId+1,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			RenderTransformedChildGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.GetLocalSize().X - (ShadowOffset.X * 2), TargetHeight), FSlateLayoutTransform(ShadowOffset)),
 			BorderBrush,
 			ESlateDrawEffect::None,

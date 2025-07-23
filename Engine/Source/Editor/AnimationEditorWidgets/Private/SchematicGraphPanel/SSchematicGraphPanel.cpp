@@ -159,6 +159,7 @@ int32 SSchematicGraphNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				NodeLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(CircleSize, FSlateLayoutTransform(CircleOffset)),
 				GroupBrush,
 				ESlateDrawEffect::None,
@@ -176,6 +177,7 @@ int32 SSchematicGraphNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				NodeLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(CurSize, FSlateLayoutTransform(SizeOffset)),
 				BrushGetter(GetGuid(), LayerIndex),
 				ESlateDrawEffect::None,
@@ -221,6 +223,7 @@ int32 SSchematicGraphNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					NodeLayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(TagSize, FSlateLayoutTransform(TagOffset)),
 					BackgroundBrush,
 					ESlateDrawEffect::None,
@@ -235,6 +238,7 @@ int32 SSchematicGraphNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					NodeLayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(TagSize, FSlateLayoutTransform(TagOffset)),
 					ForegroundBrush,
 					ESlateDrawEffect::None,
@@ -250,6 +254,7 @@ int32 SSchematicGraphNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					NodeLayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(LabelSize, FSlateLayoutTransform(LabelOffset)),
 					LabelString,
 					SmallFontStyle,
@@ -309,6 +314,7 @@ int32 SSchematicGraphNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			NodeLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(LabelBackgroundSize, FSlateLayoutTransform(LabelBackgroundOffset)),
 			LabelBackgroundBrush,
 			ESlateDrawEffect::None,
@@ -319,6 +325,7 @@ int32 SSchematicGraphNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			NodeLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(NodeLabelSize, FSlateLayoutTransform(NodeLabelOffset)),
 			NodeLabelString,
 			SmallFontStyle,

@@ -155,6 +155,7 @@ int32 SLevelSnapshotsEditorFilter::OnPaint(const FPaintArgs& Args, const FGeomet
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToInflatedPaintGeometry(ShadowSize),
 			ShadowBrush
 		);

@@ -86,6 +86,7 @@ int32 FColorPropertySection::OnPaintSection( FSequencerSectionPainter& Painter )
 		FSlateDrawElement::MakeBox(
 			Painter.DrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			PaintGeometry,
 			FAppStyle::GetBrush( "Checker" ),
 			DrawEffects);
@@ -121,6 +122,7 @@ int32 FColorPropertySection::OnPaintSection( FSequencerSectionPainter& Painter )
 			FSlateDrawElement::MakeGradient(
 				Painter.DrawElements,
 				Painter.LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintGeometry,
 				GradientStops,
 				Orient_Vertical,

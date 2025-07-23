@@ -174,6 +174,7 @@ struct TPerlinNoiseChannelInterface : ISequencerChannelInterface
 		FSlateDrawElement::MakeLines(
 				PaintArgs.DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintArgs.Geometry.ToPaintGeometry(),
 				CurvePoints,
 				ESlateDrawEffect::PreMultipliedAlpha,

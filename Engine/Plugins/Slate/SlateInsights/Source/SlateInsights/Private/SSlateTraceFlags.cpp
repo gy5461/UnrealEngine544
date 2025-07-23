@@ -40,6 +40,7 @@ namespace Private
 				(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(BoxSize, FSlateLayoutTransform(BoxSizeX0 * Index)),
 					BackgroundBrush,
 					ESlateDrawEffect::None,
@@ -52,6 +53,7 @@ namespace Private
 				(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(BoxSize, FSlateLayoutTransform(BoxSizeX0 * Index)),
 					BackgroundBrush,
 					ESlateDrawEffect::None,
@@ -63,6 +65,7 @@ namespace Private
 			(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToOffsetPaintGeometry(BoxSizeX0 * Index),
 				Text,
 				Index, Index + 1,

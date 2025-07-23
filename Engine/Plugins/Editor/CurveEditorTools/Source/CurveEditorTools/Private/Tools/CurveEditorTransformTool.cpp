@@ -539,8 +539,8 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 		FGeometry CenterGeometry;
 		InTransformWidget.GetCenterGeometry(InAllottedGeometry, CenterGeometry);
 
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, CenterGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, CenterHighlightColor);
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, InAllottedGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), CenterGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, CenterHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), InAllottedGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 	}
 
 	// Draw edge highlight regions on mouse hover
@@ -554,13 +554,13 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 		InTransformWidget.GetSidebarGeometry(InAllottedGeometry, LeftSidebarGeometry, RightSidebarGeometry, TopSidebarGeometry, BottomSidebarGeometry);
 
 		// Left Edge
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, LeftSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, LeftEdgeHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), LeftSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, LeftEdgeHighlightColor);
 		// Right Edge
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, RightSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, RightEdgeHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), RightSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, RightEdgeHighlightColor);
 		// Top Edge
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, TopSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, TopEdgeHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), TopSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, TopEdgeHighlightColor);
 		// Bottom Edge
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, BottomSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, BottomEdgeHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), BottomSidebarGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, BottomEdgeHighlightColor);
 
 		// Draw arrow markers if falloff is on
 		if (FSlateApplication::Get().GetModifierKeys().IsControlDown())
@@ -576,8 +576,8 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 					const FVector2D BottomArrowDiagOffset = FVector2D(-1.f * CurveEditorTransformTool::ArrowDiagOffset, -1.f * CurveEditorTransformTool::ArrowDiagOffset);
 					TArray<FVector2D> TopHalfArrow = { ArrowMiddle, ArrowTop, ArrowTop + TopArrowDiagOffset };
 					TArray<FVector2D> BottomHalfArrow = { ArrowMiddle, ArrowBottom, ArrowBottom + BottomArrowDiagOffset };
-					FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId, LeftSidebarGeometry.ToPaintGeometry(), TopHalfArrow);
-					FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId, LeftSidebarGeometry.ToPaintGeometry(), BottomHalfArrow);
+					FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), LeftSidebarGeometry.ToPaintGeometry(), TopHalfArrow);
+					FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), LeftSidebarGeometry.ToPaintGeometry(), BottomHalfArrow);
 				}
 				{
 					const FVector2D ArrowBottom = FVector2D(CurveEditorTransformTool::ArrowOffset + CurveEditorTransformTool::ArrowExtraRightOffset, RightSidebarGeometry.GetLocalSize().Y * (1.f - CurveEditorTransformTool::ArrowMargin));
@@ -587,8 +587,8 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 					const FVector2D BottomArrowDiagOffset = FVector2D(CurveEditorTransformTool::ArrowDiagOffset, -1.f * CurveEditorTransformTool::ArrowDiagOffset);
 					TArray<FVector2D> TopHalfArrow = { ArrowMiddle, ArrowTop, ArrowTop + TopArrowDiagOffset };
 					TArray<FVector2D> BottomHalfArrow = { ArrowMiddle, ArrowBottom, ArrowBottom + BottomArrowDiagOffset };
-					FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId, RightSidebarGeometry.ToPaintGeometry(), TopHalfArrow);
-					FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId, RightSidebarGeometry.ToPaintGeometry(), BottomHalfArrow);
+					FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), RightSidebarGeometry.ToPaintGeometry(), TopHalfArrow);
+					FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), RightSidebarGeometry.ToPaintGeometry(), BottomHalfArrow);
 				}
 			}
 
@@ -602,8 +602,8 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 				const FVector2D RightArrowDiagOffset = FVector2D(CurveEditorTransformTool::ArrowDiagOffset, -1.f * CurveEditorTransformTool::ArrowDiagOffset);
 				TArray<FVector2D> LeftHalfArrow = { ArrowMiddle, ArrowLeft, ArrowLeft + LeftArrowDiagOffset };
 				TArray<FVector2D> RightHalfArrow = { ArrowMiddle, ArrowRight, ArrowRight + RightArrowDiagOffset };
-				FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId, RightSidebarGeometry.ToPaintGeometry(), LeftHalfArrow);
-				FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId, RightSidebarGeometry.ToPaintGeometry(), RightHalfArrow);
+				FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), RightSidebarGeometry.ToPaintGeometry(), LeftHalfArrow);
+				FSlateDrawElement::MakeLines(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), RightSidebarGeometry.ToPaintGeometry(), RightHalfArrow);
 			}
 		}
 	}
@@ -629,21 +629,21 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 
 		const float Rotate = FMath::DegreesToRadians(45.f);
 		// Top Left (Highlight, Corner Icon)
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, TopLeftFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, Rotate,
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, FSlateInvalidationWidgetSortOrder(),TopLeftFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, Rotate,
 			TOptional<FVector2D>(), FSlateDrawElement::RelativeToElement, TopLeftHighlightColor);
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, TopLeftFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")), ESlateDrawEffect::None, Rotate);
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), TopLeftFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")), ESlateDrawEffect::None, Rotate);
 		// Top Right										 
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, TopRightFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, Rotate,
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, FSlateInvalidationWidgetSortOrder(),TopRightFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, Rotate,
 			TOptional<FVector2D>(), FSlateDrawElement::RelativeToElement, TopRightHighlightColor);
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, TopRightFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")), ESlateDrawEffect::None, Rotate);
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), TopRightFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")), ESlateDrawEffect::None, Rotate);
 		// Bottom Left										 
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, LeftFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, Rotate,
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, FSlateInvalidationWidgetSortOrder(),LeftFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, Rotate,
 			TOptional<FVector2D>(), FSlateDrawElement::RelativeToElement, BottomLeftHighlightColor);
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, LeftFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")), ESlateDrawEffect::None, Rotate);
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, FSlateInvalidationWidgetSortOrder(),LeftFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")), ESlateDrawEffect::None, Rotate);
 		// Bottom Right										 
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, RightFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, Rotate,
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, FSlateInvalidationWidgetSortOrder(),RightFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, Rotate,
 			TOptional<FVector2D>(), FSlateDrawElement::RelativeToElement, BottomRightHighlightColor);
-		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId, RightFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")), ESlateDrawEffect::None, Rotate);
+		FSlateDrawElement::MakeRotatedBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), RightFalloffGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")), ESlateDrawEffect::None, Rotate);
 
 		// Draw falloff weights
 		FGeometry GradientGeometry;
@@ -686,7 +686,7 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 			GradientStops.Emplace(AnchorPos, StopColor);
 		}
 		
-		FSlateDrawElement::MakeGradient(OutDrawElements, InPaintOnLayerId, GradientGeometry.ToPaintGeometry(), GradientStops, Orient_Vertical);
+		FSlateDrawElement::MakeGradient(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), GradientGeometry.ToPaintGeometry(), GradientStops, Orient_Vertical);
 	}
 	// draw center marker if on
 	if (CurveEditor->GetSelection().Count() != 1)
@@ -702,23 +702,23 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 		// draw center scale icon lines
 		const double TangentMul = 2.f;
 		FVector2D CircleOffset = FVector2D(CurveEditorTransformTool::ScaleCenterRadius, CurveEditorTransformTool::ScaleCenterRadius);
-		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId, ScaleCenterGeometry.ToPaintGeometry(), FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul,
+		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), ScaleCenterGeometry.ToPaintGeometry(), FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul,
 			FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) * TangentMul, 1.f);
-		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId, ScaleCenterGeometry.ToPaintGeometry(), FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul,
+		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), ScaleCenterGeometry.ToPaintGeometry(), FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul,
 			FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) * TangentMul, 1.f);
-		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId, ScaleCenterGeometry.ToPaintGeometry(), FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) * TangentMul,
+		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), ScaleCenterGeometry.ToPaintGeometry(), FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) * TangentMul,
 			FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul, 1.f);
-		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId, ScaleCenterGeometry.ToPaintGeometry(), FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) * TangentMul,
+		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), ScaleCenterGeometry.ToPaintGeometry(), FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) * TangentMul,
 			FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul, 1.f);
 
 		// draw center scale icon highlight
-		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId, ScaleCenterGeometry.ToPaintGeometry(), FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul,
+		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), ScaleCenterGeometry.ToPaintGeometry(), FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul,
 			FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) * TangentMul, HighlightThickness, ESlateDrawEffect::None, ScaleCenterHighlightColor);
-		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId, ScaleCenterGeometry.ToPaintGeometry(), FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul,
+		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), ScaleCenterGeometry.ToPaintGeometry(), FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul,
 			FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) * TangentMul, HighlightThickness, ESlateDrawEffect::None, ScaleCenterHighlightColor);
-		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId, ScaleCenterGeometry.ToPaintGeometry(), FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) * TangentMul,
+		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), ScaleCenterGeometry.ToPaintGeometry(), FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) * TangentMul,
 			FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(-CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul, HighlightThickness, ESlateDrawEffect::None, ScaleCenterHighlightColor);
-		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId, ScaleCenterGeometry.ToPaintGeometry(), FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) * TangentMul,
+		FSlateDrawElement::MakeSpline(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), ScaleCenterGeometry.ToPaintGeometry(), FVector2D(0.f, -CurveEditorTransformTool::ScaleCenterRadius) + CircleOffset, FVector2D(0.f, CurveEditorTransformTool::ScaleCenterRadius) * TangentMul,
 			FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) + CircleOffset, FVector2D(CurveEditorTransformTool::ScaleCenterRadius, 0.f) * TangentMul, HighlightThickness, ESlateDrawEffect::None, ScaleCenterHighlightColor);
 
 		if (bScaleCenter)
@@ -727,7 +727,7 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 			InTransformWidget.GetCenterIndicatorGeometry(InAllottedGeometry, CenterIndicatorGeometry);
 			FLinearColor CenterIndicatorHighlightColor = FLinearColor::White.CopyWithNewOpacity(CurveEditorTransformTool::EdgeHighlightAlpha);
 
-			FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, CenterIndicatorGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, CenterIndicatorHighlightColor);
+			FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, FSlateInvalidationWidgetSortOrder(),CenterIndicatorGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, CenterIndicatorHighlightColor);
 		}
 	}
 
@@ -747,17 +747,17 @@ void FCurveEditorTransformTool::DrawMarqueeWidget(const FCurveEditorTransformWid
 		FLinearColor BottomRightHighlightColor	= bBottomRight  ? FLinearColor::White.CopyWithNewOpacity(CurveEditorTransformTool::EdgeHighlightAlpha) : FLinearColor::Transparent;
 
 		// Top Left (Highlight, Corner Icon)
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, TopLeftCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, TopLeftHighlightColor);
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, TopLeftCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), TopLeftCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, TopLeftHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), TopLeftCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 		// Top Right										 
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, TopRightCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, TopRightHighlightColor);
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, TopRightCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), TopRightCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, TopRightHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), TopRightCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 		// Bottom Left										 
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, BottomLeftCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, BottomLeftHighlightColor);
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, BottomLeftCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), BottomLeftCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, BottomLeftHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), BottomLeftCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 		// Bottom Right										 
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, BottomRightCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, BottomRightHighlightColor);
-		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId, BottomRightCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), BottomRightCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, BottomRightHighlightColor);
+		FSlateDrawElement::MakeBox(OutDrawElements, InPaintOnLayerId,FSlateInvalidationWidgetSortOrder(), BottomRightCornerGeometry.ToPaintGeometry(), FAppStyle::GetBrush(TEXT("MarqueeSelection")));
 	}
 }
 

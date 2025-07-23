@@ -70,6 +70,7 @@ int32 SAudioMeter::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			MeterGeometry.ToPaintGeometry(BackgroundImageSize, FSlateLayoutTransform(BackgroundImageTopLeft)),
 			&Style->MeterBackgroundImage,
 			ESlateDrawEffect::None,
@@ -97,6 +98,7 @@ int32 SAudioMeter::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
  		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			MeterGeometry.ToPaintGeometry(MeterBackgroundSize, FSlateLayoutTransform(MeterBackgroundTopLeft)),
 			&Style->MeterBackgroundImage,
 			ESlateDrawEffect::None,
@@ -121,6 +123,7 @@ int32 SAudioMeter::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			MeterGeometry.ToPaintGeometry(MeterValueSize, FSlateLayoutTransform(MeterValueTopLeft)),
 			&Style->MeterValueImage,
 			ESlateDrawEffect::None,
@@ -147,6 +150,7 @@ int32 SAudioMeter::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			MeterGeometry.ToPaintGeometry(MeterPeakValueSize, FSlateLayoutTransform(MeterPeakValueTopLeft)),
 			&Style->MeterPeakImage,
 			ESlateDrawEffect::None,
@@ -199,6 +203,7 @@ int32 SAudioMeter::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				MeterGeometry.ToPaintGeometry(HashSize, FSlateLayoutTransform(HashTopLeft)),
 				&Style->MeterPeakImage,
 				ESlateDrawEffect::None,
@@ -254,6 +259,7 @@ int32 SAudioMeter::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					TextGeometry.ToOffsetPaintGeometry(FVector2D(0.0f, 0.0f)),
 					LabelText,
 					Style->Font,
@@ -285,6 +291,7 @@ int32 SAudioMeter::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					TextGeometry.ToOffsetPaintGeometry(LabelTopLeft),
 					LabelText,
 					Style->Font,

@@ -267,6 +267,7 @@ void FAnimGraphConnectionDrawingPolicy::DrawConnection(int32 LayerId, const FVec
 								FSlateDrawElement::MakeDrawSpaceSpline(
 									DrawElementsList,
 									LayerId,
+									FSlateInvalidationWidgetSortOrder(),
 									SubWireP0, P0Tangent,
 									SubWireP1, P1Tangent,
 									Thickness,

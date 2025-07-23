@@ -124,6 +124,7 @@ int32 SVirtualJoystick::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					RetLayerId++,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(
 						Control.CorrectedVisualSize,
 						FSlateLayoutTransform(Control.VisualCenter - FVector2D(Control.CorrectedVisualSize.X * 0.5f, Control.CorrectedVisualSize.Y * 0.5f))
@@ -139,6 +140,7 @@ int32 SVirtualJoystick::OnPaint(const FPaintArgs& Args, const FGeometry& Allotte
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					RetLayerId++,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(
 						Control.CorrectedThumbSize,
 						FSlateLayoutTransform(Control.VisualCenter + Control.ThumbPosition - FVector2D(Control.CorrectedThumbSize.X * 0.5f, Control.CorrectedThumbSize.Y * 0.5f))

@@ -187,6 +187,7 @@ int32 SRewindDebuggerTimelines::OnPaint( const FPaintArgs& Args, const FGeometry
 	FSlateDrawElement::MakeLines(
 				OutDrawElements,
 						++LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(),
 						Points,
 						ESlateDrawEffect::None,

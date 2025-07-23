@@ -40,6 +40,7 @@ int32 SComplexGradient::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			StyleInfo,
 			DrawEffects
@@ -61,6 +62,7 @@ int32 SComplexGradient::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 		FSlateDrawElement::MakeGradient(
 			OutDrawElements,
 			LayerId + 1,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			GradientStops,
 			Orientation,

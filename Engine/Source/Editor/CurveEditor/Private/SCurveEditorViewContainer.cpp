@@ -129,7 +129,7 @@ int32 SCurveEditorViewContainer::OnPaint(const FPaintArgs& Args, const FGeometry
 	
 	static const FName BackgroundBrushName("Brushes.Panel");
 	const FSlateBrush* Background = FAppStyle::GetBrush(BackgroundBrushName);
-	FSlateDrawElement::MakeBox(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), Background, DrawEffects, Background->GetTint(InWidgetStyle));
+	FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FastPathProxyHandle.GetWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), Background, DrawEffects, Background->GetTint(InWidgetStyle));
 
 	SVerticalBox::OnPaint(Args, AllottedGeometry, MyCullingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled);
 

@@ -62,6 +62,7 @@ int32 SAvaOutlinerItemChip::OnPaint(const FPaintArgs& InArgs, const FGeometry& I
 
 		FSlateDrawElement::MakeRotatedBox(OutDrawElements
 			, LayerId++
+			, FSlateInvalidationWidgetSortOrder()
 			, InAllottedGeometry.ToPaintGeometry(RotatedLocalSize, RotatedTransform)
 			, DropIndicatorBrush
 			, ESlateDrawEffect::None

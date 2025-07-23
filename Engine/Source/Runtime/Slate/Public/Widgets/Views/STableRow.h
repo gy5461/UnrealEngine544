@@ -333,6 +333,7 @@ public:
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					LayerId++,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					&Style->SelectorFocusedBrush,
 					ESlateDrawEffect::None,
@@ -386,6 +387,7 @@ public:
 			(
 				OutDrawElements,
 				LayerId++,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				DropIndicatorBrush,
 				ESlateDrawEffect::None,
@@ -403,6 +405,7 @@ public:
 			FSlateDrawElement::MakeRotatedBox(
 				OutDrawElements,
 				LayerId++,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(RotatedLocalSize, RotatedTransform),
 				DropIndicatorBrush,
 				ESlateDrawEffect::None,

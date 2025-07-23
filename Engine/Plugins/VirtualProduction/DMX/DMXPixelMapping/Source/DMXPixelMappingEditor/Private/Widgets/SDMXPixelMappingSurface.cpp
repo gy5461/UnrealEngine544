@@ -614,6 +614,7 @@ void SDMXPixelMappingSurface::PaintBackgroundAsLines(const FSlateBrush* Backgrou
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		DrawLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		BackgroundImage
 	);
@@ -644,6 +645,7 @@ void SDMXPixelMappingSurface::PaintBackgroundAsLines(const FSlateBrush* Backgrou
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					Layer,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,
@@ -672,6 +674,7 @@ void SDMXPixelMappingSurface::PaintBackgroundAsLines(const FSlateBrush* Backgrou
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					Layer,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,

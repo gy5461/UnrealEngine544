@@ -479,6 +479,7 @@ int32 STrack::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeometry
 		FSlateDrawElement::MakeLines( 
 			OutDrawElements,
 			CustomLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			MyGeometry,
 			LinePoints,
 			ESlateDrawEffect::None,
@@ -494,6 +495,7 @@ int32 STrack::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeometry
 			FSlateDrawElement::MakeText( 
 				OutDrawElements,
 				CustomLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				TextGeometry,
 				DraggableBarLabels.Get()[I],
 				Font,
@@ -514,6 +516,7 @@ int32 STrack::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeometry
 		FSlateDrawElement::MakeLines( 
 			OutDrawElements,
 			CustomLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			MyGeometry,
 			LinePoints,
 			ESlateDrawEffect::None,

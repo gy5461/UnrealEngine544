@@ -50,7 +50,7 @@ int32 STimecode::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeomet
 	int32 NewLayerId = LayerId+1;
 
 	const FLinearColor& CurrentTimecodeColor = TimecodeColor.Get().GetColor(InWidgetStyle);
-	FSlateDrawElement::MakeText(OutDrawElements, NewLayerId, AllottedGeometry.ToPaintGeometry(), TimecodeToPaintString, TimecodeFontInfo, DrawEffects, InWidgetStyle.GetColorAndOpacityTint() * CurrentTimecodeColor);
+	FSlateDrawElement::MakeText(OutDrawElements, NewLayerId,FastPathProxyHandle.GetWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), TimecodeToPaintString, TimecodeFontInfo, DrawEffects, InWidgetStyle.GetColorAndOpacityTint() * CurrentTimecodeColor);
 
 	if (bDisplayLabel.Get())
 	{
@@ -79,7 +79,7 @@ int32 STimecode::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeomet
 
 					FVector2D Offset = FontMeasureService->Measure(TimecodeToPaintString, 0, CharIndex, TimecodeFontInfo);
 					Offset.Y += TimecodeImpl::LabelOffsetY;
-					FSlateDrawElement::MakeText(OutDrawElements, NewLayerId, AllottedGeometry.ToOffsetPaintGeometry(Offset), TimecodeImpl::Labels[LabelIndex], LabelFontInfo, DrawEffects, InWidgetStyle.GetColorAndOpacityTint() * LabelLinearColor);
+					FSlateDrawElement::MakeText(OutDrawElements, NewLayerId,FastPathProxyHandle.GetWidgetSortOrder(), AllottedGeometry.ToOffsetPaintGeometry(Offset), TimecodeImpl::Labels[LabelIndex], LabelFontInfo, DrawEffects, InWidgetStyle.GetColorAndOpacityTint() * LabelLinearColor);
 
 					++LabelIndex;
 					if (LabelIndex > TimecodeImpl::NumberOfLabels)
@@ -96,7 +96,7 @@ int32 STimecode::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeomet
 
 					FVector2D Offset = FontMeasureService->Measure(TimecodeToPaintString, 0, CharIndex, TimecodeFontInfo);
 					Offset.Y += TimecodeImpl::LabelOffsetY;
-					FSlateDrawElement::MakeText(OutDrawElements, NewLayerId, AllottedGeometry.ToOffsetPaintGeometry(Offset), TimecodeImpl::Labels[LabelIndex], LabelFontInfo, DrawEffects, InWidgetStyle.GetColorAndOpacityTint() * LabelLinearColor);
+					FSlateDrawElement::MakeText(OutDrawElements, NewLayerId,FastPathProxyHandle.GetWidgetSortOrder(), AllottedGeometry.ToOffsetPaintGeometry(Offset), TimecodeImpl::Labels[LabelIndex], LabelFontInfo, DrawEffects, InWidgetStyle.GetColorAndOpacityTint() * LabelLinearColor);
 
 					++LabelIndex;
 					if (LabelIndex > TimecodeImpl::NumberOfLabels)

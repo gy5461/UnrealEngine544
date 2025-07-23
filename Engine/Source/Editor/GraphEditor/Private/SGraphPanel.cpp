@@ -304,6 +304,7 @@ int32 SGraphPanel::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeo
 							FSlateDrawElement::MakeBox(
 								OutDrawElements,
 								NodeDiffHighlightLayerID,
+								FastPathProxyHandle.GetWidgetSortOrder(),
 								CurWidget.Geometry.ToInflatedPaintGeometry(NodeShadowSize),
 								Highlight.Brush,
 								ESlateDrawEffect::None,
@@ -354,6 +355,7 @@ int32 SGraphPanel::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeo
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						ShadowLayerId,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						CurWidget.Geometry.ToInflatedPaintGeometry(NodeShadowSize),
 						ShadowBrush,
 						ESlateDrawEffect::None,
@@ -430,6 +432,7 @@ int32 SGraphPanel::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeo
 								FSlateDrawElement::MakeBox(
 									OutDrawElements,
 									CurWidgetsMaxLayerId,
+									FastPathProxyHandle.GetWidgetSortOrder(),
 									BouncedGeometry,
 									OverlayBrush,
 									ESlateDrawEffect::None,
@@ -655,6 +658,7 @@ int32 SGraphPanel::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeo
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				MaxLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				BorderBrush
 				);

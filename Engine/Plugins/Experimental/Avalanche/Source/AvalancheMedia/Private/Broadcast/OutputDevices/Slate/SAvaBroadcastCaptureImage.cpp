@@ -63,6 +63,7 @@ int32 SAvaBroadcastCaptureImage::OnPaint(const FPaintArgs& Args
 			
 			FSlateDrawElement::MakeBox(OutDrawElements
 				, LayerId
+				, FSlateInvalidationWidgetSortOrder()
 				, FlippedGeometry.ToPaintGeometry()
 				, ImageBrush
 				, DrawEffects
@@ -72,6 +73,7 @@ int32 SAvaBroadcastCaptureImage::OnPaint(const FPaintArgs& Args
 		{
 			FSlateDrawElement::MakeBox(OutDrawElements
 				, LayerId
+				, FSlateInvalidationWidgetSortOrder()
 				, AllottedGeometry.ToPaintGeometry()
 				, ImageBrush
 				, DrawEffects

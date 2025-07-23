@@ -77,6 +77,7 @@ void SAvaLevelViewportSafeFrames::DrawSafeFrame(const FPaintArgs& InPaintArgs, c
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		InOutLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		InAllottedGeometry.ToPaintGeometry(),
 		LinePoints,
 		ESlateDrawEffect::NoPixelSnapping,

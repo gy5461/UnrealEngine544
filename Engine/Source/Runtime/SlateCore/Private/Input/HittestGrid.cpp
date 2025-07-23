@@ -1123,6 +1123,7 @@ void FHittestGrid::DisplayGrid(int32 InLayer, const FGeometry& AllottedGeometry,
 				FSlateDrawElement::MakeBox(
 					WindowElementList,
 					InLayer,
+					FSlateInvalidationWidgetSortOrder(),
 					CachedWidget->GetPaintSpaceGeometry().ToPaintGeometry(),
 					Brush,
 					ESlateDrawEffect::None,

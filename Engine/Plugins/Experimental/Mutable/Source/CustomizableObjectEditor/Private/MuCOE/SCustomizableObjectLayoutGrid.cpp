@@ -231,11 +231,11 @@ int32 SCustomizableObjectLayoutGrid::OnPaint(const FPaintArgs& Args, const FGeom
 	
 	UVCanvasDrawer->InitializeDrawingData(UVLayout, UnassignedUVLayoutVertices, Blocks.Get(), SelectedBlocks);
 	UVCanvasDrawer->Initialize(CanvasRect, ClippingRect, Origin * AllottedGeometry.Scale, Size * AllottedGeometry.Scale, GridSizePoint, AuxCellSize * AllottedGeometry.Scale);
-	FSlateDrawElement::MakeCustom(OutDrawElements, RetLayerId, UVCanvasDrawer);
+	FSlateDrawElement::MakeCustom(OutDrawElements, RetLayerId,FSlateInvalidationWidgetSortOrder(), UVCanvasDrawer);
 
 	const auto MakeYellowSquareLine = [&](const TArray<FVector2D>& Points) -> void
 	{
-		FSlateDrawElement::MakeLines(OutDrawElements, RetLayerId, AllottedGeometry.ToPaintGeometry(),
+		FSlateDrawElement::MakeLines(OutDrawElements, RetLayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(),
 			Points, ESlateDrawEffect::None, FColor(250, 230, 43, 255), true, 2.0);
 	};
 

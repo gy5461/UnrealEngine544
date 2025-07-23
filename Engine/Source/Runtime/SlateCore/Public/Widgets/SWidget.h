@@ -1729,7 +1729,7 @@ protected:
 	/** Dtor ensures that active timer handles are UnRegistered with the SlateApplication. */
 	SLATECORE_API virtual ~SWidget();
 
-private:
+protected:
 	/** Handle to the proxy when on the fast path */
 	mutable FWidgetProxyHandle FastPathProxyHandle;
 

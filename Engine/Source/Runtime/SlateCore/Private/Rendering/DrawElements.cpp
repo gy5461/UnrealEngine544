@@ -569,9 +569,9 @@ void FSlateCachedElementList::ClearCachedElements()
 #endif
 }
 
-FSlateRenderBatch& FSlateCachedElementList::AddRenderBatch(int32 InLayer, const FShaderParams& InShaderParams, const FSlateShaderResource* InResource, ESlateDrawPrimitive InPrimitiveType, ESlateShader InShaderType, ESlateDrawEffect InDrawEffects, ESlateBatchDrawFlag InDrawFlags, int8 SceneIndex)
+FSlateRenderBatch& FSlateCachedElementList::AddRenderBatch(int32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FShaderParams& InShaderParams, const FSlateShaderResource* InResource, ESlateDrawPrimitive InPrimitiveType, ESlateShader InShaderType, ESlateDrawEffect InDrawEffects, ESlateBatchDrawFlag InDrawFlags, int8 SceneIndex)
 {
-	FSlateRenderBatch NewRenderBatch(InLayer, InShaderParams, InResource, InPrimitiveType, InShaderType, InDrawEffects, InDrawFlags, SceneIndex, &CachedRenderingData->Vertices, &CachedRenderingData->Indices, CachedRenderingData->Vertices.Num(), CachedRenderingData->Indices.Num());
+	FSlateRenderBatch NewRenderBatch(InLayer, InSortOrder, InShaderParams, InResource, InPrimitiveType, InShaderType, InDrawEffects, InDrawFlags, SceneIndex, &CachedRenderingData->Vertices, &CachedRenderingData->Indices, CachedRenderingData->Vertices.Num(), CachedRenderingData->Indices.Num());
 	int32 RenderBatchIndex = INDEX_NONE;
 	FSlateRenderBatch& AddedBatchRef = ParentData->AddCachedRenderBatch(MoveTemp(NewRenderBatch), RenderBatchIndex);
 	

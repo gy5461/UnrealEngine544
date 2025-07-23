@@ -175,6 +175,7 @@ int32 SPropertyAnimatorCoreEditorControllersViewTableRow::OnPropertyPaintDropInd
 	(
 		OutElements,
 		InLayerIndex++,
+		FSlateInvalidationWidgetSortOrder(),
 		InGeometry.ToPaintGeometry(FVector2D(InGeometry.GetLocalSize() - Offset), FSlateLayoutTransform(Offset)),
 		DropIndicatorBrush,
 		ESlateDrawEffect::None,

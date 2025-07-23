@@ -140,6 +140,7 @@ int32 SRadialSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 	(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(SliderDiameter, FSlateLayoutTransform(SliderMidPoint)),
 		SliderBarPoints,
 		DrawEffects,
@@ -153,6 +154,7 @@ int32 SRadialSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 	(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(SliderDiameter, FSlateLayoutTransform(SliderMidPoint)),
 		ProgressBarPoints,
 		DrawEffects,
@@ -168,7 +170,8 @@ int32 SRadialSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 	FSlateDrawElement::MakeBox
 	(
 		OutDrawElements, 
-		LayerId, 
+		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(SliderDiameter, FSlateLayoutTransform(SliderMidPoint - SliderRadius)),
 		&CenterBackgroundBrush,
 		DrawEffects, 
@@ -189,6 +192,7 @@ int32 SRadialSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			SliderGeometry.ToPaintGeometry(SliderDiameter, FSlateLayoutTransform(SliderMidPoint)),
 			TArray<FVector2D>{HandStartRotated, HandEndRotated},
 			DrawEffects,
@@ -243,6 +247,7 @@ int32 SRadialSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			SliderGeometry.ToPaintGeometry(SliderDiameter, FSlateLayoutTransform(SliderMidPoint)),
 			TagLinePoints,
 			DrawEffects,
@@ -265,6 +270,7 @@ int32 SRadialSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeText(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			SliderGeometry.ToPaintGeometry(GetThumbImage()->ImageSize, FSlateLayoutTransform(TextTopLeftPoint)),
 			TextToWrite,
 			MyFont,
@@ -282,6 +288,7 @@ int32 SRadialSlider::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedG
 		FSlateDrawElement::MakeRotatedBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			SliderGeometry.ToPaintGeometry(GetThumbImage()->ImageSize, FSlateLayoutTransform(HandleTopLeftPoint)),
 			ThumbImage,
 			DrawEffects,

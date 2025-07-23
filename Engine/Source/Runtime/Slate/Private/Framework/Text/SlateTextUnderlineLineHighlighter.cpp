@@ -53,6 +53,7 @@ int32 ISlateTextLineHighlighter::OnPaint(const FPaintArgs& Args, const FTextLayo
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				++LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, Size), FSlateLayoutTransform(TransformPoint(InverseScale, Location + DrawShadowOffset))),
 				&LineBrush,
 				bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -64,6 +65,7 @@ int32 ISlateTextLineHighlighter::OnPaint(const FPaintArgs& Args, const FTextLayo
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, Size), FSlateLayoutTransform(TransformPoint(InverseScale, Location + DrawUnderlineOffset))),
 			&LineBrush,
 			bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,

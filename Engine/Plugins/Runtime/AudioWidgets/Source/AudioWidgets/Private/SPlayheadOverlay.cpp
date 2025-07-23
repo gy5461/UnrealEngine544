@@ -41,6 +41,7 @@ int32 SPlayheadOverlay::DrawPlayhead(const FGeometry& AllottedGeometry, FSlateWi
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		LinePoints,
 		ESlateDrawEffect::None,

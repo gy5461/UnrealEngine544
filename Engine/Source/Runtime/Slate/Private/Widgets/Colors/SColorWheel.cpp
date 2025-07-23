@@ -93,6 +93,7 @@ int32 SColorWheel::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(CircleSize, FSlateLayoutTransform(0.5f * SelectorSize)),
 		Image,
 		DrawEffects,
@@ -102,6 +103,7 @@ int32 SColorWheel::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeom
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId + 1,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(SelectorSize, FSlateLayoutTransform(0.5f * (AllottedGeometry.GetLocalSize() + CalcRelativePositionFromCenter() * CircleSize - SelectorSize))),
 		SelectorImage,
 		DrawEffects,

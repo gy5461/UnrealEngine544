@@ -131,6 +131,7 @@ int32 FGeometryCollectionTrackSection::OnPaintSection( FSequencerSectionPainter&
 			FSlateDrawElement::MakeBox(
 				Painter.DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				Painter.SectionGeometry.MakeChild(
 					FVector2D(2.f, Painter.SectionGeometry.Size.Y-2.f),
 					FSlateLayoutTransform(FVector2D(OffsetPixel, 1.f))
@@ -177,6 +178,7 @@ int32 FGeometryCollectionTrackSection::OnPaintSection( FSequencerSectionPainter&
 			FSlateDrawElement::MakeBox(
 				Painter.DrawElements,
 				LayerId + 5,
+				FSlateInvalidationWidgetSortOrder(),
 				Painter.SectionGeometry.ToPaintGeometry(TextSize + 2.0f * BoxPadding, FSlateLayoutTransform(TextOffset - BoxPadding)),
 				FAppStyle::GetBrush("WhiteBrush"),
 				ESlateDrawEffect::None,
@@ -186,6 +188,7 @@ int32 FGeometryCollectionTrackSection::OnPaintSection( FSequencerSectionPainter&
 			FSlateDrawElement::MakeText(
 				Painter.DrawElements,
 				LayerId + 6,
+				FSlateInvalidationWidgetSortOrder(),
 				Painter.SectionGeometry.ToPaintGeometry(TextSize, FSlateLayoutTransform(TextOffset)),
 				FrameString,
 				SmallLayoutFont,

@@ -151,7 +151,7 @@ static bool ShouldCull(const FSlateWindowElementList& ElementList, const FPaintG
 	return false;
 }
 
-void FSlateDrawElement::Init(FSlateWindowElementList& ElementList, EElementType InElementType, uint32 InLayer, const FPaintGeometry& PaintGeometry, ESlateDrawEffect InDrawEffects)
+void FSlateDrawElement::Init(FSlateWindowElementList& ElementList, EElementType InElementType, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, ESlateDrawEffect InDrawEffects)
 {
 	if (ElementList.GetIsInGameLayer() && !bApplyDisabledEffectOnWidgets)
 	{
@@ -188,6 +188,7 @@ void FSlateDrawElement::Init(FSlateWindowElementList& ElementList, EElementType 
 #endif
 
 	LayerId = InLayer;
+	SortOrder = InSortOrder;
 
 	ElementType = InElementType;
 	DrawEffects = InDrawEffects;
@@ -228,7 +229,7 @@ void FSlateDrawElement::ApplyPositionOffset(UE::Slate::FDeprecateVector2DParamet
 	const FSlateLayoutTransform InverseLayoutTransform(Inverse(FSlateLayoutTransform(Scale, Position)));
 }
 
-void FSlateDrawElement::MakeDebugQuad( FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, FLinearColor Tint)
+void FSlateDrawElement::MakeDebugQuad( FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, FLinearColor Tint)
 {
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
 
@@ -240,12 +241,13 @@ void FSlateDrawElement::MakeDebugQuad( FSlateWindowElementList& ElementList, uin
 	FSlateBoxElement& Element = ElementList.AddUninitialized<EElementType::ET_DebugQuad>();
 
 	Element.SetTint(Tint);
-	Element.Init(ElementList, EElementType::ET_DebugQuad, InLayer, PaintGeometry, ESlateDrawEffect::None);
+	Element.Init(ElementList, EElementType::ET_DebugQuad, InLayer, InSortOrder, PaintGeometry, ESlateDrawEffect::None);
 }
 
 FSlateDrawElement& FSlateDrawElement::MakeBoxInternal(
 	FSlateWindowElementList& ElementList,
 	uint32 InLayer,
+	const FSlateInvalidationWidgetSortOrder& InSortOrder,
 	const FPaintGeometry& PaintGeometry,
 	const FSlateBrush* InBrush,
 	ESlateDrawEffect InDrawEffects,
@@ -264,7 +266,7 @@ FSlateDrawElement& FSlateDrawElement::MakeBoxInternal(
 			FSlateBoxElement& Element = ElementList.AddUninitialized<EElementType::ET_Box>();
 			Element.SetTint(InTint);
 			Element.SetBrush(InBrush, PaintGeometry.GetLocalSize(), PaintGeometry.DrawScale);
-			Element.Init(ElementList, ElementType, InLayer, PaintGeometry, InDrawEffects);
+			Element.Init(ElementList, ElementType, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 			return Element;
 		}
 		break;
@@ -290,7 +292,7 @@ FSlateDrawElement& FSlateDrawElement::MakeBoxInternal(
 			}
 			Element.SetTint(InTint);
 			Element.SetBrush(InBrush, PaintGeometry.GetLocalSize(), PaintGeometry.DrawScale);
-			Element.Init(ElementList, ElementType, InLayer, PaintGeometry, InDrawEffects);
+			Element.Init(ElementList, ElementType, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 			return Element;
 		}
 		break;
@@ -299,7 +301,7 @@ FSlateDrawElement& FSlateDrawElement::MakeBoxInternal(
 			FSlateBoxElement& Element = ElementList.AddUninitialized<EElementType::ET_Border>();
 			Element.SetTint(InTint);
 			Element.SetBrush(InBrush, PaintGeometry.GetLocalSize(), PaintGeometry.DrawScale);
-			Element.Init(ElementList, ElementType, InLayer, PaintGeometry, InDrawEffects);
+			Element.Init(ElementList, ElementType, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 			return Element;
 
 		}
@@ -310,7 +312,7 @@ FSlateDrawElement& FSlateDrawElement::MakeBoxInternal(
 			FSlateBoxElement& Element = ElementList.AddUninitialized<EElementType::ET_Box>();
 			Element.SetTint(InTint);
 			Element.SetBrush(InBrush, PaintGeometry.GetLocalSize(), PaintGeometry.DrawScale);
-			Element.Init(ElementList, ElementType, InLayer, PaintGeometry, InDrawEffects);
+			Element.Init(ElementList, ElementType, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 			return Element;
 		}
 	}
@@ -318,7 +320,8 @@ FSlateDrawElement& FSlateDrawElement::MakeBoxInternal(
 
 void FSlateDrawElement::MakeBox(
 	FSlateWindowElementList& ElementList,
-	uint32 InLayer, 
+	uint32 InLayer,
+	const FSlateInvalidationWidgetSortOrder& InSortOrder,
 	const FPaintGeometry& PaintGeometry, 
 	const FSlateBrush* InBrush,
 	ESlateDrawEffect InDrawEffects, 
@@ -331,12 +334,13 @@ void FSlateDrawElement::MakeBox(
 		return;
 	}
 
-	MakeBoxInternal(ElementList, InLayer, PaintGeometry, InBrush, InDrawEffects, InTint);
+	MakeBoxInternal(ElementList, InLayer, InSortOrder, PaintGeometry, InBrush, InDrawEffects, InTint);
 }
 
 void FSlateDrawElement::MakeRotatedBox(
 	FSlateWindowElementList& ElementList,
 	uint32 InLayer,
+	const FSlateInvalidationWidgetSortOrder& InSortOrder,
 	const FPaintGeometry& PaintGeometry,
 	const FSlateBrush* InBrush,
 	ESlateDrawEffect InDrawEffects,
@@ -352,7 +356,7 @@ void FSlateDrawElement::MakeRotatedBox(
 		return;
 	}
 
-	FSlateDrawElement& DrawElement = MakeBoxInternal(ElementList, InLayer, PaintGeometry, InBrush, InDrawEffects, InTint);
+	FSlateDrawElement& DrawElement = MakeBoxInternal(ElementList, InLayer, InSortOrder, PaintGeometry, InBrush, InDrawEffects, InTint);
 	
 	if (Angle2D != 0.0f)
 	{
@@ -374,7 +378,7 @@ namespace UE::Slate::Private
 }
 #endif
 
-void FSlateDrawElement::MakeText( FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const FString& InText, const int32 StartIndex, const int32 EndIndex, const FSlateFontInfo& InFontInfo, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint )
+void FSlateDrawElement::MakeText( FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const FString& InText, const int32 StartIndex, const int32 EndIndex, const FSlateFontInfo& InFontInfo, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint )
 {
 	SCOPE_CYCLE_COUNTER(STAT_SlateDrawElementMakeTime)
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
@@ -394,10 +398,10 @@ void FSlateDrawElement::MakeText( FSlateWindowElementList& ElementList, uint32 I
 	Element.SetTint(InTint);
 	Element.SetText(InText, InFontInfo, StartIndex, EndIndex);
 
-	Element.Init(ElementList, EElementType::ET_Text, InLayer, PaintGeometry, InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_Text, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 }
 
-void FSlateDrawElement::MakeText( FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const FString& InText, const FSlateFontInfo& InFontInfo, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint )
+void FSlateDrawElement::MakeText( FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const FString& InText, const FSlateFontInfo& InFontInfo, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint )
 {
 	SCOPE_CYCLE_COUNTER(STAT_SlateDrawElementMakeTime)
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
@@ -429,7 +433,7 @@ void FSlateDrawElement::MakeText( FSlateWindowElementList& ElementList, uint32 I
 	Element.SetTint(InTint);
 	Element.SetText(InText, InFontInfo);
 
-	Element.Init(ElementList, EElementType::ET_Text, InLayer, PaintGeometry, InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_Text, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 }
 
 namespace SlateDrawElement
@@ -469,7 +473,7 @@ namespace SlateDrawElement
 #endif
 }
 
-void FSlateDrawElement::MakeShapedText(FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const FShapedGlyphSequenceRef& InShapedGlyphSequence, ESlateDrawEffect InDrawEffects, const FLinearColor& BaseTint, const FLinearColor& OutlineTint, FTextOverflowArgs TextOverflowArgs)
+void FSlateDrawElement::MakeShapedText(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const FShapedGlyphSequenceRef& InShapedGlyphSequence, ESlateDrawEffect InDrawEffects, const FLinearColor& BaseTint, const FLinearColor& OutlineTint, FTextOverflowArgs TextOverflowArgs)
 {
 	SCOPE_CYCLE_COUNTER(STAT_SlateDrawElementMakeTime)
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
@@ -502,10 +506,10 @@ void FSlateDrawElement::MakeShapedText(FSlateWindowElementList& ElementList, uin
 	Element.SetShapedText(ElementList, InShapedGlyphSequence, OutlineTint);
 	Element.SetOverflowArgs(TextOverflowArgs);
 
-	Element.Init(ElementList, EElementType::ET_ShapedText, InLayer, PaintGeometry, InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_ShapedText, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 }
 
-void FSlateDrawElement::MakeGradient( FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, TArray<FSlateGradientStop> InGradientStops, EOrientation InGradientType, ESlateDrawEffect InDrawEffects, FVector4f CornerRadius)
+void FSlateDrawElement::MakeGradient( FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, TArray<FSlateGradientStop> InGradientStops, EOrientation InGradientType, ESlateDrawEffect InDrawEffects, FVector4f CornerRadius)
 {
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
 
@@ -518,10 +522,10 @@ void FSlateDrawElement::MakeGradient( FSlateWindowElementList& ElementList, uint
 
 	Element.SetGradient(InGradientStops, InGradientType, CornerRadius);
 
-	Element.Init(ElementList, EElementType::ET_Gradient, InLayer, PaintGeometry, InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_Gradient, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 }
 
-void FSlateDrawElement::MakeSpline(FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const UE::Slate::FDeprecateVector2DParameter InStart, const UE::Slate::FDeprecateVector2DParameter InStartDir, const UE::Slate::FDeprecateVector2DParameter InEnd, const UE::Slate::FDeprecateVector2DParameter InEndDir, float InThickness, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint)
+void FSlateDrawElement::MakeSpline(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const UE::Slate::FDeprecateVector2DParameter InStart, const UE::Slate::FDeprecateVector2DParameter InStartDir, const UE::Slate::FDeprecateVector2DParameter InEnd, const UE::Slate::FDeprecateVector2DParameter InEndDir, float InThickness, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint)
 {
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
 
@@ -533,10 +537,10 @@ void FSlateDrawElement::MakeSpline(FSlateWindowElementList& ElementList, uint32 
 
 	Element.SetHermiteSpline(InStart, InStartDir, InEnd, InEndDir, InThickness, InTint);
 
-	Element.Init(ElementList, EElementType::ET_Spline, InLayer, PaintGeometry, InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_Spline, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 }
 
-void FSlateDrawElement::MakeCubicBezierSpline(FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const UE::Slate::FDeprecateVector2DParameter P0, const UE::Slate::FDeprecateVector2DParameter P1, const UE::Slate::FDeprecateVector2DParameter P2, const UE::Slate::FDeprecateVector2DParameter P3, float InThickness, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint)
+void FSlateDrawElement::MakeCubicBezierSpline(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const UE::Slate::FDeprecateVector2DParameter P0, const UE::Slate::FDeprecateVector2DParameter P1, const UE::Slate::FDeprecateVector2DParameter P2, const UE::Slate::FDeprecateVector2DParameter P3, float InThickness, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint)
 {
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
 
@@ -548,16 +552,16 @@ void FSlateDrawElement::MakeCubicBezierSpline(FSlateWindowElementList& ElementLi
 
 	Element.SetCubicBezier(P0, P1, P2, P3, InThickness, InTint);
 
-	Element.Init(ElementList, EElementType::ET_Spline, InLayer, PaintGeometry, InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_Spline, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 }
 
-void FSlateDrawElement::MakeDrawSpaceSpline(FSlateWindowElementList& ElementList, uint32 InLayer, const UE::Slate::FDeprecateVector2DParameter InStart, const UE::Slate::FDeprecateVector2DParameter InStartDir, const UE::Slate::FDeprecateVector2DParameter InEnd, const UE::Slate::FDeprecateVector2DParameter InEndDir, float InThickness, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint)
+void FSlateDrawElement::MakeDrawSpaceSpline(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const UE::Slate::FDeprecateVector2DParameter InStart, const UE::Slate::FDeprecateVector2DParameter InStartDir, const UE::Slate::FDeprecateVector2DParameter InEnd, const UE::Slate::FDeprecateVector2DParameter InEndDir, float InThickness, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint)
 {
-	MakeSpline(ElementList, InLayer, FPaintGeometry(), InStart, InStartDir, InEnd, InEndDir, InThickness, InDrawEffects, InTint);
+	MakeSpline(ElementList, InLayer, InSortOrder, FPaintGeometry(), InStart, InStartDir, InEnd, InEndDir, InThickness, InDrawEffects, InTint);
 }
 
 #if UE_ENABLE_SLATE_VECTOR_DEPRECATION_MECHANISMS
-void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const TArray<FVector2d>& Points, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint, bool bAntialias, float Thickness)
+void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const TArray<FVector2d>& Points, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint, bool bAntialias, float Thickness)
 {
 	if (ShouldCull(ElementList) || Points.Num() < 2)
 	{
@@ -570,11 +574,11 @@ void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 I
 	{
 		NewVector.Add(UE::Slate::CastToVector2f(Vect));
 	}
-	MakeLines(ElementList, InLayer, PaintGeometry, MoveTemp(NewVector), InDrawEffects, InTint, bAntialias, Thickness);
+	MakeLines(ElementList, InLayer, InSortOrder, PaintGeometry, MoveTemp(NewVector), InDrawEffects, InTint, bAntialias, Thickness);
 }
 #endif // UE_ENABLE_SLATE_VECTOR_DEPRECATION_MECHANISMS
 
-void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, TArray<FVector2f> Points, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint, bool bAntialias, float Thickness)
+void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, TArray<FVector2f> Points, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint, bool bAntialias, float Thickness)
 {
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
 
@@ -597,11 +601,11 @@ void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 I
 		DrawEffects |= ESlateDrawEffect::NoPixelSnapping;
 	}
 
-	Element.Init(ElementList, EElementType::ET_Line, InLayer, PaintGeometry, DrawEffects);
+	Element.Init(ElementList, EElementType::ET_Line, InLayer, InSortOrder, PaintGeometry, DrawEffects);
 }
 
 #if UE_ENABLE_SLATE_VECTOR_DEPRECATION_MECHANISMS
-void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const TArray<FVector2d>& Points, const TArray<FLinearColor>& PointColors, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint, bool bAntialias, float Thickness)
+void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const TArray<FVector2d>& Points, const TArray<FLinearColor>& PointColors, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint, bool bAntialias, float Thickness)
 {
 	if (ShouldCull(ElementList) || Points.Num() < 2)
 	{
@@ -614,11 +618,11 @@ void FSlateDrawElement::MakeLines(FSlateWindowElementList& ElementList, uint32 I
 	{
 		NewVector.Add(UE::Slate::CastToVector2f(Vect));
 	}
-	MakeLines(ElementList, InLayer, PaintGeometry, MoveTemp(NewVector), PointColors, InDrawEffects, InTint, bAntialias, Thickness);
+	MakeLines(ElementList, InLayer, InSortOrder, PaintGeometry, MoveTemp(NewVector), PointColors, InDrawEffects, InTint, bAntialias, Thickness);
 }
 #endif
 
-void FSlateDrawElement::MakeLines( FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, TArray<FVector2f> Points, TArray<FLinearColor> PointColors, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint, bool bAntialias, float Thickness )
+void FSlateDrawElement::MakeLines( FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, TArray<FVector2f> Points, TArray<FLinearColor> PointColors, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint, bool bAntialias, float Thickness )
 {
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
 
@@ -633,10 +637,10 @@ void FSlateDrawElement::MakeLines( FSlateWindowElementList& ElementList, uint32 
 	Element.SetThickness(Thickness);
 	Element.SetLines(MoveTemp(Points), bAntialias, MoveTemp(PointColors));
 
-	Element.Init(ElementList, EElementType::ET_Line, InLayer, PaintGeometry, InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_Line, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 }
 
-void FSlateDrawElement::MakeViewport( FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, TSharedPtr<const ISlateViewport> Viewport, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint )
+void FSlateDrawElement::MakeViewport( FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, TSharedPtr<const ISlateViewport> Viewport, ESlateDrawEffect InDrawEffects, const FLinearColor& InTint )
 {
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
 
@@ -650,7 +654,7 @@ void FSlateDrawElement::MakeViewport( FSlateWindowElementList& ElementList, uint
 	Element.SetViewport(Viewport, InTint);
 	check(Element.RenderTargetResource == nullptr || !Element.RenderTargetResource->Debug_IsDestroyed());
 
-	Element.Init(ElementList, EElementType::ET_Viewport, InLayer, PaintGeometry, InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_Viewport, InLayer, InSortOrder, PaintGeometry, InDrawEffects);
 
 	if (Viewport->GetViewportDynamicRange() == ESlateViewportDynamicRange::HDR)
 	{
@@ -659,7 +663,7 @@ void FSlateDrawElement::MakeViewport( FSlateWindowElementList& ElementList, uint
 }
 
 
-void FSlateDrawElement::MakeCustom( FSlateWindowElementList& ElementList, uint32 InLayer, TSharedPtr<ICustomSlateElement, ESPMode::ThreadSafe> CustomDrawer )
+void FSlateDrawElement::MakeCustom( FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, TSharedPtr<ICustomSlateElement, ESPMode::ThreadSafe> CustomDrawer )
 {
 	if (ShouldCull(ElementList))
 	{
@@ -670,12 +674,12 @@ void FSlateDrawElement::MakeCustom( FSlateWindowElementList& ElementList, uint32
 
 	Element.SetCustomDrawer(CustomDrawer);
 	
-	Element.Init(ElementList, EElementType::ET_Custom, InLayer, FPaintGeometry(), ESlateDrawEffect::None);
+	Element.Init(ElementList, EElementType::ET_Custom, InLayer, InSortOrder, FPaintGeometry(), ESlateDrawEffect::None);
 	Element.RenderTransform = FSlateRenderTransform();
 }
 
 
-void FSlateDrawElement::MakeCustomVerts(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateResourceHandle& InRenderResourceHandle, const TArray<FSlateVertex>& InVerts, const TArray<SlateIndex>& InIndexes, ISlateUpdatableInstanceBuffer* InInstanceData, uint32 InInstanceOffset, uint32 InNumInstances, ESlateDrawEffect InDrawEffects)
+void FSlateDrawElement::MakeCustomVerts(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FSlateResourceHandle& InRenderResourceHandle, const TArray<FSlateVertex>& InVerts, const TArray<SlateIndex>& InIndexes, ISlateUpdatableInstanceBuffer* InInstanceData, uint32 InInstanceOffset, uint32 InNumInstances, ESlateDrawEffect InDrawEffects)
 {
 	SCOPE_CYCLE_COUNTER(STAT_SlateDrawElementMakeCustomVertsTime);
 	
@@ -690,18 +694,18 @@ void FSlateDrawElement::MakeCustomVerts(FSlateWindowElementList& ElementList, ui
 	ISlateUpdatableInstanceBufferRenderProxy* RenderProxy = InInstanceData ? InInstanceData->GetRenderProxy() : nullptr;
 	Element.SetCustomVerts(RenderingProxy, InVerts, InIndexes, RenderProxy, InInstanceOffset, InNumInstances);
 
-	Element.Init(ElementList, EElementType::ET_CustomVerts, InLayer, FPaintGeometry(), InDrawEffects);
+	Element.Init(ElementList, EElementType::ET_CustomVerts, InLayer, InSortOrder, FPaintGeometry(), InDrawEffects);
 	Element.RenderTransform = FSlateRenderTransform();
 }
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-void FSlateDrawElement::MakePostProcessPass(FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const FVector4f& Params, int32 DownsampleAmount, FVector4f CornerRadius)
+void FSlateDrawElement::MakePostProcessPass(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const FVector4f& Params, int32 DownsampleAmount, FVector4f CornerRadius)
 {
-	FSlateDrawElement::MakePostProcessBlur(ElementList, InLayer, PaintGeometry, Params, DownsampleAmount, CornerRadius);
+	FSlateDrawElement::MakePostProcessBlur(ElementList, InLayer, InSortOrder, PaintGeometry, Params, DownsampleAmount, CornerRadius);
 }
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
-void FSlateDrawElement::MakePostProcessBlur(FSlateWindowElementList& ElementList, uint32 InLayer, const FPaintGeometry& PaintGeometry, const FVector4f& Params, int32 DownsampleAmount, FVector4f CornerRadius)
+void FSlateDrawElement::MakePostProcessBlur(FSlateWindowElementList& ElementList, uint32 InLayer, const FSlateInvalidationWidgetSortOrder& InSortOrder, const FPaintGeometry& PaintGeometry, const FVector4f& Params, int32 DownsampleAmount, FVector4f CornerRadius)
 {
 	PaintGeometry.CommitTransformsIfUsingLegacyConstructor();
 
@@ -716,7 +720,7 @@ void FSlateDrawElement::MakePostProcessBlur(FSlateWindowElementList& ElementList
 	Element.PostProcessData = Params;
 	Element.CornerRadius = CornerRadius;
 
-	Element.Init(ElementList, EElementType::ET_PostProcessPass, InLayer, PaintGeometry, ESlateDrawEffect::None);
+	Element.Init(ElementList, EElementType::ET_PostProcessPass, InLayer, InSortOrder, PaintGeometry, ESlateDrawEffect::None);
 }
 
 FSlateDrawElement::FSlateDrawElement()

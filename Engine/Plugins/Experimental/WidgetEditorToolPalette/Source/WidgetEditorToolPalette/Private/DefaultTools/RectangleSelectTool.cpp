@@ -177,6 +177,7 @@ int32 URectangleSelectTool::OnPaint(const FPaintArgs& Args, const FGeometry& All
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(Properties->Marquee.Rect.GetSize() * PinnedOwningWidget->GetZoomAmount(), FSlateLayoutTransform(PinnedOwningWidget->GraphCoordToPanelCoord(Properties->Marquee.Rect.GetUpperLeft()))),
 				FAppStyle::GetBrush(TEXT("MarqueeSelection"))
 			);

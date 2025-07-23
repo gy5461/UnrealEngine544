@@ -49,6 +49,7 @@ int32 SHistogram::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 	(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry( FVector2D(AllottedGeometry.GetLocalSize().X,AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform(FVector2D(0,0)) ),
 		TimelineAreaBrush,
 		DrawEffects,
@@ -77,6 +78,7 @@ int32 SHistogram::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		LinePoints,
 		DrawEffects,
@@ -94,6 +96,7 @@ int32 SHistogram::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			DrawEffects,
@@ -106,7 +109,8 @@ int32 SHistogram::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		float FontCharWidth = static_cast<float>(FontMeasureService->Measure(XLabel, SummaryFont).X);
 		FSlateDrawElement::MakeText(
 			OutDrawElements, 
-			LayerId, 
+			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToOffsetPaintGeometry( FVector2D(MarkerPosX-FontCharWidth/2.0f,AllottedGeometry.GetLocalSize().Y-LabelBuffer/2.0f-MaxFontCharHeight/2.0f) ),
 			XLabel,
 			SummaryFont,
@@ -128,6 +132,7 @@ int32 SHistogram::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			DrawEffects,
@@ -141,7 +146,8 @@ int32 SHistogram::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeText
 			(
 			OutDrawElements, 
-			LayerId, 
+			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToOffsetPaintGeometry( FVector2D(LabelBuffer/2.0f-FontCharWidth/2.0f,MarkerPosY-MaxFontCharHeight/2.0f) ),
 			YLabel,
 			SummaryFont,
@@ -159,6 +165,7 @@ int32 SHistogram::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGeom
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( FVector2D(CountX, SizeY), FSlateLayoutTransform(FVector2D(MarkerPosX, AllottedGeometry.GetLocalSize().Y - SizeY- LabelBuffer)) ),
 			FillImage,
 			DrawEffects,

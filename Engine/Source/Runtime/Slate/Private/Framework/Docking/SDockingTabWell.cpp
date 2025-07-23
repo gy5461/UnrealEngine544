@@ -183,6 +183,7 @@ int32 SDockingTabWell::OnPaint( const FPaintArgs& Args, const FGeometry& Allotte
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					MaxLayerId,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					Geometry,
 					SeparatorBrush,
 					ESlateDrawEffect::None,

@@ -342,6 +342,7 @@ void FGraphTrack::DrawSeries(const FGraphSeries& Series, FDrawContext& DrawConte
 				FSlateDrawElement::MakeCustomVerts(
 					DrawContext.ElementList,
 					DrawContext.LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					ResourceHandle,
 					Verts,
 					Indices,
@@ -374,7 +375,7 @@ void FGraphTrack::DrawSeries(const FGraphSeries& Series, FDrawContext& DrawConte
 			const TArray<FVector2D>& LinePoints = Series.LinePoints[BatchIndex];
 			if (LinePoints.Num() > 0)
 			{
-				FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, LineGeo, LinePoints, LineDrawEffects, Series.Color, bAntialias, Thickness);
+				FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId,FSlateInvalidationWidgetSortOrder(), LineGeo, LinePoints, LineDrawEffects, Series.Color, bAntialias, Thickness);
 			}
 		}
 		DrawContext.LayerId++;
@@ -467,12 +468,12 @@ void FGraphTrack::DrawSeries(const FGraphSeries& Series, FDrawContext& DrawConte
 				TArray<FVector2f> HLine;
 				HLine.Add(FVector2f(0.0f, 0.0f));
 				HLine.Add(FVector2f(10.0f, 0.0f));
-				FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, LineGeo, HLine, LineDrawEffects, FLinearColor::White, false, 1.0f);
+				FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, FSlateInvalidationWidgetSortOrder(),LineGeo, HLine, LineDrawEffects, FLinearColor::White, false, 1.0f);
 
 				TArray<FVector2f> VLine;
 				VLine.Add(FVector2f(0.0f, 0.0f));
 				VLine.Add(FVector2f(0.0f, 10.0f));
-				FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, LineGeo, VLine, LineDrawEffects, FLinearColor::White, false, 1.0f);
+				FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, FSlateInvalidationWidgetSortOrder(),LineGeo, VLine, LineDrawEffects, FLinearColor::White, false, 1.0f);
 			}
 			DrawContext.LayerId++;
 
@@ -496,12 +497,12 @@ void FGraphTrack::DrawSeries(const FGraphSeries& Series, FDrawContext& DrawConte
 			TArray<FVector2f> HLine;
 			HLine.Add(FVector2f(PtX - 8.0f * PixelUnit, PtY));
 			HLine.Add(FVector2f(PtX + 9.0f * PixelUnit, PtY));
-			FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, LineGeo, HLine, LineDrawEffects, FLinearColor::White, false, Thickness);
+			FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, FSlateInvalidationWidgetSortOrder(),LineGeo, HLine, LineDrawEffects, FLinearColor::White, false, Thickness);
 
 			TArray<FVector2f> VLine;
 			VLine.Add(FVector2f(PtX, PtY - 8.0f * PixelUnit));
 			VLine.Add(FVector2f(PtX, PtY + 9.0f * PixelUnit));
-			FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, LineGeo, VLine, LineDrawEffects, FLinearColor::White, false, Thickness);
+			FSlateDrawElement::MakeLines(DrawContext.ElementList, DrawContext.LayerId, FSlateInvalidationWidgetSortOrder(),LineGeo, VLine, LineDrawEffects, FLinearColor::White, false, Thickness);
 		}
 		DrawContext.LayerId++;
 

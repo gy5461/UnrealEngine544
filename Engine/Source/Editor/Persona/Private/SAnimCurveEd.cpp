@@ -63,6 +63,7 @@ int32 SAnimCurveEd::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeo
 	FSlateDrawElement::MakeLines(
 		OutDrawElements,
 		NewLayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		MyGeometry,
 		LinePoints,
 		ESlateDrawEffect::None,

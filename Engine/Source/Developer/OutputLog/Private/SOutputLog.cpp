@@ -64,6 +64,7 @@ public:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				++LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, FVector2D(Width, FMath::Max(Line.Size.Y, Line.TextHeight))), FSlateLayoutTransform(TransformPoint(InverseScale, Location))),
 				&DefaultStyle.HighlightShape,
 				bParentEnabled /*&& bHasKeyboardFocus*/ ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -102,6 +103,7 @@ public:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				++LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, FVector2D(Width, FMath::Max(Line.Size.Y, Line.TextHeight))), FSlateLayoutTransform(TransformPoint(InverseScale, Location))),
 				&DefaultStyle.HighlightShape,
 				bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,

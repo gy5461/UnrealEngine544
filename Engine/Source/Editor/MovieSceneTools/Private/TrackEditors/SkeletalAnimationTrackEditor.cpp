@@ -766,6 +766,7 @@ int32 FSkeletalAnimationSection::OnPaintSection( FSequencerSectionPainter& Paint
 			FSlateDrawElement::MakeBox(
 				Painter.DrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				Painter.SectionGeometry.MakeChild(
 					FVector2D(2.f, Painter.SectionGeometry.Size.Y-2.f),
 					FSlateLayoutTransform(FVector2D(OffsetPixel, 1.f))

@@ -176,6 +176,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		RetLayerId++,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(),
 		CurrentBackgroundImage,
 		DrawEffects,
@@ -244,6 +245,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						RetLayerId++,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						PaintRect,
 						CurrentFillImage,
 						DrawEffects,
@@ -279,6 +281,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						RetLayerId++,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						PaintRect,
 						CurrentFillImage,
 						DrawEffects,
@@ -314,6 +317,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						RetLayerId++,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						PaintRect,
 						CurrentFillImage,
 						DrawEffects,
@@ -348,6 +352,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						RetLayerId++,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						PaintRect,
 						CurrentFillImage,
 						DrawEffects,
@@ -382,6 +387,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						RetLayerId++,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						PaintRect,
 						CurrentFillImage,
 						DrawEffects,
@@ -416,6 +422,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						RetLayerId++,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						PaintRect,
 						CurrentFillImage,
 						DrawEffects,
@@ -451,6 +458,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 					FSlateDrawElement::MakeBox(
 						OutDrawElements,
 						RetLayerId++,
+						FastPathProxyHandle.GetWidgetSortOrder(),
 						PaintRect,
 						CurrentFillImage,
 						DrawEffects,
@@ -480,6 +488,7 @@ int32 SProgressBar::OnPaint( const FPaintArgs& Args, const FGeometry& AllottedGe
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				RetLayerId++,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(
 					FVector2f( AllottedGeometry.GetLocalSize().X + MarqueeImageSize, AllottedGeometry.GetLocalSize().Y ),
 					FSlateLayoutTransform(FVector2f( MarqueeAnimOffset - MarqueeImageSize, 0.0f ))

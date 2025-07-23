@@ -179,6 +179,7 @@ void FConsoleSlateDebuggerInvalidationRoot::HandlePaintDebugInfo(const FPaintArg
 		FSlateDrawElement::MakeText(
 			InOutDrawElements
 			, InOutLayerId
+			, FSlateInvalidationWidgetSortOrder()
 			, InAllottedGeometry.ToPaintGeometry(FVector2f(1.f, 1.f), FSlateLayoutTransform(Location))
 			, Text
 			, FontInfo
@@ -278,6 +279,7 @@ void FConsoleSlateDebuggerInvalidationRoot::HandlePaintDebugInfo(const FPaintArg
 				FSlateDrawElement::MakeDebugQuad(
 					InOutDrawElements,
 					InOutLayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					PaintGeometry,
 					ColorWithOpacity);
 			}
@@ -285,6 +287,7 @@ void FConsoleSlateDebuggerInvalidationRoot::HandlePaintDebugInfo(const FPaintArg
 			FSlateDrawElement::MakeBox(
 				InOutDrawElements,
 				InOutLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintGeometry,
 				QuadBrush,
 				ESlateDrawEffect::None,
@@ -294,6 +297,7 @@ void FConsoleSlateDebuggerInvalidationRoot::HandlePaintDebugInfo(const FPaintArg
 			FSlateDrawElement::MakeText(
 				InOutDrawElements,
 				InOutLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintGeometry,
 				*WidgetId,
 				FontInfo,

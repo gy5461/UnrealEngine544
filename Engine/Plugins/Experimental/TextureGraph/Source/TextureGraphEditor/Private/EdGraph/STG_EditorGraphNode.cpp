@@ -367,6 +367,7 @@ int32 STG_EditorGraphNode::OnPaint(const FPaintArgs& Args, const FGeometry& Allo
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			NodeLayerID,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToInflatedPaintGeometry(NodeShadowSize),
 			ShadowBrush,
 			ESlateDrawEffect::None,

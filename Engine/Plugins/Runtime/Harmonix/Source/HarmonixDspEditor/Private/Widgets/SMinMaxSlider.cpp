@@ -163,6 +163,7 @@ int32 SMinMaxSlider::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGe
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(BarSize, FSlateLayoutTransform(BarTopLeft)),
 		BarImage,
 		DrawEffects,
@@ -175,6 +176,7 @@ int32 SMinMaxSlider::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGe
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(GetThumbImage()->ImageSize, FSlateLayoutTransform(HandleTopLeftPoint)),
 		ThumbImage,
 		DrawEffects,
@@ -183,6 +185,7 @@ int32 SMinMaxSlider::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGe
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		SliderGeometry.ToPaintGeometry(GetThumbImage()->ImageSize, FSlateLayoutTransform(HandleTopRightPoint)),
 		ThumbImage,
 		DrawEffects,

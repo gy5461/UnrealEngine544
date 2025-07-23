@@ -155,6 +155,7 @@ int32 FSlateImageRun::OnPaint(const FPaintArgs& PaintArgs, const FTextArgs& Text
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, TextArgs.Block->GetSize()), FSlateLayoutTransform(TransformPoint(InverseScale, TextArgs.Block->GetLocationOffset()))),
 			Image,
 			DrawEffects,

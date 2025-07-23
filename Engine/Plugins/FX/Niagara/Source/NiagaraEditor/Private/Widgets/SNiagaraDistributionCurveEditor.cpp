@@ -59,12 +59,12 @@ class SNiagaraCompactCurveView : public SLeafWidget
 			CacheLines(AllottedGeometry.Size.X, AllottedGeometry.Size.Y, false, false, true);
 		}
 
-		FSlateDrawElement::MakeLines(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), CurvePointsCache, ESlateDrawEffect::None, CurveColor.GetColor(InWidgetStyle), true, 2.0f);
+		FSlateDrawElement::MakeLines(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), CurvePointsCache, ESlateDrawEffect::None, CurveColor.GetColor(InWidgetStyle), true, 2.0f);
 		for (const TArray<FVector2D>& KeyLinePoints : KeyLinesCache)
 		{
-			FSlateDrawElement::MakeLines(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), KeyLinePoints, ESlateDrawEffect::None, KeyColor.GetColor(InWidgetStyle), true, 2.0f);
+			FSlateDrawElement::MakeLines(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), KeyLinePoints, ESlateDrawEffect::None, KeyColor.GetColor(InWidgetStyle), true, 2.0f);
 		}
-		FSlateDrawElement::MakeLines(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), SelectedKeyLineCache, ESlateDrawEffect::None, SelectedKeyColor.GetColor(InWidgetStyle), true, 3.0f);
+		FSlateDrawElement::MakeLines(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), SelectedKeyLineCache, ESlateDrawEffect::None, SelectedKeyColor.GetColor(InWidgetStyle), true, 3.0f);
 		return LayerId;
 	}
 

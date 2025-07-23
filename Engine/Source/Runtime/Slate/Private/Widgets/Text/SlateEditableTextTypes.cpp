@@ -138,6 +138,7 @@ int32 FCursorLineHighlighter::OnPaint(const FPaintArgs& Args, const FTextLayout:
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, FVector2D(FMath::Max(CursorWidth * AllottedGeometry.Scale, 1.0f), Size.Y)), FSlateLayoutTransform(TransformPoint(InverseScale, Location + OptionalWidth))),
 		CursorBrush.Get(),
 		bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -178,6 +179,7 @@ int32 FTextCompositionHighlighter::OnPaint(const FPaintArgs& Args, const FTextLa
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, Size), FSlateLayoutTransform(TransformPoint(InverseScale, Location))),
 			CompositionBrush.Get(),
 			bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -218,6 +220,7 @@ int32 FTextSelectionHighlighter::OnPaint(const FPaintArgs& Args, const FTextLayo
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, FVector2D(HighlightWidth, FMath::Max(Line.Size.Y, Line.TextHeight))), FSlateLayoutTransform(TransformPoint(InverseScale, Location))),
 			&DefaultStyle.HighlightShape,
 			bParentEnabled && bHasKeyboardFocus ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,
@@ -254,6 +257,7 @@ int32 FTextSearchHighlighter::OnPaint(const FPaintArgs& Args, const FTextLayout:
 		FSlateDrawElement::MakeBox(
 			OutDrawElements,
 			++LayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, FVector2D(Width, FMath::Max(Line.Size.Y, Line.TextHeight))), FSlateLayoutTransform(TransformPoint(InverseScale, Location))),
 			&DefaultStyle.HighlightShape,
 			bParentEnabled && bHasKeyboardFocus ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,

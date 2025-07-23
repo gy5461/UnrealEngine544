@@ -117,6 +117,7 @@ void FConnectionDrawingPolicy::DrawSplineWithArrow(const FVector2D& StartPoint, 
 		FSlateDrawElement::MakeBox(
 			DrawElementsList,
 			ArrowLayerID,
+			FSlateInvalidationWidgetSortOrder(),
 			FPaintGeometry(ArrowPoint, ArrowImage->ImageSize * ZoomFactor, ZoomFactor),
 			ArrowImage,
 			ESlateDrawEffect::None,
@@ -340,6 +341,7 @@ void FConnectionDrawingPolicy::DrawConnection(int32 LayerId, const FVector2D& St
 	FSlateDrawElement::MakeDrawSpaceSpline(
 		DrawElementsList,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		P0, P0Tangent,
 		P1, P1Tangent,
 		Params.WireThickness,
@@ -375,6 +377,7 @@ void FConnectionDrawingPolicy::DrawConnection(int32 LayerId, const FVector2D& St
 					FSlateDrawElement::MakeBox(
 						DrawElementsList,
 						LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						FPaintGeometry( BubblePos, BubbleSize, ZoomFactor  ),
 						BubbleImage,
 						ESlateDrawEffect::None,
@@ -403,6 +406,7 @@ void FConnectionDrawingPolicy::DrawConnection(int32 LayerId, const FVector2D& St
 			FSlateDrawElement::MakeRotatedBox(
 				DrawElementsList,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				FPaintGeometry(MidpointDrawPos, MidpointImage->ImageSize * ZoomFactor, ZoomFactor),
 				MidpointImage,
 				ESlateDrawEffect::None,

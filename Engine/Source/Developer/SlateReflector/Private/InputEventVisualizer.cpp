@@ -251,6 +251,7 @@ void FInputEventVisualizer::HandlePaint(const FPaintArgs& InArgs, const FGeometr
 				FSlateDrawElement::MakeBox(
 					OutDrawElements,
 					NewLayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					CursorHighlightGeometry.ToPaintGeometry(),
 					Brush,
 					ESlateDrawEffect::None,

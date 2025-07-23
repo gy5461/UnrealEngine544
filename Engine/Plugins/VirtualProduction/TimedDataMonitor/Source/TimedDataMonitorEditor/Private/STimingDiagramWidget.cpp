@@ -90,7 +90,7 @@ public:
 		{
 			if (bShowSnapshot && SnapshotLocationMinX < SizeOfFurthur)
 			{
-				FSlateDrawElement::MakeText(OutDrawElements, LayerId,
+				FSlateDrawElement::MakeText(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2D(SizeOfFurthur, SizeOfBoxY), FSlateLayoutTransform(FVector2D(0, LocationOfSnapshotBoxY))),
 					FEditorFontGlyphs::Angle_Double_Left,
 					FontInfo, ESlateDrawEffect::None,
@@ -99,7 +99,7 @@ public:
 
 			if (bShowMean && MeanLocationMinX < SizeOfFurthur)
 			{
-				FSlateDrawElement::MakeText(OutDrawElements, LayerId,
+				FSlateDrawElement::MakeText(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2D(SizeOfFurthur, SizeOfBoxY), FSlateLayoutTransform(FVector2D(0, LocationOfMeanBoxY))),
 					FEditorFontGlyphs::Angle_Double_Left,
 					FontInfo, ESlateDrawEffect::None,
@@ -114,7 +114,7 @@ public:
 			if (DrawLocationX < SizeX - SizeOfFurthur && SnapshotLocationMaxX > SizeOfFurthur)
 			{
 				const float DrawSizeX = FMath::Clamp(SnapshotLocationMaxX - DrawLocationX, 1.f, SizeX - DrawLocationX - SizeOfFurthur);
-				FSlateDrawElement::MakeBox(OutDrawElements, LayerId,
+				FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2D(DrawSizeX, SizeOfBoxY), FSlateLayoutTransform(FVector2D(DrawLocationX, LocationOfSnapshotBoxY))),
 					DarkBrush, ESlateDrawEffect::None,
 					BrightBrush->GetTint(InWidgetStyle) * FLinearColor(0.5f, 0.5f, 0.5f));
@@ -129,7 +129,7 @@ public:
 				const float DrawSizeX = FMath::Clamp(MeanLocationMaxX - DrawLocationX, 1.f, SizeX - DrawLocationX - SizeOfFurthur);
 				if (bShowMean)
 				{
-					FSlateDrawElement::MakeBox(OutDrawElements, LayerId,
+					FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(FVector2D(DrawSizeX, SizeOfBoxY), FSlateLayoutTransform(FVector2D(DrawLocationX, LocationOfMeanBoxY))),
 						DarkBrush, ESlateDrawEffect::None,
 						BrightBrush->GetTint(InWidgetStyle) * FLinearColor(0.2f, 0.2f, 0.2f));
@@ -149,7 +149,7 @@ public:
 				{
 					const float DrawLocationX = FMath::Clamp(SigmaLocationMinX, SizeOfFurthur, SizeX - SizeOfFurthur);
 					const float DrawSizeX = FMath::Clamp(SigmaLocationMaxX - DrawLocationX, 0.f, SizeX - SizeOfFurthur);
-					FSlateDrawElement::MakeBox(OutDrawElements, LayerId,
+					FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(FVector2D(DrawSizeX, SizeOfSigmaY), FSlateLayoutTransform(FVector2D(DrawLocationX, LocationOfSigmaY))),
 						DarkBrush, ESlateDrawEffect::None,
 						BrightBrush->GetTint(InWidgetStyle) * FLinearColor::White);
@@ -162,7 +162,7 @@ public:
 				{
 					const float DrawLocationX = FMath::Clamp(SigmaLocationMinX, SizeOfFurthur, SizeX - SizeOfFurthur);
 					const float DrawSizeX = FMath::Clamp(SigmaLocationMaxX - DrawLocationX, 0.f, SizeX - SizeOfFurthur);
-					FSlateDrawElement::MakeBox(OutDrawElements, LayerId,
+					FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(FVector2D(DrawSizeX, SizeOfSigmaY), FSlateLayoutTransform(FVector2D(DrawLocationX, LocationOfSigmaY))),
 						DarkBrush, ESlateDrawEffect::None,
 						BrightBrush->GetTint(InWidgetStyle) * FLinearColor::White);
@@ -175,7 +175,7 @@ public:
 		{
 			if (bShowSnapshot && SnapshotLocationMaxX > SizeX - SizeOfFurthur)
 			{
-				FSlateDrawElement::MakeText(OutDrawElements, LayerId,
+				FSlateDrawElement::MakeText(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2D(SizeOfFurthur, SizeOfBoxY), FSlateLayoutTransform(FVector2D(SizeX - SizeOfFurthur + 4, LocationOfSnapshotBoxY))),
 					FEditorFontGlyphs::Angle_Double_Right,
 					FontInfo, ESlateDrawEffect::None,
@@ -184,7 +184,7 @@ public:
 
 			if (bShowMean && MeanLocationMaxX > SizeX - SizeOfFurthur)
 			{
-				FSlateDrawElement::MakeText(OutDrawElements, LayerId,
+				FSlateDrawElement::MakeText(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(FVector2D(SizeOfFurthur, SizeOfBoxY), FSlateLayoutTransform(FVector2D(SizeX - SizeOfFurthur + 4, LocationOfSnapshotBoxY))),
 					FEditorFontGlyphs::Angle_Double_Right,
 					FontInfo, ESlateDrawEffect::None,
@@ -196,7 +196,7 @@ public:
 		{
 			const bool bIsInRange = (FMath::IsNearlyEqual(EvaluationTime, MinSampleTime) || EvaluationTime >= MinSampleTime) && (FMath::IsNearlyEqual(EvaluationTime, MaxSampleTime) || EvaluationTime <= MaxSampleTime);
 			FLinearColor EvaluationColor = bIsInRange ? FLinearColor::Green : FLinearColor::Red;
-			FSlateDrawElement::MakeBox(OutDrawElements, LayerId,
+			FSlateDrawElement::MakeBox(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(FVector2D(1, SizeY), FSlateLayoutTransform(FVector2D(LocationOfCenter, 0))),
 				DarkBrush, ESlateDrawEffect::None,
 				DarkBrush->GetTint(InWidgetStyle) * EvaluationColor);
@@ -232,6 +232,7 @@ public:
 					FSlateDrawElement::MakeLines(
 						OutDrawElements,
 						LayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						AllottedGeometry.ToPaintGeometry(),
 						LinePoints,
 						ESlateDrawEffect::None,

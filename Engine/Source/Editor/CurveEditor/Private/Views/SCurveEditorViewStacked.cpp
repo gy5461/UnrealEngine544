@@ -178,7 +178,7 @@ void SCurveEditorViewStacked::DrawViewGrids(const FGeometry& AllottedGeometry, c
 			FSlateLayoutTransform(FVector2D(0.f, PixelTop))
 			);
 			
-			FSlateDrawElement::MakeBox(OutDrawElements, GridLineLayerId + 1, BoxGeometry, WhiteBrush, DrawEffects, CurveColorTint);
+			FSlateDrawElement::MakeBox(OutDrawElements, GridLineLayerId + 1,FastPathProxyHandle.GetWidgetSortOrder(), BoxGeometry, WhiteBrush, DrawEffects, CurveColorTint);
 		}
 
 		// Horizontal grid lines
@@ -193,14 +193,14 @@ void SCurveEditorViewStacked::DrawViewGrids(const FGeometry& AllottedGeometry, c
 			for (float GridLineVal : MajorGridLinesH)
 			{
 				LinePoints[0].Y = LinePoints[1].Y = GridLineVal;
-				FSlateDrawElement::MakeLines(OutDrawElements, GridLineLayerId, PaintGeometry, LinePoints, DrawEffects, MajorGridColor, false);
+				FSlateDrawElement::MakeLines(OutDrawElements, GridLineLayerId,FastPathProxyHandle.GetWidgetSortOrder(), PaintGeometry, LinePoints, DrawEffects, MajorGridColor, false);
 			}
 
 			// draw minor lines
 			for (float GridLineVal : MinorGridLinesH)
 			{
 				LinePoints[0].Y = LinePoints[1].Y = GridLineVal;
-				FSlateDrawElement::MakeLines(OutDrawElements, GridLineLayerId, PaintGeometry, LinePoints, DrawEffects, MinorGridColor, false);
+				FSlateDrawElement::MakeLines(OutDrawElements, GridLineLayerId, FastPathProxyHandle.GetWidgetSortOrder(),PaintGeometry, LinePoints, DrawEffects, MinorGridColor, false);
 			}
 		}
 
@@ -218,7 +218,7 @@ void SCurveEditorViewStacked::DrawViewGrids(const FGeometry& AllottedGeometry, c
 				if (VerticalLine >= 0 || VerticalLine <= RoundedWidth)
 				{
 					LinePoints[0].X = LinePoints[1].X = VerticalLine;
-					FSlateDrawElement::MakeLines(OutDrawElements, GridLineLayerId, PaintGeometry, LinePoints, DrawEffects, MajorGridColor, false);
+					FSlateDrawElement::MakeLines(OutDrawElements, GridLineLayerId,FastPathProxyHandle.GetWidgetSortOrder(), PaintGeometry, LinePoints, DrawEffects, MajorGridColor, false);
 				}
 			}
 
@@ -229,7 +229,7 @@ void SCurveEditorViewStacked::DrawViewGrids(const FGeometry& AllottedGeometry, c
 				if (VerticalLine >= 0 || VerticalLine <= RoundedWidth)
 				{
 					LinePoints[0].X = LinePoints[1].X = VerticalLine;
-					FSlateDrawElement::MakeLines(OutDrawElements, GridLineLayerId, PaintGeometry, LinePoints, DrawEffects, MinorGridColor, false);
+					FSlateDrawElement::MakeLines(OutDrawElements, GridLineLayerId,FastPathProxyHandle.GetWidgetSortOrder(), PaintGeometry, LinePoints, DrawEffects, MinorGridColor, false);
 				}
 			}
 		}
@@ -281,8 +281,8 @@ void SCurveEditorViewStacked::DrawLabels(const FGeometry& AllottedGeometry, cons
 		const FPaintGeometry LabelDropshadowGeometry = AllottedGeometry.ToPaintGeometry(FSlateLayoutTransform(Position + FVector2D(2, 2)));
 
 		// Drop shadow
-		FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId, LabelDropshadowGeometry, Label, FontInfo, DrawEffects, FLinearColor::Black.CopyWithNewOpacity(0.80f));
-		FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId+1, LabelGeometry, Label, FontInfo, DrawEffects, Curve->GetColor());
+		FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId, FastPathProxyHandle.GetWidgetSortOrder(),LabelDropshadowGeometry, Label, FontInfo, DrawEffects, FLinearColor::Black.CopyWithNewOpacity(0.80f));
+		FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId+1,FastPathProxyHandle.GetWidgetSortOrder(), LabelGeometry, Label, FontInfo, DrawEffects, Curve->GetColor());
 	}
 }
 
@@ -366,6 +366,7 @@ void SCurveEditorViewStacked::DrawBufferedCurves(const FGeometry& AllottedGeomet
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				CurveLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				ScreenSpaceInterpolatingPoints,
 				DrawEffects,

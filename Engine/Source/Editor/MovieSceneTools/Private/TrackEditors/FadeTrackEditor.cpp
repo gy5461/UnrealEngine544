@@ -95,6 +95,7 @@ public:
 			FSlateDrawElement::MakeGradient(
 				Painter.DrawElements,
 				Painter.LayerId + 1,
+				FSlateInvalidationWidgetSortOrder(),
 				PaintGeometry,
 				GradientStops,
 				Orient_Vertical,

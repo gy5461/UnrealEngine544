@@ -86,6 +86,7 @@ protected:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				ConflictBrush,
 				ESlateDrawEffect::None,
@@ -98,6 +99,7 @@ protected:
 			FSlateDrawElement::MakeBox(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				SelectedBrush,
 				ESlateDrawEffect::None,
@@ -116,6 +118,7 @@ protected:
 			FSlateDrawElement::MakeGradient(
 				OutDrawElements,
 				LayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry(),
 				GradientStops,
 				EOrientation::Orient_Horizontal,

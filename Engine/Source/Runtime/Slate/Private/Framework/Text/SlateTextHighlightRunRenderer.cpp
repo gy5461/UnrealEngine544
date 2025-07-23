@@ -21,6 +21,7 @@ int32 FSlateTextHighlightRunRenderer::OnPaint( const FPaintArgs& Args, const FTe
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		++LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(TransformVector(InverseScale, FVector2D(Block->GetSize().X, Line.Size.Y)), FSlateLayoutTransform(TransformPoint(InverseScale, Location))),
 		&DefaultStyle.HighlightShape,
 		bParentEnabled ? ESlateDrawEffect::None : ESlateDrawEffect::DisabledEffect,

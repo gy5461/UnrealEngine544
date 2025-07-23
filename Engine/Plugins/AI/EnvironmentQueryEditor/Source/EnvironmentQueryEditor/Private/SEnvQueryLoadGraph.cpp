@@ -26,6 +26,7 @@ int32 SEnvQueryLoadGraph::OnPaint(const FPaintArgs& Args, const FGeometry& Allot
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FSlateInvalidationWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(FVector2f(AllottedGeometry.GetLocalSize().X, AllottedGeometry.GetLocalSize().Y), FSlateLayoutTransform()),
 		TimelineAreaBrush,
 		DrawEffects,
@@ -57,7 +58,7 @@ int32 SEnvQueryLoadGraph::OnPaint(const FPaintArgs& Args, const FGeometry& Allot
 			LinePoints[0].Y = AllottedGeometry.GetLocalSize().Y - PaddingV;
 			LinePoints[1].Y = PaddingV + (1.0f - Pct) * GraphHeight;
 
-			FSlateDrawElement::MakeLines(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), LinePoints, DrawEffects, LineColor);
+			FSlateDrawElement::MakeLines(OutDrawElements, LayerId, FSlateInvalidationWidgetSortOrder(),AllottedGeometry.ToPaintGeometry(), LinePoints, DrawEffects, LineColor);
 		}
 	}
 	else
@@ -83,7 +84,7 @@ int32 SEnvQueryLoadGraph::OnPaint(const FPaintArgs& Args, const FGeometry& Allot
 			LinePoints[0].Y = AllottedGeometry.GetLocalSize().Y - PaddingV;
 			LinePoints[1].Y = PaddingV + (1.0f - Pct) * GraphHeight;
 
-			FSlateDrawElement::MakeLines(OutDrawElements, LayerId, AllottedGeometry.ToPaintGeometry(), LinePoints, DrawEffects, LineColor);
+			FSlateDrawElement::MakeLines(OutDrawElements, LayerId,FSlateInvalidationWidgetSortOrder(), AllottedGeometry.ToPaintGeometry(), LinePoints, DrawEffects, LineColor);
 		}
 	}
 

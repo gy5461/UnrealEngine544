@@ -276,7 +276,7 @@ void SInteractiveCurveEditorView::DrawBackground(const FGeometry& AllottedGeomet
 {
 	if (BackgroundTint != FLinearColor::White)
 	{
-		FSlateDrawElement::MakeBox(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Background, AllottedGeometry.ToPaintGeometry(),
+		FSlateDrawElement::MakeBox(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Background, FastPathProxyHandle.GetWidgetSortOrder(),AllottedGeometry.ToPaintGeometry(),
 			FAppStyle::GetBrush("ToolPanel.GroupBorder"), DrawEffects, BackgroundTint);
 	}
 }
@@ -335,6 +335,7 @@ void SInteractiveCurveEditorView::DrawGridLines(TSharedRef<FCurveEditor> CurveEd
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
 				BaseLayerId + CurveViewConstants::ELayerOffset::GridLabels,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				LabelGeometry,
 				Label,
 				FontInfo,
@@ -350,6 +351,7 @@ void SInteractiveCurveEditorView::DrawGridLines(TSharedRef<FCurveEditor> CurveEd
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			BaseLayerId + CurveViewConstants::ELayerOffset::GridLines,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintGeometry,
 			LinePoints,
 			DrawEffects,
@@ -373,6 +375,7 @@ void SInteractiveCurveEditorView::DrawGridLines(TSharedRef<FCurveEditor> CurveEd
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			BaseLayerId + CurveViewConstants::ELayerOffset::GridLines,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintGeometry,
 			LinePoints,
 			DrawEffects,
@@ -414,6 +417,7 @@ void SInteractiveCurveEditorView::DrawGridLines(TSharedRef<FCurveEditor> CurveEd
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
 				BaseLayerId + CurveViewConstants::ELayerOffset::GridLabels,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				LabelGeometry,
 				Label,
 				FontInfo,
@@ -429,6 +433,7 @@ void SInteractiveCurveEditorView::DrawGridLines(TSharedRef<FCurveEditor> CurveEd
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			BaseLayerId + CurveViewConstants::ELayerOffset::GridLines,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintGeometry,
 			LinePoints,
 			DrawEffects,
@@ -453,6 +458,7 @@ void SInteractiveCurveEditorView::DrawGridLines(TSharedRef<FCurveEditor> CurveEd
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			BaseLayerId + CurveViewConstants::ELayerOffset::GridLines,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintGeometry,
 			LinePoints,
 			DrawEffects,
@@ -489,6 +495,7 @@ void SInteractiveCurveEditorView::DrawCurves(TSharedRef<FCurveEditor> CurveEdito
 			FSlateDrawElement::MakeLines(
 				OutDrawElements,
 				CurveLayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				PaintGeometry,
 				Params.InterpolatingPoints,
 				DrawEffects,
@@ -532,7 +539,7 @@ void SInteractiveCurveEditorView::DrawCurves(TSharedRef<FCurveEditor> CurveEdito
 					LinePoints[1] = Point.ScreenPosition + Point.LineDelta;
 
 					// Draw the connecting line - connecting lines are always drawn below everything else
-					FSlateDrawElement::MakeLines(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Keys - 1, PaintGeometry, LinePoints, DrawEffects, PointTint, true);
+					FSlateDrawElement::MakeLines(OutDrawElements, BaseLayerId + CurveViewConstants::ELayerOffset::Keys - 1, FastPathProxyHandle.GetWidgetSortOrder(),PaintGeometry, LinePoints, DrawEffects, PointTint, true);
 				}
 
 				FPaintGeometry PointGeometry = AllottedGeometry.ToPaintGeometry(
@@ -540,7 +547,7 @@ void SInteractiveCurveEditorView::DrawCurves(TSharedRef<FCurveEditor> CurveEdito
 					FSlateLayoutTransform(Point.ScreenPosition - (PointDrawInfo.ScreenSize * 0.5f))
 				);
 
-				FSlateDrawElement::MakeBox(OutDrawElements, KeyLayerId, PointGeometry, PointDrawInfo.Brush, DrawEffects, PointTint);
+				FSlateDrawElement::MakeBox(OutDrawElements, KeyLayerId,FastPathProxyHandle.GetWidgetSortOrder(), PointGeometry, PointDrawInfo.Brush, DrawEffects, PointTint);
 			}
 		}
 	}
@@ -585,6 +592,7 @@ void SInteractiveCurveEditorView::DrawBufferedCurves(TSharedRef<FCurveEditor> Cu
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			CurveLayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry(),
 			ScreenSpaceInterpolatingPoints,
 			DrawEffects,

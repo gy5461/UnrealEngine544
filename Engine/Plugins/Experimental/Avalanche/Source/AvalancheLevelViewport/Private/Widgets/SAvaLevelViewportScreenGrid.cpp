@@ -67,6 +67,7 @@ void SAvaLevelViewportScreenGrid::DrawGrid(const FPaintArgs& InPaintArgs, const 
 		FSlateDrawElement::MakeLines(
 			OutDrawElements,
 			InOutLayerId,
+			FSlateInvalidationWidgetSortOrder(),
 			InAllottedGeometry.ToPaintGeometry(),
 			LinePoints,
 			ESlateDrawEffect::NoPixelSnapping,

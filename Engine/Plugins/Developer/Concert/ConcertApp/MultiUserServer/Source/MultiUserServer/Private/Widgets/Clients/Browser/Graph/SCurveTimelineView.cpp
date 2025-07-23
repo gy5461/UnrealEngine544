@@ -125,6 +125,7 @@ int32 SCurveTimelineView::PaintCurve(const FGeometry& AllottedGeometry, const FS
 					FSlateDrawElement::MakeCustomVerts(
 								OutDrawElements,
 										LayerId++,
+										FSlateInvalidationWidgetSortOrder(),
 										ResourceHandle,
 										Vertices,
 										Indices,
@@ -150,6 +151,7 @@ int32 SCurveTimelineView::PaintCurve(const FGeometry& AllottedGeometry, const FS
 					FSlateDrawElement::MakeLines(
 								OutDrawElements,
 										LayerId++,
+										FSlateInvalidationWidgetSortOrder(),
 										AllottedGeometry.ToPaintGeometry(),
 										Points,
 										LineDrawEffects,
@@ -169,6 +171,7 @@ int32 SCurveTimelineView::PaintCurve(const FGeometry& AllottedGeometry, const FS
 			FSlateDrawElement::MakeLines(
 						OutDrawElements,
 								LayerId,
+								FSlateInvalidationWidgetSortOrder(),
 								AllottedGeometry.ToPaintGeometry(),
 								Points,
 								LineDrawEffects,

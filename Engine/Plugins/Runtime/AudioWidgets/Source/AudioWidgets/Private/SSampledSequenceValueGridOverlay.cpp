@@ -85,6 +85,7 @@ int32 SSampledSequenceValueGridOverlay::OnPaint(const FPaintArgs& Args, const FG
 				FSlateDrawElement::MakeText(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					LabelGeometry.ToPaintGeometry(),
 					LabelData.LabelTexts[LineIndex],
 					LabelTextFont,
@@ -98,6 +99,7 @@ int32 SSampledSequenceValueGridOverlay::OnPaint(const FPaintArgs& Args, const FG
 				FSlateDrawElement::MakeLines(
 					OutDrawElements,
 					LayerId,
+					FSlateInvalidationWidgetSortOrder(),
 					AllottedGeometry.ToPaintGeometry(),
 					LinePoints,
 					ESlateDrawEffect::None,

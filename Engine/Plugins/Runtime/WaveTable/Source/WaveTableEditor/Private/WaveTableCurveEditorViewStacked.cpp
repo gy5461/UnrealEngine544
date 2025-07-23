@@ -267,7 +267,7 @@ namespace WaveTable
 				const FVector2D LabelSize = FontMeasure->Measure(Label, FontInfo);
 
 				const uint32 LabelLayerId = BaseLayerId + CurveViewConstants::ELayerOffset::GridLabels;
-				FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId + 1, LabelGeometry, Label, FontInfo, DrawEffects, Curve->GetColor());
+				FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId + 1, FSlateInvalidationWidgetSortOrder(),LabelGeometry, Label, FontInfo, DrawEffects, Curve->GetColor());
 
 				// Render axes descriptor
 				FText Descriptor = static_cast<FWaveTableCurveModel*>(Curve)->GetAxesDescriptor();
@@ -281,7 +281,7 @@ namespace WaveTable
 				LabelPosition = FVector2D(FMath::Max(LabelSize.X + LabelBufferX, FloatingDescriptorX - GutterBufferX), PixelTop - LabelOffsetY);
 				LabelGeometry = AllottedGeometry.ToPaintGeometry(FSlateLayoutTransform(LabelPosition));
 
-				FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId + 1, LabelGeometry, Descriptor, FontInfo, DrawEffects, Curve->GetColor());
+				FSlateDrawElement::MakeText(OutDrawElements, LabelLayerId + 1,FSlateInvalidationWidgetSortOrder(), LabelGeometry, Descriptor, FontInfo, DrawEffects, Curve->GetColor());
 			}
 		}
 
@@ -353,7 +353,7 @@ namespace WaveTable
 					);
 
 					const int32 GridOverlayLayerId = DrawInfo.GetBaseLayerId() + CurveViewConstants::ELayerOffset::GridOverlays;
-					FSlateDrawElement::MakeBox(OutDrawElements, GridOverlayLayerId, BoxGeometry, WhiteBrush, DrawEffects, CurveColorTint);
+					FSlateDrawElement::MakeBox(OutDrawElements, GridOverlayLayerId,FSlateInvalidationWidgetSortOrder(), BoxGeometry, WhiteBrush, DrawEffects, CurveColorTint);
 				}
 
 				// Horizontal grid lines
@@ -420,12 +420,12 @@ namespace WaveTable
 								DrawInfo.LinePoints[0].Y = CurveSpace.ValueToScreen(0.0f);
 								DrawInfo.LinePoints[1].Y = CurveSpace.ValueToScreen(1.0f);
 
-								FSlateDrawElement::MakeLines(OutDrawElements, FadeLayerId, DrawInfo.PaintGeometry, DrawInfo.LinePoints, DrawEffects, FadeColor, false);
+								FSlateDrawElement::MakeLines(OutDrawElements, FadeLayerId,FSlateInvalidationWidgetSortOrder(), DrawInfo.PaintGeometry, DrawInfo.LinePoints, DrawEffects, FadeColor, false);
 
 								if (bIsBipolar)
 								{
 									DrawInfo.LinePoints[1].Y = CurveSpace.ValueToScreen(-1.0f);
-									FSlateDrawElement::MakeLines(OutDrawElements, FadeLayerId, DrawInfo.PaintGeometry, DrawInfo.LinePoints, DrawEffects, FadeColor, false);
+									FSlateDrawElement::MakeLines(OutDrawElements, FadeLayerId,FSlateInvalidationWidgetSortOrder(), DrawInfo.PaintGeometry, DrawInfo.LinePoints, DrawEffects, FadeColor, false);
 								}
 							}
 							break;
@@ -447,7 +447,7 @@ namespace WaveTable
 								FSlateLayoutTransform(FVector2D(BoxStart, DrawInfo.GetPixelTop()))
 							);
 
-							FSlateDrawElement::MakeBox(OutDrawElements, GridOverlayLayerId, BoxGeometry, BoxBrush, DrawEffects, FadeColor.CopyWithNewOpacity(0.15f));
+							FSlateDrawElement::MakeBox(OutDrawElements, GridOverlayLayerId,FSlateInvalidationWidgetSortOrder(), BoxGeometry, BoxBrush, DrawEffects, FadeColor.CopyWithNewOpacity(0.15f));
 						}
 					};
 
@@ -495,7 +495,7 @@ namespace WaveTable
 			FLinearColor Color = bIsMajor ? DrawInfo.GetMajorGridColor() : DrawInfo.GetMinorGridColor();
 
 			DrawInfo.LinePoints[0].Y = DrawInfo.LinePoints[1].Y = DrawInfo.ScreenSpace.ValueToScreen(LowerValue + OffsetAlpha);
-			FSlateDrawElement::MakeLines(OutDrawElements, LineLayerId, DrawInfo.PaintGeometry, DrawInfo.LinePoints, DrawEffects, Color, false);
+			FSlateDrawElement::MakeLines(OutDrawElements, LineLayerId,FSlateInvalidationWidgetSortOrder(), DrawInfo.PaintGeometry, DrawInfo.LinePoints, DrawEffects, Color, false);
 
 			FText Label = FText::AsNumber(FMath::Lerp(ValueMin, ValueMax, OffsetAlpha), &DrawInfo.LabelFormat);
 
@@ -524,6 +524,7 @@ namespace WaveTable
 			FSlateDrawElement::MakeText(
 				OutDrawElements,
 				LabelLayerId,
+				FSlateInvalidationWidgetSortOrder(),
 				LabelGeometry,
 				Label,
 				FontInfo,
@@ -541,7 +542,7 @@ namespace WaveTable
 
 				DrawInfo.LinePoints[0].X = DrawInfo.LinePoints[1].X = VerticalLine;
 				const uint32 LineLayerId = DrawInfo.GetBaseLayerId() + CurveViewConstants::ELayerOffset::GridLines;
-				FSlateDrawElement::MakeLines(OutDrawElements, LineLayerId, DrawInfo.PaintGeometry, DrawInfo.LinePoints, DrawEffects, LineColor, false);
+				FSlateDrawElement::MakeLines(OutDrawElements, LineLayerId,FSlateInvalidationWidgetSortOrder(), DrawInfo.PaintGeometry, DrawInfo.LinePoints, DrawEffects, LineColor, false);
 
 				if (Label)
 				{
@@ -555,6 +556,7 @@ namespace WaveTable
 					FSlateDrawElement::MakeText(
 						OutDrawElements,
 						LabelLayerId,
+						FSlateInvalidationWidgetSortOrder(),
 						LabelGeometry,
 						*Label,
 						FontInfo,

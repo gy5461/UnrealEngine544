@@ -119,6 +119,7 @@ int32 SProfilerMiniView::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 	(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry( FVector2D( MiniViewSizeX, AllottedGeometry.Size.Y ), FSlateLayoutTransform() ),
 		MiniViewArea,
 		DrawEffects,
@@ -155,6 +156,7 @@ int32 SProfilerMiniView::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 			(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( FVector2D( DestSampleSizeX, GTSizeY ), FSlateLayoutTransform(FVector2D( DestSamplePosX0, MiniViewSizeY - GTSizeY )) ),
 				&SolidWhiteBrush,
 				DrawEffects,
@@ -166,6 +168,7 @@ int32 SProfilerMiniView::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 			(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( FVector2D( DestSampleSizeX, RTSizeY ), FSlateLayoutTransform(FVector2D( DestSamplePosX0, MiniViewSizeY - GTSizeY - RTSizeY )) ),
 				&SolidWhiteBrush,
 				DrawEffects,
@@ -204,6 +207,7 @@ int32 SProfilerMiniView::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 			(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( FVector2D( SelectionBoxX0, AllottedGeometry.Size.Y ), FSlateLayoutTransform(FVector2D( 0.0, 0.0 )) ),
 				&SolidWhiteBrush,
 				DrawEffects,
@@ -217,6 +221,7 @@ int32 SProfilerMiniView::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 			(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( FVector2D( MiniViewSizeX - SelectionBoxX1, AllottedGeometry.Size.Y ), FSlateLayoutTransform(FVector2D( SelectionBoxX1, 0.0 )) ),
 				&SolidWhiteBrush,
 				DrawEffects,
@@ -233,6 +238,7 @@ int32 SProfilerMiniView::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 			(
 				OutDrawElements,
 				LayerId,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				AllottedGeometry.ToPaintGeometry( FVector2D( FillerSizeX + 1.0, AllottedGeometry.Size.Y ), FSlateLayoutTransform(FVector2D( FillerPosX0, 0.0 )) ),
 				&SolidWhiteBrush,
 				DrawEffects,
@@ -247,6 +253,7 @@ int32 SProfilerMiniView::OnPaint( const FPaintArgs& Args, const FGeometry& Allot
 		(
 			OutDrawElements,
 			LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			AllottedGeometry.ToPaintGeometry( FVector2D( SelectionBoxX1 - SelectionBoxX0, AllottedGeometry.Size.Y ), FSlateLayoutTransform(FVector2D( SelectionBoxX0, 0.0 )) ),
 			FProfilerStyle::Get().GetBrush( "PlainBorder" ),
 			DrawEffects,
@@ -337,6 +344,7 @@ void SProfilerMiniView::DrawText( const FString& Text, const FSlateFontInfo& Fon
 		(
 			PaintState->OutDrawElements,
 			PaintState->LayerId,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			PaintState->AllottedGeometry.ToOffsetPaintGeometry( Position + ShadowOffset ),
 			Text,
 			FontInfo,
@@ -349,6 +357,7 @@ void SProfilerMiniView::DrawText( const FString& Text, const FSlateFontInfo& Fon
 	(
 		PaintState->OutDrawElements,
 		++PaintState->LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		PaintState->AllottedGeometry.ToOffsetPaintGeometry( Position ),
 		Text,
 		FontInfo,

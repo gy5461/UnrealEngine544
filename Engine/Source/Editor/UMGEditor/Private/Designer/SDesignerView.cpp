@@ -2093,6 +2093,7 @@ void SDesignerView::DrawSelectionAndHoverOutline(const FOnPaintHandlerParams& Pa
 			FSlateDrawElement::MakeLines(
 				PaintArgs.OutDrawElements,
 				PaintArgs.Layer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				FPaintGeometry(),
 				Points,
 				ESlateDrawEffect::None,
@@ -2131,6 +2132,7 @@ void SDesignerView::DrawSelectionAndHoverOutline(const FOnPaintHandlerParams& Pa
 		FSlateDrawElement::MakeLines(
 			PaintArgs.OutDrawElements,
 			PaintArgs.Layer,
+			FastPathProxyHandle.GetWidgetSortOrder(),
 			FPaintGeometry(),
 			Points,
 			ESlateDrawEffect::None,
@@ -2177,6 +2179,7 @@ void SDesignerView::DrawSafeZone(const FOnPaintHandlerParams& PaintArgs)
 			FSlateDrawElement::MakeBox(
 				PaintArgs.OutDrawElements,
 				PaintArgs.Layer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				PreviewGeometry.ToPaintGeometry(FVector2f(Width, SafeMargin.Top), FSlateLayoutTransform()),
 				WhiteBrush,
 				ESlateDrawEffect::None,
@@ -2187,6 +2190,7 @@ void SDesignerView::DrawSafeZone(const FOnPaintHandlerParams& PaintArgs)
 			FSlateDrawElement::MakeBox(
 				PaintArgs.OutDrawElements,
 				PaintArgs.Layer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				PreviewGeometry.ToPaintGeometry(FVector2f(Width, SafeMargin.Bottom), FSlateLayoutTransform(FVector2f(0.0f, Height - SafeMargin.Bottom))),
 				WhiteBrush,
 				ESlateDrawEffect::None,
@@ -2197,6 +2201,7 @@ void SDesignerView::DrawSafeZone(const FOnPaintHandlerParams& PaintArgs)
 			FSlateDrawElement::MakeBox(
 				PaintArgs.OutDrawElements,
 				PaintArgs.Layer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				PreviewGeometry.ToPaintGeometry(FVector2f(SafeMargin.Left, HeightOfSides), FSlateLayoutTransform(FVector2f(0.0f, SafeMargin.Top))),
 				WhiteBrush,
 				ESlateDrawEffect::None,
@@ -2207,6 +2212,7 @@ void SDesignerView::DrawSafeZone(const FOnPaintHandlerParams& PaintArgs)
 			FSlateDrawElement::MakeBox(
 				PaintArgs.OutDrawElements,
 				PaintArgs.Layer,
+				FastPathProxyHandle.GetWidgetSortOrder(),
 				PreviewGeometry.ToPaintGeometry(FVector2f(SafeMargin.Right, HeightOfSides), FSlateLayoutTransform(FVector2f(Width - SafeMargin.Right, SafeMargin.Top))),
 				WhiteBrush,
 				ESlateDrawEffect::None,
@@ -2233,6 +2239,7 @@ void SDesignerView::DrawSafeZone(const FOnPaintHandlerParams& PaintArgs)
 				FSlateDrawElement::MakeBox(
 					PaintArgs.OutDrawElements,
 					PaintArgs.Layer,
+					FastPathProxyHandle.GetWidgetSortOrder(),
 					PreviewGeometry.ToPaintGeometry(Dimensions, FSlateLayoutTransform(Start)),
 					WhiteBrush,
 					ESlateDrawEffect::None,
@@ -2434,6 +2441,7 @@ void SDesignerView::DrawResolution(const FDebugResolution& Resolution, const FGe
 	FSlateDrawElement::MakeBox(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToPaintGeometry(ResolutionSize * Scale, FSlateLayoutTransform(ZeroSpace)),
 		WhiteBrush,
 		ESlateDrawEffect::None,
@@ -2458,6 +2466,7 @@ void SDesignerView::DrawResolution(const FDebugResolution& Resolution, const FGe
 	FSlateDrawElement::MakeText(
 		OutDrawElements,
 		LayerId,
+		FastPathProxyHandle.GetWidgetSortOrder(),
 		AllottedGeometry.ToOffsetPaintGeometry(ZeroSpace + ResolutionSize * Scale - (ResolutionStringSize + FVector2D(2, 2))),
 		ResolutionString,
 		FontInfo,
