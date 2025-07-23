@@ -133,10 +133,10 @@ int32 FSlateTextLayout::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 		ETextOverflowPolicy LineOverflowPolicy = OverflowPolicy;
 		ETextOverflowDirection LineOverflowDirection = ETextOverflowDirection::NoOverflow;
 
-		if (!IsAtLeastPartiallyVisible(LineView.Offset, LineView.Size))
-		{
-			continue;
-		}
+		// if (!IsAtLeastPartiallyVisible(LineView.Offset, LineView.Size))
+		// {
+		// 	continue;
+		// }
 
 		// Render any underlays for this line
 		const int32 HighestUnderlayLayerId = OnPaintHighlights( Args, LineView, LineView.UnderlayHighlights, DefaultTextStyle, AllottedGeometry, MyCullingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled );
@@ -202,10 +202,10 @@ int32 FSlateTextLayout::OnPaint( const FPaintArgs& Args, const FGeometry& Allott
 		for (int32 BlockIndex = 0; BlockIndex < LineView.Blocks.Num(); ++BlockIndex)
 		{
 			const TSharedRef< ILayoutBlock >& Block = LineView.Blocks[BlockIndex];
-			if (!IsAtLeastPartiallyVisible(Block->GetLocationOffset(), Block->GetSize()))
-			{
-				continue;
-			}
+			// if (!IsAtLeastPartiallyVisible(Block->GetLocationOffset(), Block->GetSize()))
+			// {
+			// 	continue;
+			// }
 
 #if !(UE_BUILD_SHIPPING || UE_BUILD_TEST)
 			if ( GShowTextDebugging)
