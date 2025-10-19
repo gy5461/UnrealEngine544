@@ -657,7 +657,7 @@ FReply FSceneViewport::OnMouseButtonUp( const FGeometry& InGeometry, const FPoin
 
 		if (bCursorVisible)
 		{
-			bReleaseMouseCapture = true;
+			bReleaseMouseCapture = false;
 			UE_LOG(LogViewport, Verbose, TEXT("Releasing Mouse Capture; Cursor is visible"));
 		}
 		else if (ViewportClient->GetMouseCaptureMode() == EMouseCaptureMode::CaptureDuringMouseDown)
