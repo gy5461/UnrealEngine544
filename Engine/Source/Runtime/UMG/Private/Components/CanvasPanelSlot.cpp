@@ -175,7 +175,7 @@ void UCanvasPanelSlot::SetPosition(FVector2D InPosition)
 	}
 }
 
-void UCanvasPanelSlot::SetWidgetTranslation(const UUserWidget* RootWidget, const FVector2D& InTrans)
+void UCanvasPanelSlot::SetWidgetTranslation(UUserWidget* RootWidget, const FVector2D& InTrans)
 {
 	RootWidget->WidgetTree->ForEachWidget([&](UWidget* InWidget)
 	{
@@ -185,19 +185,30 @@ void UCanvasPanelSlot::SetWidgetTranslation(const UUserWidget* RootWidget, const
 			return;
 		}
 		
-		TSharedRef<SWidget> SubtitleSWidget = InWidget->TakeWidget();
-		TWeakPtr<FSlateCachedElementList> SubtitlePtr = SubtitleSWidget->GetPersistentState().CachedElementHandle.Ptr;
-		if (SubtitlePtr.IsValid())
+		TSharedRef<SWidget> SubSWidget = InWidget->TakeWidget();
+		
+		TWeakPtr<FSlateCachedElementList> SubPtr = SubSWidget->GetPersistentState().CachedElementHandle.Ptr;
+		if (SubPtr.IsValid())
 		{
-			TSharedPtr<FSlateCachedElementList> SubtitlePtrPin = SubtitlePtr.Pin();
-			if (SubtitlePtrPin.IsValid())
+			TSharedPtr<FSlateCachedElementList> SubPtrPin = SubPtr.Pin();
+			if (SubPtrPin.IsValid())
 			{
-				if (FSlateCachedFastPathRenderingData* CacheRenderDataPtr = SubtitlePtrPin->CachedRenderingData)
+				if (FSlateCachedElementData* CacheRenderDataPtr = SubPtrPin->GetOwningData())
 				{
-					FSlateVertexArray& SubtitleItemVertices = CacheRenderDataPtr->Vertices;
-					for(FSlateVertex& Vertex : SubtitleItemVertices)
+					const TSparseArray<FSlateRenderBatch>& RenderBatches = CacheRenderDataPtr->GetCachedBatches();
+
+					for(int32 BatchInd : SubPtrPin->CachedRenderBatchIndices)
 					{
-						Vertex.Position = FVector2f(Vertex.Position.X + InTrans.X, Vertex.Position.Y + InTrans.Y );
+						if(RenderBatches.IsValidIndex(BatchInd))
+						{
+							const FSlateRenderBatch& RenderBatch = RenderBatches[BatchInd];
+							FSlateVertexArray& SourceVertices = *RenderBatch.SourceVertices;
+						
+							for(FSlateVertex& Vertex : SourceVertices)
+							{
+								Vertex.Position = FVector2f(Vertex.Position.X + InTrans.X, Vertex.Position.Y + InTrans.Y );
+							}
+						}
 					}
 				}
 			}

@@ -104,7 +104,7 @@ public:
 	UMG_API void SetPosition(FVector2D InPosition);
 
 	UFUNCTION(BlueprintCallable, Category="Layout|Canvas Slot")
-	UMG_API void SetWidgetTranslation(const UUserWidget* RootWidget, const FVector2D& InTrans);
+	UMG_API void SetWidgetTranslation(UUserWidget* RootWidget, const FVector2D& InTrans);
 
 	/** Gets the position of the slot */
 	UFUNCTION(BlueprintCallable, Category="Layout|Canvas Slot")
